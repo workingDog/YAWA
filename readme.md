@@ -21,6 +21,7 @@ Requires a valid OpenWeather key, see:
 
 -    [OpenWeather how to start](https://openweathermap.org/appid)
 
+Put your key in the **./Support/CityProvider** -> *weatherProvider*
 
 For ios 14 and macos 11
 
