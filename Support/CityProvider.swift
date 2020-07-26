@@ -12,6 +12,7 @@ import OWOneCall
 import CoreLocation
 
 
+
 class CityProvider: ObservableObject {
     
     let fileName = "worldcities_clean"
