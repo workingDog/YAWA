@@ -68,7 +68,7 @@ struct WeatherDetails: View {
 
     func dailyView(_ daily: Daily) -> some View {
         HStack {
-            Text(Date(utc: daily.dt).dayName())
+            Text(Date(utc: daily.dt).dayName(lang: cityProvider.lang))
             Spacer()
             Image(systemName: dailyIconName(daily))
                 .resizable()

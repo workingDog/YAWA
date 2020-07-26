@@ -23,10 +23,10 @@ struct NewCityView: View {
     var body: some View {
         VStack (spacing: 30) {
             Text("New city").padding(.top, 30)
-            TextField("city name", text: $cityName).padding(8).textFieldStyle(CustomTextFieldStyle())
-            TextField("country", text: $cityCountry).padding(8).textFieldStyle(CustomTextFieldStyle())
-            TextField("decimal latitude", text: $cityLat).padding(8).textFieldStyle(CustomTextFieldStyle())
-            TextField("decimal longitude", text: $cityLon).padding(8).textFieldStyle(CustomTextFieldStyle())
+            TextField("city name", text: $cityName)
+            TextField("country", text: $cityCountry)
+            TextField("decimal latitude", text: $cityLat)
+            TextField("decimal longitude", text: $cityLon)
 
             Button(action: {self.onSave()}) {
                 Text("Save").padding(30).foregroundColor(Color.primary)
@@ -37,6 +37,7 @@ struct NewCityView: View {
 
             Spacer()
         }.foregroundColor(.blue)
+        .textFieldStyle(CustomTextFieldStyle())
         .frame(width: 333)
     }
     

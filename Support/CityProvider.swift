@@ -16,8 +16,8 @@ import CoreLocation
 class CityProvider: ObservableObject {
     
     let fileName = "worldcities_clean"
-    let lang = "en"         // "ja"
-    let frmt = "yyyy-MM-dd" // "yyyy年MM月dd日"
+    let lang = "en"         // "ja"  //
+    let frmt = "yyyy-MM-dd" // "yyyy年MM月dd日"  // 
    
     let weatherProvider = OWProvider(apiKey: "your-key")
     
@@ -54,10 +54,9 @@ class CityProvider: ObservableObject {
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {
-            // locationManager.requestLocation()
             let loc = locationManager.location
-            // locationManager.stopUpdatingLocation()
             if let coord = loc?.coordinate {
+                locationManager.stopUpdatingLocation()
                 return nearestTo(lat: coord.latitude, lon: coord.longitude)
             }
         }
