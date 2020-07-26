@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct YAWAApp: App {
+    
+    var cityProvider = CityProvider()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView().environmentObject(self.cityProvider)
         }
     }
+    
 }

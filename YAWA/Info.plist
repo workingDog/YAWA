@@ -20,6 +20,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>to get its weather</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>to get its weather</string>
+    <key>NSLocationUsageDescription</key>
+    <string>to get its weather</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>to get its weather</string>
+    
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
