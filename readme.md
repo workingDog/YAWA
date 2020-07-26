@@ -22,7 +22,7 @@ Requires a valid OpenWeather key, see:
 -    [OpenWeather how to start](https://openweathermap.org/appid)
 
 
-For ios 14, macos 11
+For ios 14 and macos 11
 
 ### References
 

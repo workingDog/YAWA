@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C71AF2A324CD897800E537CE /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C71AF2A224CD897800E537CE /* OWOneCall */; };
 		C7410B5124CD8AC500ECCF2D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5024CD8AC500ECCF2D /* readme.md */; };
 		C7410B5324CD8AD700ECCF2D /* worldcities_clean.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5224CD8AD700ECCF2D /* worldcities_clean.csv */; };
 		C75470C724CD8829003B330F /* YAWAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75470C624CD8829003B330F /* YAWAApp.swift */; };
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
+		C77059E124CDA76E00BA7C92 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C77059E024CDA76E00BA7C92 /* OWOneCall */; };
 		C783DDF724CD91C0001BC64A /* picture1.png in Resources */ = {isa = PBXBuildFile; fileRef = C783DDF524CD91C0001BC64A /* picture1.png */; };
 		C783DDF824CD91C0001BC64A /* picture2.png in Resources */ = {isa = PBXBuildFile; fileRef = C783DDF624CD91C0001BC64A /* picture2.png */; };
 		C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91324CD890400629E06 /* Extensions.swift */; };
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71AF2A324CD897800E537CE /* OWOneCall in Frameworks */,
+				C77059E124CDA76E00BA7C92 /* OWOneCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +152,7 @@
 			);
 			name = YAWA;
 			packageProductDependencies = (
-				C71AF2A224CD897800E537CE /* OWOneCall */,
+				C77059E024CDA76E00BA7C92 /* OWOneCall */,
 			);
 			productName = YAWA;
 			productReference = C75470C324CD8829003B330F /* YAWA.app */;
@@ -182,7 +182,7 @@
 			);
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
-				C71AF2A124CD897800E537CE /* XCRemoteSwiftPackageReference "OWOneCall" */,
+				C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
 			projectDirPath = "";
@@ -416,20 +416,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C71AF2A124CD897800E537CE /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
+		C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/workingDog/OWOneCall.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C71AF2A224CD897800E537CE /* OWOneCall */ = {
+		C77059E024CDA76E00BA7C92 /* OWOneCall */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C71AF2A124CD897800E537CE /* XCRemoteSwiftPackageReference "OWOneCall" */;
+			package = C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */;
 			productName = OWOneCall;
 		};
 /* End XCSwiftPackageProductDependency section */

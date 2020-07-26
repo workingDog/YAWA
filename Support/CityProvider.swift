@@ -18,7 +18,7 @@ class CityProvider: ObservableObject {
     let lang = "en"         // "ja"
     let frmt = "yyyy-MM-dd" // "yyyy年MM月dd日"
    
-    let weatherProvider = OWProvider(apiKey: "216be47154e38f9351d3b1d6de1fbfe7")
+    let weatherProvider = OWProvider(apiKey: "your-key")
     
     @Published var cities: [City] = []
     
