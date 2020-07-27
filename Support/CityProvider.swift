@@ -12,21 +12,21 @@ import OWOneCall
 import CoreLocation
 
 
-
 class CityProvider: ObservableObject {
     
     let fileName = "worldcities_clean"
-    let lang = "en"         // "ja"  //
-    let frmt = "yyyy-MM-dd" // "yyyy年MM月dd日"  // 
-   
-    let weatherProvider = OWProvider(apiKey: "your-key")
-    
-    @Published var cities: [City] = []
-    
+    let weatherProvider = OWProvider(apiKey: "5b17b83edf5a2e5ba7f5250e54e9c0b3")
     let locationManager = CLLocationManager()
+
+    @Published var cities: [City] = []
+    @Published var lang = "English"
+
+    var languageNames = ["en":"English"]
+    var langArr = ["English"]
     
     init() {
         self.cities = loadCities()
+        loadLanguages()
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -51,6 +51,16 @@ class CityProvider: ObservableObject {
         return []
     }
     
+    func loadLanguages() {
+        let currentLocale = NSLocale.current as NSLocale
+        for languageCode in NSLocale.availableLocaleIdentifiers {
+            if let name = currentLocale.displayName(forKey: NSLocale.Key.languageCode, value: languageCode), !languageNames.values.contains(name) {
+                languageNames[languageCode] = name
+            }
+        }
+        langArr = Array(languageNames.values.sorted {$0 < $1})
+    }
+ 
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {
@@ -70,10 +80,17 @@ class CityProvider: ObservableObject {
             $0.lon >= lat-delta && $0.lon <= lat+delta
         })
     }
+    
+    func langKey() -> String {
+        if let keyval = languageNames.first(where: {$1 == lang}) {
+            return keyval.key
+        }
+        return "en"
+    }
    
     func hourFormattedDate(utc: Int, offset: Int) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: lang)
+        dateFormatter.locale = Locale(identifier: langKey())
         dateFormatter.dateFormat = "hh:mm a"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: offset)
         return dateFormatter.string(from: utc.dateFromUTC())

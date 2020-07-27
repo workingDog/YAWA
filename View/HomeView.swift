@@ -13,6 +13,7 @@ struct HomeView: View {
 
     @State private var searchQuery: String = ""
     @State var showNewCity: Bool = false
+    @State var showLang: Bool = false
     @State var action: Int? = 0
     @State var currentCity = City()
     
@@ -41,7 +42,7 @@ struct HomeView: View {
                     }
                     .onDelete(perform: delete)
                   //  .onMove(perform: move)
-                }.navigationBarItems(trailing: addButton)
+                }.navigationBarItems(leading: langButton, trailing: addButton)
             }.navigationBarTitle(Text("Weather"))
             .onAppear(perform: loadData)
             
@@ -52,7 +53,7 @@ struct HomeView: View {
         let thisCity = cityProvider.getCurrentCity()
         currentCity = thisCity != nil ? thisCity! : City(name: "Tokyo", country: "Japan", lat: 35.6834,  lon: 139.7833)
     }
-
+    
     struct GradientButtonStyle: ButtonStyle {
         func makeBody(configuration: Self.Configuration) -> some View {
             configuration.label
@@ -60,6 +61,16 @@ struct HomeView: View {
                 .padding()
                 .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(15.0)
+        }
+    }
+    
+    struct BlueButtonStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .foregroundColor(Color.white)
+         //       .padding()
+                .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(10.0)
         }
     }
     
@@ -72,6 +83,15 @@ struct HomeView: View {
             Image(systemName: "plus.circle.fill").font(.title)
         }.sheet(isPresented: $showNewCity, onDismiss: {self.showNewCity = false}) {
             NewCityView().environmentObject(self.cityProvider)
+        }
+    }
+
+    private var langButton: some View {
+        Button(action: {self.showLang = true}) {
+            Text(self.cityProvider.lang).font(.body).frame(width: 180, height: 35)
+        }.buttonStyle(BlueButtonStyle())
+        .sheet(isPresented: $showLang, onDismiss: {self.showLang = false}) {
+            LanguageView().environmentObject(self.cityProvider)
         }
     }
     
@@ -94,7 +114,7 @@ struct HomeView: View {
         }
         cityProvider.cities.insert(contentsOf: removeCities, at: destination)
     }
-    
+  
 }
 
 struct HomeView_Previews: PreviewProvider {

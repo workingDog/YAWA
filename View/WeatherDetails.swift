@@ -30,7 +30,7 @@ struct WeatherDetails: View {
                     Text(weather.current?.weatherInfo() ?? "").padding(.horizontal, 20)
                     Spacer()
                 }.frame(height: 110)
-            }
+            }.textCase(nil)
             
             Section(header: Text("Next 24 hours")) {
                 ScrollView(.horizontal) {
@@ -47,13 +47,13 @@ struct WeatherDetails: View {
                         }.frame(height: 120)
                     }.padding([.trailing, .leading])
                 }
-            }
+            }.textCase(nil)
             
             Section(header: Text("This week")) {
                 ForEach((weather.daily?.dropFirst() ?? []), id: \.self) { daily in
                     dailyView(daily)
                 }
-            }
+            }.textCase(nil)
         }
         .padding(20)
         .onAppear(perform: loadData)
