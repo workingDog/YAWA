@@ -91,7 +91,7 @@ struct HomeView: View {
             Text(self.cityProvider.lang).font(.body).frame(width: 180, height: 35)
         }.buttonStyle(BlueButtonStyle())
         .sheet(isPresented: $showLang, onDismiss: {self.showLang = false}) {
-            LanguageView().environmentObject(self.cityProvider)
+            LanguageListView().environmentObject(self.cityProvider)
         }
     }
     

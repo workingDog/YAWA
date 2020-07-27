@@ -22,7 +22,7 @@ struct LanguageView: View {
                     self.cityProvider.lang = self.cityProvider.langArr[langSelection]
                 })) {
             ForEach(0..<self.cityProvider.langArr.count) {
-                Text(self.cityProvider.langArr[$0]).font(.title).padding(10)
+                Text(self.cityProvider.langArr[$0]).font(.title)
             }
         }.pickerStyle(WheelPickerStyle())
         .frame(width: 444, height: 555)
