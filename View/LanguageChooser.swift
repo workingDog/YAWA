@@ -14,6 +14,7 @@ struct LanguageChooser: View {
     @EnvironmentObject var cityProvider: CityProvider
     
     @State private var searchQuery: String = ""
+    @State private var startLang: String?
     
     let columns = [ GridItem(.adaptive(minimum: 150)) ]
     
@@ -37,31 +38,45 @@ struct LanguageChooser: View {
             Divider()
             HStack {
                 Spacer()
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach(cityProvider.langArr.filter{self.searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
-                            Button(action: {
-                                self.cityProvider.lang = lang
-                                self.searchQuery = lang
-                            }) {
-                                Text(lang).padding(10)
-                                    .font(self.cityProvider.lang == lang ? .headline : .body)
-                                    .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
-                                    .frame(width: 200)
-                                    .background(RoundedRectangle(cornerRadius: 10)
-                                                    .stroke(lineWidth: 2)
-                                                    .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
-                                                    .background(Color(UIColor.systemGray6))
-                                                    .shadow(radius: 3)
-                                                    .padding(2))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                ScrollViewReader { scroller in
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach(cityProvider.langArr.filter{self.searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
+                                Button(action: {
+                                    self.cityProvider.lang = lang
+                                    self.searchQuery = lang
+                                }) {
+                                    Text(lang).padding(10)
+                                        .font(self.cityProvider.lang == lang ? .headline : .body)
+                                        .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                        .frame(width: 200)
+                                        .background(RoundedRectangle(cornerRadius: 10)
+                                                        .stroke(lineWidth: 2)
+                                                        .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                                        .background(Color(UIColor.systemGray6))
+                                                        .shadow(radius: 3)
+                                                        .padding(2))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                }
+                            }
+                        }
+                    }.onChange(of: self.startLang) { txt in
+                        if let str = txt {
+                            withAnimation {
+                                scroller.scrollTo(str)
                             }
                         }
                     }
                 }
+                
                 Spacer()
             }
-        }
+        }.onAppear(perform: loadData)
+    }
+    
+    func loadData() {
+        startLang = cityProvider.lang
     }
     
     private func searchFor(_ txt: String) -> Bool {
