@@ -70,7 +70,6 @@ struct HomeView: View {
         func makeBody(configuration: Self.Configuration) -> some View {
             configuration.label
                 .foregroundColor(Color.white)
-         //       .padding()
                 .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(10.0)
         }
@@ -93,7 +92,7 @@ struct HomeView: View {
             Text(self.cityProvider.lang).font(.body).frame(width: 180, height: 35)
         }.buttonStyle(BlueButtonStyle())
         .sheet(isPresented: $showLang, onDismiss: {self.showLang = false}) {
-            LanguageListView().environmentObject(self.cityProvider)
+            LanguageChooser().environmentObject(self.cityProvider)
         }
     }
     
