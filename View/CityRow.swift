@@ -16,6 +16,8 @@ struct CityRow: View {
             HStack {
                 Text(city.name).font(.title)
                 Spacer()
+                Image(city.code).resizable().renderingMode(.original).frame(width: 40, height: 30)
+                Spacer()
                 Text(city.country).font(.title)
             }
             .padding(10)

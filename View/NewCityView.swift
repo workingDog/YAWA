@@ -16,6 +16,7 @@ struct NewCityView: View {
 
     @State var cityName = ""
     @State var cityCountry = ""
+    @State var cityCountryCode = ""
     @State var cityLat = ""
     @State var cityLon = ""
   
@@ -25,6 +26,7 @@ struct NewCityView: View {
             Text("New city").padding(.top, 30)
             TextField("city name", text: $cityName)
             TextField("country", text: $cityCountry)
+            TextField("country code", text: $cityCountryCode)
             TextField("decimal latitude", text: $cityLat)
             TextField("decimal longitude", text: $cityLon)
 
@@ -43,7 +45,9 @@ struct NewCityView: View {
     
     func onSave() {
         if let latlon = CityProvider.getLatLon(lat: cityLat, lon: cityLon), !cityName.isEmpty {
-            let newCity = City(name: cityName, country: cityCountry, lat: latlon.0, lon: latlon.1)
+            let newCity = City(name: cityName, country: cityCountry,
+                               code: cityCountryCode,
+                               lat: latlon.0, lon: latlon.1)
             cityProvider.cities.append(newCity)
         }
         // to go back to the previous view

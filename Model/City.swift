@@ -7,24 +7,37 @@
 
 import Foundation
 
-struct City: Identifiable, Equatable {
+struct City: Codable, Identifiable, Equatable {
     
-    let id = UUID().uuidString
+    var id = UUID().uuidString
+    
     var name: String
     var country: String
+    var code: String
     var lon: Double
     var lat: Double
     
     init() {
         self.name = ""
         self.country = ""
+        self.code = ""
         self.lon = 0.0
         self.lat = 0.0
     }
     
-    init(name: String, country: String, lat: Double, lon: Double) {
+    init(name: String, country: String, code: String, lat: Double, lon: Double) {
         self.name = name
         self.country = country
+        self.code = code
+        self.lon = lon
+        self.lat = lat
+    }
+    
+    init(id: String, name: String, country: String, code: String, lat: Double, lon: Double) {
+        self.id = id
+        self.name = name
+        self.country = country
+        self.code = code
         self.lon = lon
         self.lat = lat
     }

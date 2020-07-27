@@ -14,10 +14,9 @@ import CoreLocation
 
 class CityProvider: ObservableObject {
     
-    let fileName = "worldcities_clean"
     let weatherProvider = OWProvider(apiKey: "5b17b83edf5a2e5ba7f5250e54e9c0b3")
     let locationManager = CLLocationManager()
-
+    
     @Published var cities: [City] = []
     @Published var lang = "English"
 
@@ -25,30 +24,22 @@ class CityProvider: ObservableObject {
     var langArr = ["English"]
     
     init() {
-        self.cities = loadCities()
+        loadCities()
         loadLanguages()
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
-    func loadCities() -> [City] {
-        var cities = [City]()
-        if let url = Bundle.main.url(forResource: fileName, withExtension: "csv") {
+    func loadCities() {
+        if let url =  Bundle.main.url(forResource: "cities", withExtension: "json") {
             do {
-                let data = try String(contentsOf: url)
-                let lines = data.split(separator: "\n")
-                for line in lines {
-                    let cols = line.split(separator: ",")
-                    cities.append(City(name: String(cols[0]), country: String(cols[3]),
-                                       lat: Double(cols[1]) ?? 0.0,
-                                       lon: Double(cols[2]) ?? 0.0))
-                }
-                return cities.sorted {$0.name.localizedStandardCompare($1.name) == .orderedAscending}
+                let data = try Data(contentsOf: url)
+                let theCities = try JSONDecoder().decode([City].self, from: data)
+                cities = theCities
             } catch {
-                print("====> loadCities reading error:\(error)")
+                print("====> loadCities loadCitiesJson reading error:\(error)")
             }
         }
-        return []
     }
     
     func loadLanguages() {
@@ -60,7 +51,7 @@ class CityProvider: ObservableObject {
         }
         langArr = Array(languageNames.values.sorted {$0 < $1})
     }
- 
+    
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {
@@ -72,12 +63,12 @@ class CityProvider: ObservableObject {
         }
         return nil
     }
- 
+    
     private func nearestTo(lat: Double, lon: Double) -> City? {
         let delta = 0.005
         return cities.first(where: {
             $0.lat >= lat-delta && $0.lat <= lat+delta &&
-            $0.lon >= lat-delta && $0.lon <= lat+delta
+                $0.lon >= lat-delta && $0.lon <= lat+delta
         })
     }
     
@@ -87,7 +78,7 @@ class CityProvider: ObservableObject {
         }
         return "en"
     }
-   
+    
     func hourFormattedDate(utc: Int, offset: Int) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: langKey())
@@ -104,5 +95,5 @@ class CityProvider: ObservableObject {
         }
         return nil
     }
-   
+    
 }

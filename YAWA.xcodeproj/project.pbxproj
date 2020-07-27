@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C73AEC0524CEF70A00EB6C3E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = C73AEC0424CEF70A00EB6C3E /* cities.json */; };
 		C7410B5124CD8AC500ECCF2D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5024CD8AC500ECCF2D /* readme.md */; };
-		C7410B5324CD8AD700ECCF2D /* worldcities_clean.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5224CD8AD700ECCF2D /* worldcities_clean.csv */; };
 		C75470C724CD8829003B330F /* YAWAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75470C624CD8829003B330F /* YAWAApp.swift */; };
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
+		C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = C767F83324CEE11F00EF8EA8 /* country-codes.json */; };
 		C77059E124CDA76E00BA7C92 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C77059E024CDA76E00BA7C92 /* OWOneCall */; };
 		C783DDF724CD91C0001BC64A /* picture1.png in Resources */ = {isa = PBXBuildFile; fileRef = C783DDF524CD91C0001BC64A /* picture1.png */; };
 		C783DDF824CD91C0001BC64A /* picture2.png in Resources */ = {isa = PBXBuildFile; fileRef = C783DDF624CD91C0001BC64A /* picture2.png */; };
@@ -26,13 +27,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C73AEC0424CEF70A00EB6C3E /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		C7410B5024CD8AC500ECCF2D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
-		C7410B5224CD8AD700ECCF2D /* worldcities_clean.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = worldcities_clean.csv; sourceTree = "<group>"; };
 		C75470C324CD8829003B330F /* YAWA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAWA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75470C624CD8829003B330F /* YAWAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAWAApp.swift; sourceTree = "<group>"; };
 		C75470CA24CD8829003B330F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C75470CD24CD8829003B330F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C75470CF24CD8829003B330F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C767F83324CEE11F00EF8EA8 /* country-codes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "country-codes.json"; sourceTree = "<group>"; };
 		C783DDF524CD91C0001BC64A /* picture1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture1.png; sourceTree = "<group>"; };
 		C783DDF624CD91C0001BC64A /* picture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture2.png; sourceTree = "<group>"; };
 		C7ADA91324CD890400629E06 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -82,9 +84,10 @@
 		C75470C524CD8829003B330F /* YAWA */ = {
 			isa = PBXGroup;
 			children = (
+				C73AEC0424CEF70A00EB6C3E /* cities.json */,
+				C767F83324CEE11F00EF8EA8 /* country-codes.json */,
 				C75470C624CD8829003B330F /* YAWAApp.swift */,
 				C7D1869624CD8E5800726CA1 /* YAWA.entitlements */,
-				C7410B5224CD8AD700ECCF2D /* worldcities_clean.csv */,
 				C75470CA24CD8829003B330F /* Assets.xcassets */,
 				C75470CF24CD8829003B330F /* Info.plist */,
 				C75470CC24CD8829003B330F /* Preview Content */,
@@ -202,9 +205,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */,
+				C73AEC0524CEF70A00EB6C3E /* cities.json in Resources */,
 				C783DDF824CD91C0001BC64A /* picture2.png in Resources */,
 				C7410B5124CD8AC500ECCF2D /* readme.md in Resources */,
-				C7410B5324CD8AD700ECCF2D /* worldcities_clean.csv in Resources */,
+				C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */,
 				C75470CB24CD8829003B330F /* Assets.xcassets in Resources */,
 				C783DDF724CD91C0001BC64A /* picture1.png in Resources */,
 			);

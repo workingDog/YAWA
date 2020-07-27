@@ -51,7 +51,9 @@ struct HomeView: View {
     
     func loadData() {
         let thisCity = cityProvider.getCurrentCity()
-        currentCity = thisCity != nil ? thisCity! : City(name: "Tokyo", country: "Japan", lat: 35.6834,  lon: 139.7833)
+        currentCity = thisCity != nil ? thisCity! : City(name: "Tokyo", country: "Japan",
+                                                         code: "jp",
+                                                         lat: 35.6834,  lon: 139.7833)
     }
     
     struct GradientButtonStyle: ButtonStyle {
