@@ -2,7 +2,7 @@
 
 <p float="left">
   <img src="Images/picture5.png"  width="200"  height="400" />
-  <img src="Images/picture4.png"  width="200"  height="400" /> 
+  <img src="Images/picture6.png"  width="200"  height="400" /> 
 </p>
 
 ## Yet Another Weather App (YAWA)

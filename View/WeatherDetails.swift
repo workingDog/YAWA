@@ -46,7 +46,7 @@ struct WeatherDetails: View {
                                         .foregroundColor(Color.green)
                                     windHourly(ndx)
                                 }
-                                Text(String(format: "%.1f", weather.hourly![ndx].temp)+"°")
+                                Text(String(format: "%.0f", weather.hourly![ndx].temp.rounded())+"°")
                             }
                         }.frame(height: 130)
                     }.padding([.trailing, .leading])
@@ -80,12 +80,12 @@ struct WeatherDetails: View {
                 .foregroundColor(Color.green)
             Spacer()
             HStack {
-                Text(String(format: "%.1f", daily.temp.min)+"°")
+                Text(String(format: "%.0f", daily.temp.min.rounded())+"°")
                 Image(systemName: "arrow.right")
                     .resizable()
                     .frame(width: 20, height: 15)
                     .foregroundColor(Color.blue)
-                Text(String(format: "%.1f", daily.temp.max)+"°")
+                Text(String(format: "%.0f", daily.temp.max.rounded())+"°")
             }
         }
     }
