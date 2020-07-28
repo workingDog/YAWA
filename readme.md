@@ -17,7 +17,7 @@ Provides for current, forecast and historical weather data through a single func
 
 ### Requirement
 
-Requires a valid OpenWeather key, see:
+Requires a valid OpenWeather key, there is a free plan, see:
 
 -    [OpenWeather how to start](https://openweathermap.org/appid)
 
