@@ -44,7 +44,7 @@ struct NewCityView: View {
     }
     
     func onSave() {
-        if let latlon = CityProvider.getLatLon(lat: cityLat, lon: cityLon), !cityName.isEmpty {
+        if let latlon = XUtils.getLatLon(lat: cityLat, lon: cityLon), !cityName.isEmpty {
             let newCity = City(name: cityName, country: cityCountry,
                                code: cityCountryCode,
                                lat: latlon.0, lon: latlon.1)
@@ -53,14 +53,5 @@ struct NewCityView: View {
         // to go back to the previous view
         self.presentationMode.wrappedValue.dismiss()
     }
-    
-    public struct CustomTextFieldStyle : TextFieldStyle {
-        public func _body(configuration: TextField<Self._Label>) -> some View {
-            configuration
-                .font(.callout)
-                .padding(10)
-                .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color.blue, lineWidth: 2))
-        }
-    }
-    
+      
 }

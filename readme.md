@@ -21,7 +21,8 @@ Requires a valid OpenWeather key, see:
 
 -    [OpenWeather how to start](https://openweathermap.org/appid)
 
-Put your key in the **./Support/CityProvider** -> *weatherProvider*
+Use the settings (the gear button) to enter your **openweather key**. Once saved, it will be used the next time.
+Similarly, set your default language, and it will be used the next time.
 
 For ios 14 and macos 11
 

@@ -56,26 +56,7 @@ struct HomeView: View {
                                                          code: "jp",
                                                          lat: 35.6834,  lon: 139.7833)
     }
-    
-    struct GradientButtonStyle: ButtonStyle {
-        func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .foregroundColor(Color.white)
-                .padding(8)
-                .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
-                .cornerRadius(10.0)
-        }
-    }
-    
-    struct BlueButtonStyle: ButtonStyle {
-        func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .foregroundColor(Color.white)
-                .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                .cornerRadius(10.0)
-        }
-    }
-    
+
     private func searchFor(_ txt: String) -> Bool {
         return (txt.lowercased(with: .current).hasPrefix(searchQuery.trim().lowercased(with: .current)) || searchQuery.trim().isEmpty)
     }

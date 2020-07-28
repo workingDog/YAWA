@@ -14,11 +14,17 @@ import CoreLocation
 
 class CityProvider: ObservableObject {
     
-    let weatherProvider = OWProvider(apiKey: "your key")
+    var weatherProvider = OWProvider(apiKey: "your key")
     let locationManager = CLLocationManager()
     
     @Published var cities: [City] = []
     @Published var lang = "English"
+
+    @Published var owkey = "your key" {
+      didSet {
+        weatherProvider = OWProvider(apiKey: owkey)
+      }
+    }
 
     var languageNames = ["en":"English"]
     var langArr = ["English"]
@@ -37,7 +43,7 @@ class CityProvider: ObservableObject {
                 let theCities = try JSONDecoder().decode([City].self, from: data)
                 cities = theCities
             } catch {
-                print("====> loadCities loadCitiesJson reading error:\(error)")
+                print("====> CityProvider loadCities reading error:\(error)")
             }
         }
     }
@@ -87,13 +93,5 @@ class CityProvider: ObservableObject {
         return dateFormatter.string(from: utc.dateFromUTC())
     }
     
-    static func getLatLon(lat: String, lon: String) -> (Double, Double)? {
-        if let theLat = Double(lat), let theLon = Double(lon),
-           theLat > -90.0 && theLat < 90.0,
-           theLon > -180.0 && theLon < 180.0 {
-            return (theLat, theLon)
-        }
-        return nil
-    }
     
 }

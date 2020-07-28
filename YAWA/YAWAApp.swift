@@ -15,6 +15,10 @@ struct YAWAApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView().environmentObject(self.cityProvider)
+                .onAppear(perform: {
+                    self.cityProvider.owkey = StoreService.getOWKey() ?? "your key"
+                    self.cityProvider.lang = StoreService.getLang() ?? "English"
+                })
         }
     }
     
