@@ -44,7 +44,7 @@ struct NewCityView: View {
     }
     
     func onSave() {
-        if let latlon = XUtils.getLatLon(lat: cityLat, lon: cityLon), !cityName.isEmpty {
+        if let latlon = YawaUtils.getLatLon(lat: cityLat, lon: cityLon), !cityName.isEmpty {
             let newCity = City(name: cityName, country: cityCountry,
                                code: cityCountryCode,
                                lat: latlon.0, lon: latlon.1)

@@ -1,5 +1,5 @@
 //
-//  XUtils.swift
+//  YawaUtils.swift
 //  YAWA
 //
 //  Created by Ringo Wathelet on 2020/07/28.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class XUtils {
+class YawaUtils {
 
     static func getLatLon(lat: String, lon: String) -> (Double, Double)? {
         if let theLat = Double(lat), let theLon = Double(lon),

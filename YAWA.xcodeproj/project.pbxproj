@@ -24,7 +24,7 @@
 		C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91B24CD890400629E06 /* NewCityView.swift */; };
 		C7C00BFE24CFC1FB00636522 /* picture5.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C00BFD24CFC1FB00636522 /* picture5.png */; };
 		C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */; };
-		C7D89AAB24CFAAD800B7B4C4 /* XUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* XUtils.swift */; };
+		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
 		C7FDBFD924CEFDB900BA021B /* picture4.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FDBFD724CEFDB900BA021B /* picture4.png */; };
 /* End PBXBuildFile section */
@@ -49,7 +49,7 @@
 		C7C00BFD24CFC1FB00636522 /* picture5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture5.png; sourceTree = "<group>"; };
 		C7D1869624CD8E5800726CA1 /* YAWA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YAWA.entitlements; sourceTree = "<group>"; };
 		C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C7D89AAA24CFAAD800B7B4C4 /* XUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUtils.swift; sourceTree = "<group>"; };
+		C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YawaUtils.swift; sourceTree = "<group>"; };
 		C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
 		C7FDBFD724CEFDB900BA021B /* picture4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,7 +123,7 @@
 			children = (
 				C7ADA91324CD890400629E06 /* Extensions.swift */,
 				C7ADA91424CD890400629E06 /* CityProvider.swift */,
-				C7D89AAA24CFAAD800B7B4C4 /* XUtils.swift */,
+				C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */,
 				C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */,
 			);
 			path = Support;
@@ -239,7 +239,7 @@
 				C75470C724CD8829003B330F /* YAWAApp.swift in Sources */,
 				C7ADA92024CD890400629E06 /* WeatherDetails.swift in Sources */,
 				C7ADA91E24CD890400629E06 /* City.swift in Sources */,
-				C7D89AAB24CFAAD800B7B4C4 /* XUtils.swift in Sources */,
+				C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */,
 				C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */,
 				C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */,
 			);
