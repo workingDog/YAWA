@@ -29,7 +29,8 @@ struct SettingsView: View {
             Spacer()
         }.foregroundColor(.blue)
         .textFieldStyle(CustomTextFieldStyle())
-        .frame(width: 444)
+        .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity)
+        .padding(5)
     }
     
     func onSave() {
