@@ -40,8 +40,7 @@ class CityProvider: ObservableObject {
         if let url =  Bundle.main.url(forResource: "cities", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
-                let theCities = try JSONDecoder().decode([City].self, from: data)
-                cities = theCities
+                cities = try JSONDecoder().decode([City].self, from: data)
             } catch {
                 print("====> CityProvider loadCities reading error:\(error)")
             }
@@ -51,7 +50,8 @@ class CityProvider: ObservableObject {
     func loadLanguages() {
         let currentLocale = NSLocale.current as NSLocale
         for languageCode in NSLocale.availableLocaleIdentifiers {
-            if let name = currentLocale.displayName(forKey: NSLocale.Key.languageCode, value: languageCode), !languageNames.values.contains(name) {
+            if let name = currentLocale.displayName(forKey: NSLocale.Key.languageCode, value: languageCode),
+               !languageNames.values.contains(name) {
                 languageNames[languageCode] = name
             }
         }
@@ -61,8 +61,7 @@ class CityProvider: ObservableObject {
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {
-            let loc = locationManager.location
-            if let coord = loc?.coordinate {
+            if let coord = locationManager.location?.coordinate {
                 locationManager.stopUpdatingLocation()
                 return nearestTo(lat: coord.latitude, lon: coord.longitude)
             }
