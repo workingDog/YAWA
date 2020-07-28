@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import OWOneCall
+
 
 struct SettingsView: View {
     
@@ -13,11 +15,12 @@ struct SettingsView: View {
     
     @EnvironmentObject var cityProvider: CityProvider
 
+    @State var theKey = "your key"
     
     var body: some View {
         VStack (spacing: 30) {
             Text("Settings").padding(.top, 30)
-            TextField("openweather key", text: self.$cityProvider.owkey)
+            TextField("openweather key", text: $theKey)
             TextField("default language", text: self.$cityProvider.lang)
 
             Button(action: {self.onSave()}) {
@@ -34,7 +37,8 @@ struct SettingsView: View {
     }
     
     func onSave() {
-        StoreService.setOWKey(key: self.cityProvider.owkey)
+        self.cityProvider.weatherProvider = OWProvider(apiKey: theKey)
+        StoreService.setOWKey(key: theKey)
         // todo validate lang
         StoreService.setLang(str: self.cityProvider.lang)
         // to go back to the previous view

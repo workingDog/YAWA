@@ -20,12 +20,6 @@ class CityProvider: ObservableObject {
     @Published var cities: [City] = []
     @Published var lang = "English"
 
-    @Published var owkey = "your key" {
-      didSet {
-        weatherProvider = OWProvider(apiKey: owkey)
-      }
-    }
-
     var languageNames = ["en":"English"]
     var langArr = ["English"]
     

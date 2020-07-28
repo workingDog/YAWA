@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import OWOneCall
+
 
 @main
 struct YAWAApp: App {
@@ -16,7 +18,9 @@ struct YAWAApp: App {
         WindowGroup {
             HomeView().environmentObject(self.cityProvider)
                 .onAppear(perform: {
-                    self.cityProvider.owkey = StoreService.getOWKey() ?? "your key"
+                    let theKey = StoreService.getOWKey() ?? "your key"
+          //          StoreService.setOWKey(key: theKey)
+                    self.cityProvider.weatherProvider = OWProvider(apiKey: theKey)
                     self.cityProvider.lang = StoreService.getLang() ?? "English"
                 })
         }
