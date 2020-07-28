@@ -28,6 +28,7 @@ struct WeatherDetails: View {
                         .frame(width: 70, height: 65)
                         .foregroundColor(Color.green)
                     Text(weather.current?.weatherInfo() ?? "").padding(.horizontal, 20)
+                    WindCurrent()
                     Spacer()
                 }.frame(height: 110)
             }.textCase(nil)
@@ -38,13 +39,16 @@ struct WeatherDetails: View {
                         ForEach(Array(stride(from: 0, to: (weather.hourly ?? []).count, by: 3)).prefix(9), id: \.self) { ndx in
                             VStack(spacing: 15) {
                                 Text(cityProvider.hourFormattedDate(utc: weather.hourly![ndx].dt, offset: weather.timezoneOffset)).font(.footnote)
-                                Image(systemName: hourlyIconName(ndx))
-                                    .resizable()
-                                    .frame(width: 30, height: 25)
-                                    .foregroundColor(Color.green)
+                                HStack {
+                                    Image(systemName: hourlyIconName(ndx))
+                                        .resizable()
+                                        .frame(width: 35, height: 30)
+                                        .foregroundColor(Color.green)
+                                    windHourly(ndx)
+                                }
                                 Text(String(format: "%.1f", weather.hourly![ndx].temp)+"°")
                             }
-                        }.frame(height: 120)
+                        }.frame(height: 130)
                     }.padding([.trailing, .leading])
                 }
             }.textCase(nil)
@@ -84,6 +88,36 @@ struct WeatherDetails: View {
                 Text(String(format: "%.1f", daily.temp.max)+"°")
             }
         }
+    }
+    
+    func windHourly(_ ndx: Int) -> some View {
+        Image(systemName: "location.north.fill")
+            .resizable()
+            .frame(width: 14, height: 24)
+            .foregroundColor(Color.orange)
+            .rotationEffect(.degrees(windDirHourly(ndx)))
+    }
+    
+    private func windDirHourly(_ ndx: Int) -> Double {
+        if let w = weather.hourly?[ndx] {
+            return Double(w.windDeg)+180.0
+        }
+        return 0.0
+    }
+    
+    func WindCurrent() -> some View {
+        Image(systemName: "location.north.fill")
+            .resizable()
+            .frame(width: 24, height: 34)
+            .foregroundColor(Color.orange)
+            .rotationEffect(.degrees(windDirCurrent()))
+    }
+    
+    private func windDirCurrent() -> Double {
+        if let w = weather.current {
+            return Double(w.windDeg)+180.0
+        }
+        return 0.0
     }
     
     private func hourlyIconName(_ ndx: Int) -> String {

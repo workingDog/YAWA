@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 
 extension String {
@@ -69,5 +70,3 @@ public extension Date {
     }
     
 }
-
-
