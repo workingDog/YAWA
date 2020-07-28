@@ -14,7 +14,7 @@ import CoreLocation
 
 class CityProvider: ObservableObject {
     
-    let weatherProvider = OWProvider(apiKey: "your-key")
+    let weatherProvider = OWProvider(apiKey: "your key")
     let locationManager = CLLocationManager()
     
     @Published var cities: [City] = []
