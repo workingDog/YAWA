@@ -79,12 +79,12 @@ struct WeatherDetails: View {
                 .frame(width: 30, height: 25)
                 .foregroundColor(Color.green)
             Spacer()
-            VStack {
-                Text("min").font(.caption).foregroundColor(.blue)
+            HStack {
                 Text(String(format: "%.1f", daily.temp.min)+"°")
-            }
-            VStack {
-                Text("max").font(.caption).foregroundColor(.blue)
+                Image(systemName: "arrow.right")
+                    .resizable()
+                    .frame(width: 20, height: 15)
+                    .foregroundColor(Color.blue)
                 Text(String(format: "%.1f", daily.temp.max)+"°")
             }
         }
