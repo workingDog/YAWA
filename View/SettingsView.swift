@@ -44,7 +44,6 @@ struct SettingsView: View {
                     HStack(spacing: 10) {
                         ForEach(cityProvider.langArr.filter{self.searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
                             Button(action: {
-                                self.cityProvider.lang = lang
                                 self.searchQuery = lang
                             }) {
                                 Text(lang).padding(10)
