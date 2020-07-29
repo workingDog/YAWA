@@ -44,18 +44,14 @@ class CityProvider: ObservableObject {
             }
         }
     }
-    
+
     func loadLanguages() {
-        let currentLocale = NSLocale.current as NSLocale
-        for languageCode in NSLocale.availableLocaleIdentifiers {
-            if let name = currentLocale.displayName(forKey: NSLocale.Key.languageCode, value: languageCode),
-               !languageNames.values.contains(name) {
-                languageNames[languageCode] = name
-            }
+        for keyval in YawaUtils.langDictionary {
+            languageNames[keyval.key] = keyval.value
         }
         langArr = Array(languageNames.values.sorted {$0 < $1})
     }
-    
+
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {

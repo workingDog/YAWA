@@ -10,7 +10,7 @@ import SwiftUI
 
 
 class YawaUtils {
-
+    
     static func getLatLon(lat: String, lon: String) -> (Double, Double)? {
         if let theLat = Double(lat), let theLon = Double(lon),
            theLat > -90.0 && theLat < 90.0,
@@ -19,7 +19,7 @@ class YawaUtils {
         }
         return nil
     }
-  
+    
     static func getNumberFormatter() -> NumberFormatter {
         let numberFormatter = NumberFormatter()
         numberFormatter.zeroSymbol = ""
@@ -28,6 +28,58 @@ class YawaUtils {
         numberFormatter.locale = Locale.current
         return numberFormatter
     }
+    
+    static let langDictionary: [String:String] = [
+        "af"  :  "Afrikaans",
+        "al"  :  "Albanian",
+        "ar"  :  "Arabic",
+        "az"  :  "Azerbaijani",
+        "bg"  :  "Bulgarian",
+        "ca"  :  "Catalan",
+        "cz"  :  "Czech",
+        "da"  :  "Danish",
+        "de"  :  "German",
+        "el"  :  "Greek",
+        "en"  :  "English",
+        "eu"  :  "Basque",
+        "fa"  :  "Persian (Farsi)",
+        "fi"  :  "Finnish",
+        "fr"  :  "French",
+        "gl"  :  "Galician",
+        "he"  :  "Hebrew",
+        "hi"  :  "Hindi",
+        "hr"  :  "Croatian",
+        "hu"  :  "Hungarian",
+        "id"  :  "Indonesian",
+        "it"  :  "Italian",
+        "ja"  :  "Japanese",
+        "kr"  :  "Korean",
+        "la"  :  "Latvian",
+        "lt"  :  "Lithuanian",
+        "mk"  :  "Macedonian",
+        "no"  :  "Norwegian",
+        "nl"  :  "Dutch",
+        "pl"  :  "Polish",
+        "pt"  :  "Portuguese",
+        "pt_br"  :  "Portuguese (Brazil)",
+        "ro"  :  "Romanian",
+        "ru"  :  "Russian",
+ //       "sv"  :  "Swedish",
+        "se"  :  "Swedish",
+        "sk"  :  "Slovak",
+        "sl"  :  "Slovenian",
+ //       "sp"  :  "Spanish",
+        "es"  :  "Spanish",
+        "sr"  :  "Serbian",
+        "th"  :  "Thai",
+        "tr"  :  "Turkish",
+ //       "ua"  :  "Ukrainian",
+        "uk"  :  "Ukrainian",
+        "vi"  :  "Vietnamese",
+        "zh_cn"  :  "Chinese Simplified",
+        "zh_tw" :   "Chinese Traditional",
+        "zu"  :  "Zulu"]
+    
     
 }
 

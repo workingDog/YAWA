@@ -50,7 +50,7 @@ struct SettingsView: View {
                                 Text(lang).padding(10)
                                     .font(self.cityProvider.lang == lang ? .body : .caption)
                                     .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
-                                    .frame(width: 100)
+                                    .frame(width: 120)
                                     .background(RoundedRectangle(cornerRadius: 10)
                                                     .stroke(lineWidth: 1)
                                                     .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
