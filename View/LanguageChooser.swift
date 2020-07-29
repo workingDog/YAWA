@@ -48,14 +48,13 @@ struct LanguageChooser: View {
                                     self.searchQuery = lang
                                 }) {
                                     Text(lang).padding(10)
-                                        .font(self.cityProvider.lang == lang ? .headline : .body)
+                                        .font(self.cityProvider.lang == lang ? .body : .caption)
                                         .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
-                                        .frame(width: 200)
+                                        .frame(width: 120)
                                         .background(RoundedRectangle(cornerRadius: 10)
-                                                        .stroke(lineWidth: 2)
+                                                        .stroke(lineWidth: 1)
                                                         .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
                                                         .background(Color(UIColor.systemGray6))
-                                                        .shadow(radius: 3)
                                                         .padding(2))
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
                                 }

@@ -51,7 +51,6 @@ struct HourlyPage2: View {
             Spacer()
             
             CardView {
-  //              ChartLabel("Title", type: .title)
                 LineChart()
                     .data(rainData)
                     .chartStyle(orangeStlye)
@@ -75,6 +74,8 @@ struct HourlyPage2: View {
         }
         self.rainData = [0, 5, 6, 2, 13, 4, 3, 6]
     }
+    
+    
     
 }
 
