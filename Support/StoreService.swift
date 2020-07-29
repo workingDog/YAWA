@@ -10,14 +10,12 @@ import Foundation
 
 class StoreService {
     
-    // todo use keychain
-    
     static func getOWKey() -> String? {
-        return UserDefaults.standard.string(forKey: "yawa.openweather.key")
+        KeychainWrapper.standard.string(forKey: "yawa.openweather.key")
     }
     
     static func setOWKey(key: String) {
-        UserDefaults.standard.set(key, forKey: "yawa.openweather.key")
+        KeychainWrapper.standard.set(key, forKey: "yawa.openweather.key")
     }
     
     static func getLang() -> String? {
