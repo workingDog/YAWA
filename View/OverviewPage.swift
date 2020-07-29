@@ -26,7 +26,7 @@ struct OverviewPage: View {
         List {
             Section(header: Text("Currently " + timeNow)
                         .onReceive(timer) { _ in
-                            self.doFormatTimeNow()
+                            self.doUpdateTimeNow()
                         }
                         .font(.footnote)) {
                 HStack {
@@ -77,7 +77,7 @@ struct OverviewPage: View {
         dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
     }
     
-    func doFormatTimeNow() {
+    func doUpdateTimeNow() {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: weather.timezoneOffset)
         self.timeNow = dateFormatter.string(from: Date())
     }

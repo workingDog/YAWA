@@ -29,7 +29,8 @@ class CityProvider: ObservableObject {
     init() {
         hourFormatter.dateFormat = "hh:mm a"
         loadCities()
-        loadLanguages()
+        languageNames = YawaUtils.langDictionary
+        langArr = Array(languageNames.values.sorted {$0 < $1})
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -43,13 +44,6 @@ class CityProvider: ObservableObject {
                 print("====> CityProvider loadCities reading error:\(error)")
             }
         }
-    }
-
-    func loadLanguages() {
-        for keyval in YawaUtils.langDictionary {
-            languageNames[keyval.key] = keyval.value
-        }
-        langArr = Array(languageNames.values.sorted {$0 < $1})
     }
 
     func getCurrentCity() -> City? {
