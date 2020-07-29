@@ -1,8 +1,8 @@
 # SwiftUI Weather App, using OpenWeather One Call API library 
 
 <p float="left">
-  <img src="Images/picture5.png"  width="200"  height="400" />
-  <img src="Images/picture6.png"  width="200"  height="400" /> 
+  <img src="Images/picture7.png"  width="200"  height="400" />
+  <img src="Images/picture8.png"  width="200"  height="400" /> 
 </p>
 
 ## Yet Another Weather App (YAWA)
