@@ -25,10 +25,10 @@ struct OverviewPage: View {
     var body: some View {
         List {
             Section(header: Text("Currently " + timeNow)
+                        .font(.system(.footnote, design: .monospaced)).bold()
                         .onReceive(timer) { _ in
                             self.doUpdateTimeNow()
-                        }
-                        .font(.footnote)) {
+                        }) {
                 HStack {
                     Spacer()
                     Image(systemName: weather.current?.weatherIconName() ?? "smiley")
