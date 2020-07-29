@@ -12,13 +12,16 @@ import OWOneCall
 import CoreLocation
 
 
-class CityProvider: ObservableObject {
+class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var weatherProvider = OWProvider(apiKey: "your key")
     let locationManager = CLLocationManager()
     
     @Published var cities: [City] = []
     @Published var lang = "English"
+    
+    @Published var heading: Double = .zero
+        
 
     var languageNames = ["en":"English"]
     var langArr = ["English"]
@@ -26,13 +29,23 @@ class CityProvider: ObservableObject {
     let hourFormatter = DateFormatter()
 
     
-    init() {
+    override init() {
+        super.init()
         hourFormatter.dateFormat = "hh:mm a"
         loadCities()
         languageNames = YawaUtils.langDictionary
         langArr = Array(languageNames.values.sorted {$0 < $1})
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        self.locationManager.delegate = self
+        self.startLocationManager()
+    }
+    
+    private func startLocationManager() {
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.headingAvailable() {
+            self.locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingHeading()
+        }
     }
     
     func loadCities() {
@@ -71,6 +84,11 @@ class CityProvider: ObservableObject {
             return keyval.key
         }
         return "en"
+    }
+    
+    // CLLocationManagerDelegate, when a new heading is available
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        self.heading = -1 * newHeading.magneticHeading
     }
     
     func hourFormattedDate(utc: Int, offset: Int) -> String {

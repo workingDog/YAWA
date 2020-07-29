@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
-    @State var theKey = "your key"
+    @State var theKey = "your openweather key"
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?
@@ -29,7 +29,7 @@ struct SettingsView: View {
                 .padding(.top, 40)
             HStack {
                 Spacer()
-                TextField("language search", text: $searchQuery).foregroundColor(.blue).padding(10)
+                TextField("default language", text: $searchQuery).foregroundColor(.blue).padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                     .foregroundColor(.blue)
                     .frame(width: 333)

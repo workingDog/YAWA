@@ -62,16 +62,16 @@ struct HomeView: View {
 
     private var addButton: some View {
         HStack {
-            Button(action: {self.showSettings = true}) {
-                Image(systemName: "gearshape").font(.title)
-            }.sheet(isPresented: $showSettings, onDismiss: {self.showSettings = false}) {
-                SettingsView().environmentObject(self.cityProvider)
-            }.padding(.horizontal, 40)
-            
             Button(action: {self.showNewCity = true}) {
                 Image(systemName: "plus.circle.fill").font(.title)
             }.sheet(isPresented: $showNewCity, onDismiss: {self.showNewCity = false}) {
                 NewCityView().environmentObject(self.cityProvider)
+            }.padding(.horizontal, 40)
+            
+            Button(action: {self.showSettings = true}) {
+                Image(systemName: "gearshape").font(.title)
+            }.sheet(isPresented: $showSettings, onDismiss: {self.showSettings = false}) {
+                SettingsView().environmentObject(self.cityProvider)
             }
         }
     }
