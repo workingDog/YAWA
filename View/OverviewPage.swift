@@ -74,7 +74,7 @@ struct OverviewPage: View {
     
     func loadData() {
         dateFormatter.locale = Locale(identifier: cityProvider.langKey())
-        dateFormatter.dateFormat = "yyyy LLLL dd, hh:mm:ss a"
+        dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
     }
     
     func doFormatTimeNow() {
