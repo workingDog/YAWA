@@ -21,11 +21,10 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 10) {
+            VStack(spacing: 20) {
                 NavigationLink(destination: WeatherDetails(city: self.currentCity), tag: 1, selection: $action) {
                     EmptyView()
                 }
-                Divider()
                 HStack {
                     Button("Current location", action: {self.action = 1}).padding(5).buttonStyle(GradientButtonStyle())
                     Spacer()
@@ -36,7 +35,7 @@ struct HomeView: View {
                     Button(action: {self.searchQuery = ""}) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
-                }.padding(.horizontal, 5)
+                }.padding(.horizontal, 5).padding(.top, 15)
                 Divider()
                 List {
                     ForEach(cityProvider.cities.filter{self.searchFor($0.name)}.sorted(by: { $0.name < $1.name })) { city in

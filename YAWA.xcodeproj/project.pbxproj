@@ -178,12 +178,12 @@
 		C7ADA91724CD890400629E06 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7ADA91A24CD890400629E06 /* HomeView.swift */,
 				C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */,
 				C7A47FF924D005B600C59D22 /* HourlyPage.swift */,
 				C7D1611124D03A6E00625B4E /* HourlyPage2.swift */,
 				C7ADA91924CD890400629E06 /* WeatherDetails.swift */,
 				C7ADA91824CD890400629E06 /* CityRow.swift */,
-				C7ADA91A24CD890400629E06 /* HomeView.swift */,
 				C7ADA91B24CD890400629E06 /* NewCityView.swift */,
 				C784CD0824CEFFA600145699 /* LanguageChooser.swift */,
 				C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */,
