@@ -14,8 +14,13 @@
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
 		C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = C767F83324CEE11F00EF8EA8 /* country-codes.json */; };
-		C77059E124CDA76E00BA7C92 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C77059E024CDA76E00BA7C92 /* OWOneCall */; };
+		C784C4AC24D13BE700E546F7 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C784C4AB24D13BE700E546F7 /* OWOneCall */; };
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
+		C7A47FFA24D005B600C59D22 /* HourlyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* HourlyPage.swift */; };
+		C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */; };
+		C7A47FFF24D0104700C59D22 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C7A47FFE24D0104700C59D22 /* Charts */; };
+		C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */; };
+		C7A4800424D010CB00C59D22 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */; };
 		C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91324CD890400629E06 /* Extensions.swift */; };
 		C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91424CD890400629E06 /* CityProvider.swift */; };
 		C7ADA91E24CD890400629E06 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91624CD890400629E06 /* City.swift */; };
@@ -24,9 +29,11 @@
 		C7ADA92124CD890400629E06 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91A24CD890400629E06 /* HomeView.swift */; };
 		C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91B24CD890400629E06 /* NewCityView.swift */; };
 		C7C00BFE24CFC1FB00636522 /* picture5.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C00BFD24CFC1FB00636522 /* picture5.png */; };
+		C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1611124D03A6E00625B4E /* HourlyPage2.swift */; };
 		C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */; };
 		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
+		C7F7B66124D01BDC00E7BB91 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +47,10 @@
 		C75470CF24CD8829003B330F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C767F83324CEE11F00EF8EA8 /* country-codes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "country-codes.json"; sourceTree = "<group>"; };
 		C784CD0824CEFFA600145699 /* LanguageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChooser.swift; sourceTree = "<group>"; };
+		C7A47FF924D005B600C59D22 /* HourlyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPage.swift; sourceTree = "<group>"; };
+		C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewPage.swift; sourceTree = "<group>"; };
+		C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartSwiftUI.swift; sourceTree = "<group>"; };
+		C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		C7ADA91324CD890400629E06 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C7ADA91424CD890400629E06 /* CityProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityProvider.swift; sourceTree = "<group>"; };
 		C7ADA91624CD890400629E06 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -48,6 +59,7 @@
 		C7ADA91A24CD890400629E06 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C7ADA91B24CD890400629E06 /* NewCityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCityView.swift; sourceTree = "<group>"; };
 		C7C00BFD24CFC1FB00636522 /* picture5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture5.png; sourceTree = "<group>"; };
+		C7D1611124D03A6E00625B4E /* HourlyPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPage2.swift; sourceTree = "<group>"; };
 		C7D1869624CD8E5800726CA1 /* YAWA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YAWA.entitlements; sourceTree = "<group>"; };
 		C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YawaUtils.swift; sourceTree = "<group>"; };
@@ -59,7 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C77059E124CDA76E00BA7C92 /* OWOneCall in Frameworks */,
+				C784C4AC24D13BE700E546F7 /* OWOneCall in Frameworks */,
+				C7F7B66124D01BDC00E7BB91 /* SwiftUICharts in Frameworks */,
+				C7A47FFF24D0104700C59D22 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +83,7 @@
 		C75470BA24CD8829003B330F = {
 			isa = PBXGroup;
 			children = (
+				C7A4800024D0105100C59D22 /* Charts */,
 				C783DDF424CD9139001BC64A /* Images */,
 				C7410B5024CD8AC500ECCF2D /* readme.md */,
 				C7ADA91524CD890400629E06 /* Model */,
@@ -118,6 +133,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		C7A4800024D0105100C59D22 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */,
+				C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		C7ADA91224CD890400629E06 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +164,11 @@
 		C7ADA91724CD890400629E06 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C7ADA91824CD890400629E06 /* CityRow.swift */,
+				C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */,
+				C7A47FF924D005B600C59D22 /* HourlyPage.swift */,
+				C7D1611124D03A6E00625B4E /* HourlyPage2.swift */,
 				C7ADA91924CD890400629E06 /* WeatherDetails.swift */,
+				C7ADA91824CD890400629E06 /* CityRow.swift */,
 				C7ADA91A24CD890400629E06 /* HomeView.swift */,
 				C7ADA91B24CD890400629E06 /* NewCityView.swift */,
 				C784CD0824CEFFA600145699 /* LanguageChooser.swift */,
@@ -167,7 +194,9 @@
 			);
 			name = YAWA;
 			packageProductDependencies = (
-				C77059E024CDA76E00BA7C92 /* OWOneCall */,
+				C7A47FFE24D0104700C59D22 /* Charts */,
+				C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */,
+				C784C4AB24D13BE700E546F7 /* OWOneCall */,
 			);
 			productName = YAWA;
 			productReference = C75470C324CD8829003B330F /* YAWA.app */;
@@ -197,7 +226,9 @@
 			);
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
-				C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */,
+				C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */,
+				C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */,
+				C784C4AA24D13BE700E546F7 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
 			projectDirPath = "";
@@ -232,6 +263,10 @@
 			files = (
 				C7ADA91F24CD890400629E06 /* CityRow.swift in Sources */,
 				C7ADA92124CD890400629E06 /* HomeView.swift in Sources */,
+				C7A4800424D010CB00C59D22 /* DateValueFormatter.swift in Sources */,
+				C7A47FFA24D005B600C59D22 /* HourlyPage.swift in Sources */,
+				C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */,
+				C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */,
 				C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */,
 				C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */,
 				C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */,
@@ -242,6 +277,7 @@
 				C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */,
 				C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */,
 				C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */,
+				C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,21 +472,47 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
+		C784C4AA24D13BE700E546F7 /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/workingDog/OWOneCall.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				minimumVersion = 1.2.1;
+			};
+		};
+		C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.0;
+			};
+		};
+		C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				branch = "2.0.0-beta.1";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C77059E024CDA76E00BA7C92 /* OWOneCall */ = {
+		C784C4AB24D13BE700E546F7 /* OWOneCall */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C77059DF24CDA76E00BA7C92 /* XCRemoteSwiftPackageReference "OWOneCall" */;
+			package = C784C4AA24D13BE700E546F7 /* XCRemoteSwiftPackageReference "OWOneCall" */;
 			productName = OWOneCall;
+		};
+		C7A47FFE24D0104700C59D22 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -23,7 +23,11 @@ class CityProvider: ObservableObject {
     var languageNames = ["en":"English"]
     var langArr = ["English"]
     
+    let hourFormatter = DateFormatter()
+
+    
     init() {
+        hourFormatter.dateFormat = "hh:mm a"
         loadCities()
         loadLanguages()
         locationManager.requestWhenInUseAuthorization()
@@ -55,8 +59,9 @@ class CityProvider: ObservableObject {
     func getCurrentCity() -> City? {
         if locationManager.authorizationStatus() == .authorizedWhenInUse ||
             locationManager.authorizationStatus() == .authorizedAlways {
-            if let coord = locationManager.location?.coordinate {
-                locationManager.stopUpdatingLocation()
+            let loc = locationManager.location
+            if let coord = loc?.coordinate {
+  //            locationManager.stopUpdatingLocation()
                 return nearestTo(lat: coord.latitude, lon: coord.longitude)
             }
         }
@@ -64,10 +69,10 @@ class CityProvider: ObservableObject {
     }
     
     private func nearestTo(lat: Double, lon: Double) -> City? {
-        let delta = 0.005
+        let delta = 0.05
         return cities.first(where: {
             $0.lat >= lat-delta && $0.lat <= lat+delta &&
-                $0.lon >= lat-delta && $0.lon <= lat+delta
+                $0.lon >= lon-delta && $0.lon <= lon+delta
         })
     }
     
@@ -79,12 +84,9 @@ class CityProvider: ObservableObject {
     }
     
     func hourFormattedDate(utc: Int, offset: Int) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: langKey())
-        dateFormatter.dateFormat = "hh:mm a"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: offset)
-        return dateFormatter.string(from: utc.dateFromUTC())
+        hourFormatter.locale = Locale(identifier: langKey())
+        hourFormatter.timeZone = TimeZone(secondsFromGMT: offset)
+        return hourFormatter.string(from: utc.dateFromUTC())
     }
-    
     
 }

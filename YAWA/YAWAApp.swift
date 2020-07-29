@@ -19,7 +19,7 @@ struct YAWAApp: App {
             HomeView().environmentObject(self.cityProvider)
                 .onAppear(perform: {
                     let theKey = StoreService.getOWKey() ?? "your key"
-          //          StoreService.setOWKey(key: theKey)
+                 //   StoreService.setOWKey(key: theKey)
                     self.cityProvider.weatherProvider = OWProvider(apiKey: theKey)
                     self.cityProvider.lang = StoreService.getLang() ?? "English"
                 })

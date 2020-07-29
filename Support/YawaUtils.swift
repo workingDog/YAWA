@@ -20,6 +20,15 @@ class YawaUtils {
         return nil
     }
   
+    static func getNumberFormatter() -> NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.zeroSymbol = ""
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.locale = Locale.current
+        return numberFormatter
+    }
+    
 }
 
 struct GradientButtonStyle: ButtonStyle {
