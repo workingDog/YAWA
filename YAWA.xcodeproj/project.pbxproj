@@ -35,6 +35,8 @@
 		C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */; };
 		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
+		C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CC24D2A7DD0006931A /* MapViewer.swift */; };
+		C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */; };
 		C7F7B66124D01BDC00E7BB91 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YawaUtils.swift; sourceTree = "<group>"; };
 		C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
+		C7DC78CC24D2A7DD0006931A /* MapViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewer.swift; sourceTree = "<group>"; };
+		C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMapLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 				C7ADA91424CD890400629E06 /* CityProvider.swift */,
 				C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */,
 				C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */,
+				C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -178,11 +183,12 @@
 		C7ADA91724CD890400629E06 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7DC78CC24D2A7DD0006931A /* MapViewer.swift */,
+				C7ADA91924CD890400629E06 /* WeatherDetails.swift */,
 				C7ADA91A24CD890400629E06 /* HomeView.swift */,
 				C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */,
 				C7A47FF924D005B600C59D22 /* HourlyPage.swift */,
 				C7D1611124D03A6E00625B4E /* HourlyPage2.swift */,
-				C7ADA91924CD890400629E06 /* WeatherDetails.swift */,
 				C7ADA91824CD890400629E06 /* CityRow.swift */,
 				C7ADA91B24CD890400629E06 /* NewCityView.swift */,
 				C784CD0824CEFFA600145699 /* LanguageChooser.swift */,
@@ -281,6 +287,7 @@
 				C7A47FFA24D005B600C59D22 /* HourlyPage.swift in Sources */,
 				C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */,
 				C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */,
+				C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */,
 				C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */,
 				C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */,
 				C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */,
@@ -292,6 +299,7 @@
 				C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */,
 				C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */,
 				C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */,
+				C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */,
 				C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */,
 				C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */,
 			);

@@ -17,11 +17,12 @@ struct WeatherDetails: View {
     @State var city: City
     @State var weather = OWResponse()
     
-    
+
     var body: some View {
         TabView {
             OverviewPage(city: $city, weather: $weather)
             HourlyPage(city: $city, weather: $weather)
+            MapViewer(city: $city, weather: $weather)
         }
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .tabViewStyle(PageTabViewStyle())
@@ -33,5 +34,5 @@ struct WeatherDetails: View {
         let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: cityProvider.lang)
         cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
     }
-    
+
 }
