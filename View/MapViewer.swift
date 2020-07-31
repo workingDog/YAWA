@@ -26,20 +26,39 @@ struct MapViewer: View {
     
     @State var cityAnno = [CityMapLocation]()
     
-    @State private var mapType: Int = 2
+    @State private var mapType: Int = 1
     @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
     
     
     var body: some View {
         VStack (spacing: 1) {
             mapTools
-            Map(coordinateRegion: $region, showsUserLocation: true,
-                annotationItems: cityAnno) { pin in
-                pin.title == self.city.name
-                    ? MapPin(coordinate: pin.coordinate, tint: .blue)
-                    : MapPin(coordinate: pin.coordinate, tint: .red)
+            // do this until Map takes mayType as a dynamic parameter
+            if mapType == 0 {
+                Map(coordinateRegion: $region, showsUserLocation: true,
+                    annotationItems: cityAnno) { pin in
+                    pin.title == self.city.name
+                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
+                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                }.mapStyle(.standard)
             }
-            .mapStyle(getMapType())  // this does not work
+            if mapType == 1 {
+                Map(coordinateRegion: $region, showsUserLocation: true,
+                    annotationItems: cityAnno) { pin in
+                    pin.title == self.city.name
+                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
+                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                }.mapStyle(.satellite)
+            }
+            if mapType == 2 {
+                Map(coordinateRegion: $region, showsUserLocation: true,
+                    annotationItems: cityAnno) { pin in
+                    pin.title == self.city.name
+                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
+                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                }.mapStyle(.hybrid)
+            }
+
         }.onAppear(perform: loadData)
     }
     
