@@ -33,47 +33,58 @@ struct MapViewer: View {
     var body: some View {
         VStack (spacing: 1) {
             mapTools
+            
             // do this until Map takes mayType as a dynamic parameter
             if mapType == 0 {
                 Map(coordinateRegion: $region, showsUserLocation: true,
                     annotationItems: cityAnno) { pin in
-                    pin.title == self.city.name
-                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
-                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                    MapAnnotation(coordinate: pin.coordinate) {
+                        annoView(cityName: pin.title!)
+                    }
                 }.mapStyle(.standard)
             }
+            
             if mapType == 1 {
                 Map(coordinateRegion: $region, showsUserLocation: true,
                     annotationItems: cityAnno) { pin in
-                    pin.title == self.city.name
-                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
-                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                    MapAnnotation(coordinate: pin.coordinate) {
+                        annoView(cityName: pin.title!)
+                    }
                 }.mapStyle(.satellite)
             }
+
             if mapType == 2 {
                 Map(coordinateRegion: $region, showsUserLocation: true,
                     annotationItems: cityAnno) { pin in
-                    pin.title == self.city.name
-                        ? MapPin(coordinate: pin.coordinate, tint: .blue)
-                        : MapPin(coordinate: pin.coordinate, tint: .red)
+                    MapAnnotation(coordinate: pin.coordinate) {
+                        annoView(cityName: pin.title!)
+                    }
                 }.mapStyle(.hybrid)
             }
-
+            
         }.onAppear(perform: loadData)
     }
     
     func loadData() {
         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
-                                     span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
         loadLocations()
     }
     
     func loadLocations() {
         // create a map location for all cities of this city.country
-        for sity in cityProvider.cities {
-            if sity.country == city.country {
-                cityAnno.append(CityMapLocation(title: sity.name, subtitle: sity.country, lat: sity.lat, lon: sity.lon))
+        for theCity in cityProvider.cities {
+            if theCity.country == city.country {
+                cityAnno.append(CityMapLocation(city: theCity))
             }
+        }
+    }
+    
+    private func currentIconName() -> String {
+        if let current = weather.current {
+            return current.weatherIconName()
+        } else {
+            return "smiley"
         }
     }
     
@@ -100,5 +111,29 @@ struct MapViewer: View {
             .fixedSize()
         }.padding(5)
     }
- 
+    
+    func annoView(cityName: String) -> some View {
+        VStack {
+            Text(cityName == city.name
+                    ? String(format: "%.0f", (weather.current?.temp ?? 0.0).rounded())+"°"
+                    : ""
+            ).bold()
+            Image(systemName: cityName == city.name ? currentIconName() : "mappin")
+        }.padding(5).foregroundColor(.red).frame(width: 75, height: 75).scaleEffect(1.2)
+        .background(cityName == city.name
+                        ? RoundedRectangle(cornerRadius: 15)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(Color.secondary)
+                        .background(Color(UIColor.systemGray6))
+                        .padding(1)
+                        
+                        : RoundedRectangle(cornerRadius: 15)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(Color.clear)
+                        .background(Color.clear)
+                        .padding(1)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+    }
+
 }

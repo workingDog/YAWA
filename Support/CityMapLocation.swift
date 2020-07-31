@@ -28,5 +28,10 @@ class CityMapLocation: NSObject, MKAnnotation, Identifiable {
     convenience init(title: String?, subtitle: String?, lat: Double, lon: Double) {
         self.init(title: title, subtitle: subtitle, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))
     }
+    
+    convenience init(city: City) {
+        self.init(title: city.name, subtitle: city.country, coordinate: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon))
+    }
+    
 
 }
