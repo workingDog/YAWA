@@ -63,7 +63,7 @@ struct HourlyPage2: View {
     
     func loadData() {
         if let hourly = weather.hourly {
-            (0..<hourly.count).map{ i in
+            let _ = (0..<hourly.count).map { i in
                 // temperature
                 self.tempData.append(hourly[i].temp)
                 // precipitation
