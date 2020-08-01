@@ -26,7 +26,7 @@ struct MapViewer: View {
     
     @State var cityAnno = [CityMapLocation]()
     
-    @State private var mapType: Int = 0
+    @State private var mapType: Int = 1
     @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
     @State var showInfo = false
     
