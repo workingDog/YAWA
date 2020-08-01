@@ -26,14 +26,31 @@ struct MapViewer: View {
     
     @State var cityAnno = [CityMapLocation]()
     
-    @State private var mapType: Int = 1
+    @State private var mapType: Int = 0
     @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
+    @State var showInfo = false
     
     
     var body: some View {
-        VStack (spacing: 1) {
-            mapTools
-            
+        ZStack {
+            VStack (spacing: 1) {
+                mapTools
+                mapview
+            }
+            if showInfo {
+                WeatherCardInfo(weather: $weather, showInfo: $showInfo).padding(.top, 100)
+            }
+        }.onAppear(perform: loadData)
+    }
+    
+    func loadData() {
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
+                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+        loadLocations()
+    }
+    
+    var mapview: some View {
+        Group {
             // do this until Map takes mayType as a dynamic parameter
             if mapType == 0 {
                 Map(coordinateRegion: $region, showsUserLocation: true,
@@ -52,7 +69,7 @@ struct MapViewer: View {
                     }
                 }.mapStyle(.satellite)
             }
-
+            
             if mapType == 2 {
                 Map(coordinateRegion: $region, showsUserLocation: true,
                     annotationItems: cityAnno) { pin in
@@ -61,14 +78,7 @@ struct MapViewer: View {
                     }
                 }.mapStyle(.hybrid)
             }
-            
-        }.onAppear(perform: loadData)
-    }
-    
-    func loadData() {
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
-                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-        loadLocations()
+        }
     }
     
     func loadLocations() {
@@ -101,7 +111,13 @@ struct MapViewer: View {
     var mapTools: some View {
         HStack {
             Spacer()
-            Picker(selection: $mapType, label: Text("")) {
+            Picker(selection: Binding<Int> (
+                get: { mapType },
+                set: {
+                    showInfo = false
+                    mapType = $0
+                }
+            ), label: Text("")) {
                 ForEach(0 ..< mapTypes.count) {
                     Text(mapTypes[$0])
                 }
@@ -113,13 +129,16 @@ struct MapViewer: View {
     }
     
     func annoView(cityName: String) -> some View {
-        VStack {
-            Text(cityName == city.name
-                    ? String(format: "%.0f", (weather.current?.temp ?? 0.0).rounded())+"°"
-                    : ""
-            ).bold()
-            Image(systemName: cityName == city.name ? currentIconName() : "mappin")
-        }.padding(5).foregroundColor(.red).frame(width: 75, height: 75).scaleEffect(1.2)
+        Button(action: {showInfo = true}) {
+            VStack {
+                Text(cityName == city.name
+                        ? String(format: "%.0f", (weather.current?.temp ?? 0.0).rounded())+"°"
+                        : ""
+                ).bold()
+                Image(systemName: cityName == city.name ? currentIconName() : "mappin.and.ellipse")
+            }.foregroundColor(.red).scaleEffect(1.2)
+        }.padding(5).frame(width: 75, height: 75)
+        .contentShape(Rectangle())
         .background(cityName == city.name
                         ? RoundedRectangle(cornerRadius: 15)
                         .stroke(lineWidth: 1)
@@ -134,6 +153,7 @@ struct MapViewer: View {
                         .padding(1)
         )
         .clipShape(RoundedRectangle(cornerRadius: 15))
+        .zIndex(2)
     }
 
 }
