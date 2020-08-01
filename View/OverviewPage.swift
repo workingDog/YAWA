@@ -17,7 +17,7 @@ struct OverviewPage: View {
     @Binding var city: City
     @Binding var weather: OWResponse
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     @State var timeNow = ""
     let dateFormatter = DateFormatter()
     
@@ -67,12 +67,12 @@ struct OverviewPage: View {
                 }
             }.textCase(nil)
         }.onAppear(perform: loadData)
-        .onDisappear(perform: { self.timer.upstream.connect().cancel() })
         .padding(20)
         .navigationBarTitle(Text(city.name + ", " + city.country))
     }
     
     func loadData() {
+        timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
         dateFormatter.locale = Locale(identifier: cityProvider.langKey())
         dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
     }
