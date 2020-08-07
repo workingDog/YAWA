@@ -90,6 +90,7 @@ struct OverviewPage: View {
                 .resizable()
                 .frame(width: 30, height: 25)
                 .foregroundColor(Color.green)
+            Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%").foregroundColor(.blue).padding(.horizontal, 20)
             Spacer()
             HStack {
                 Text(String(format: "%.0f", daily.temp.min.rounded())+"°")
