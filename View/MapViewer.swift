@@ -21,6 +21,7 @@ struct MapViewer: View {
     @State var region: MKCoordinateRegion
     
     @State var cityAnno = [CityMapLocation]()
+    @State var selectedCity = City()
     
     @State private var mapType: Int = 1
     @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
@@ -34,11 +35,11 @@ struct MapViewer: View {
                 mapview
             }
             if showInfo {
-                WeatherCardInfo(city: city, weather: $weather, showInfo: $showInfo).padding(.top, 100)
+                WeatherCardInfo(city: selectedCity, showInfo: $showInfo).padding(.top, 100)
             }
-        }.onAppear(perform: {loadLocations()})
+        }.onAppear(perform: loadData)
     }
-
+    
     var mapview: some View {
         Group {
             // do this until Map takes mayType as a dynamic parameter
@@ -71,7 +72,8 @@ struct MapViewer: View {
         }
     }
     
-    func loadLocations() {
+    func loadData() {
+        selectedCity = city
         // create a map location for all cities of this city.country
         for theCity in cityProvider.cities {
             if theCity.country == city.country {
@@ -119,7 +121,13 @@ struct MapViewer: View {
     }
     
     func annoView(cityName: String) -> some View {
-        Button(action: {showInfo = true}) {
+        Button(action: {
+            // set the selectedCity
+            if let thisCity = cityProvider.cities.first(where: {$0.name == cityName}) {
+                selectedCity = thisCity
+            }
+            showInfo = true
+        }) {
             VStack {
                 Text(cityName == city.name
                         ? String(format: "%.0f", (weather.current?.temp ?? 0.0).rounded())+"°"
@@ -145,5 +153,5 @@ struct MapViewer: View {
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .zIndex(2)
     }
-
+    
 }
