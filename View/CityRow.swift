@@ -5,14 +5,19 @@
 //  Created by Ringo Wathelet on 2020/07/25.
 //
 
+import Foundation
 import SwiftUI
+import MapKit
+import CoreLocation
 
 struct CityRow: View {
     
     @State var city: City
+
+    @State var region = MKCoordinateRegion()
     
     var body: some View {
-        NavigationLink(destination: WeatherDetails(city: self.city)) {
+        NavigationLink(destination: WeatherDetails(city: city, region: region)) {
             HStack {
                 Text(city.name).font(.title)
                 Spacer()
@@ -28,7 +33,12 @@ struct CityRow: View {
                             .shadow(radius: 3)
                             .padding(2))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
+        }.onAppear(perform: loadData)
+    }
+    
+    func loadData() {
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
+                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
     }
     
 }

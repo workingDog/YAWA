@@ -15,6 +15,7 @@ struct WeatherCardInfo: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
+    @State var city: City
     @Binding var weather: OWResponse
     @Binding var showInfo: Bool
     
@@ -22,6 +23,7 @@ struct WeatherCardInfo: View {
     var body: some View {
         Button(action: {showInfo = false}) {
             VStack (spacing: 10) {
+                Text(city.name).font(.title).foregroundColor(Color.black)
                 HStack {
                     Spacer()
                     Image(systemName: weather.current?.weatherIconName() ?? "smiley")
@@ -42,8 +44,7 @@ struct WeatherCardInfo: View {
                     Text("\(Date(utc: weather.current?.sunset ?? 0).hourMinute())")
                     Text("Sunset").font(.caption)
                 }.padding(.horizontal, 20)
-            }.onAppear(perform: loadData)
-            .frame(width: 400, height: 400)
+            }.frame(width: 400, height: 400)
             .background(RoundedRectangle(cornerRadius: 25)
                             .stroke(lineWidth: 2)
                             .background(Color(UIColor.systemGray6))
@@ -51,11 +52,7 @@ struct WeatherCardInfo: View {
             .clipShape(RoundedRectangle(cornerRadius: 25))
         }
     }
-    
-    func loadData() {
-        
-    }
-    
+
     func WindCurrent() -> some View {
         Image(systemName: "location.north.fill")
             .resizable()

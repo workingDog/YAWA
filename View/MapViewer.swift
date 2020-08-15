@@ -18,11 +18,7 @@ struct MapViewer: View {
     
     @Binding var city: City
     @Binding var weather: OWResponse
-    
-    // Tokyo
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 35.685, longitude: 139.7514),
-        span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+    @State var region: MKCoordinateRegion
     
     @State var cityAnno = [CityMapLocation]()
     
@@ -38,17 +34,11 @@ struct MapViewer: View {
                 mapview
             }
             if showInfo {
-                WeatherCardInfo(weather: $weather, showInfo: $showInfo).padding(.top, 100)
+                WeatherCardInfo(city: city, weather: $weather, showInfo: $showInfo).padding(.top, 100)
             }
-        }.onAppear(perform: loadData)
+        }.onAppear(perform: {loadLocations()})
     }
-    
-    func loadData() {
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
-                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-        loadLocations()
-    }
-    
+
     var mapview: some View {
         Group {
             // do this until Map takes mayType as a dynamic parameter

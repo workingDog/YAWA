@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import MapKit
+import CoreLocation
+
 
 struct HomeView: View {
     
@@ -19,10 +22,12 @@ struct HomeView: View {
     
     @State var showSettings: Bool = false
     
+    @State var region = MKCoordinateRegion()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                NavigationLink(destination: WeatherDetails(city: self.currentCity), tag: 1, selection: $action) {
+                NavigationLink(destination: WeatherDetails(city: self.currentCity, region: region), tag: 1, selection: $action) {
                     EmptyView()
                 }
                 HStack {
@@ -54,6 +59,9 @@ struct HomeView: View {
         currentCity = thisCity != nil
             ? thisCity!
             : City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
+        
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: currentCity.lat, longitude: currentCity.lon),
+                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
     }
 
     private func searchFor(_ txt: String) -> Bool {
