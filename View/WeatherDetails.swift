@@ -18,6 +18,7 @@ struct WeatherDetails: View {
     
     @State var city: City
     @State var region: MKCoordinateRegion
+    
     @State var weather = OWResponse()
     
 

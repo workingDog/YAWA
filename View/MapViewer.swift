@@ -137,19 +137,11 @@ struct MapViewer: View {
             }.foregroundColor(.red).scaleEffect(1.2)
         }.padding(5).frame(width: 75, height: 75)
         .contentShape(Rectangle())
-        .background(cityName == city.name
-                        ? RoundedRectangle(cornerRadius: 15)
+        .background(RoundedRectangle(cornerRadius: 15)
                         .stroke(lineWidth: 1)
-                        .foregroundColor(Color.secondary)
-                        .background(Color(UIColor.systemGray6))
-                        .padding(1)
-                        
-                        : RoundedRectangle(cornerRadius: 15)
-                        .stroke(lineWidth: 1)
-                        .foregroundColor(Color.clear)
-                        .background(Color.clear)
-                        .padding(1)
-        )
+                        .foregroundColor(cityName == city.name ? Color.secondary : Color.clear)
+                        .background(cityName == city.name ? Color(UIColor.systemGray6) : Color.clear)
+                        .padding(1))
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .zIndex(2)
     }
