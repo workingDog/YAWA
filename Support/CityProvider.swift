@@ -60,8 +60,8 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func getCurrentCity() -> City? {
-        if locationManager.authorizationStatus() == .authorizedWhenInUse ||
-            locationManager.authorizationStatus() == .authorizedAlways {
+        if locationManager.authorizationStatus == .authorizedWhenInUse ||
+            locationManager.authorizationStatus == .authorizedAlways {
             let loc = locationManager.location
             if let coord = loc?.coordinate {
   //            locationManager.stopUpdatingLocation()
