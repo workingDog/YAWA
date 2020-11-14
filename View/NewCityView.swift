@@ -23,6 +23,14 @@ struct NewCityView: View {
     
     var body: some View {
         VStack (spacing: 30) {
+            #if targetEnvironment(macCatalyst)
+                Button(action: onDone) {
+                    HStack {
+                        Text("Done").foregroundColor(.blue)
+                        Spacer()
+                    }
+                }.padding(10)
+            #endif
             Text("New city").padding(.top, 30)
             TextField("city name", text: $cityName)
             TextField("country", text: $cityCountry)
@@ -53,5 +61,9 @@ struct NewCityView: View {
         // to go back to the previous view
         self.presentationMode.wrappedValue.dismiss()
     }
-      
+    
+    func onDone() {
+        // to go back to the previous view
+        self.presentationMode.wrappedValue.dismiss()
+    }
 }

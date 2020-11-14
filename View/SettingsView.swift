@@ -23,6 +23,14 @@ struct SettingsView: View {
     
     var body: some View {
         VStack (spacing: 30) {
+            #if targetEnvironment(macCatalyst)
+                Button(action: onDone) {
+                    HStack {
+                        Text("Done").foregroundColor(.blue)
+                        Spacer()
+                    }
+                }.padding(10)
+            #endif
             Text("Settings").padding(30)
             TextField("openweather key", text: $theKey).foregroundColor(.blue)
                 .textFieldStyle(CustomTextFieldStyle())
@@ -97,4 +105,8 @@ struct SettingsView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
+    func onDone() {
+        // to go back to the previous view
+        self.presentationMode.wrappedValue.dismiss()
+    }
 }

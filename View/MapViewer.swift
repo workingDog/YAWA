@@ -27,7 +27,7 @@ struct MapViewer: View {
     @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
     @State var showInfo = false
     
-    
+ 
     var body: some View {
         ZStack {
             VStack (spacing: 1) {
