@@ -31,7 +31,8 @@ struct HomeView: View {
                     EmptyView()
                 }
                 HStack {
-                    Button("Current location", action: {self.action = 1}).padding(5).buttonStyle(GradientButtonStyle())
+                    Button("Current location", action: {self.action = 1})
+                        .padding(5).buttonStyle(GradientButtonStyle())
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))

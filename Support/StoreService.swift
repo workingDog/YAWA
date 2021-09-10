@@ -15,7 +15,7 @@ class StoreService {
     }
     
     static func setOWKey(key: String) {
-        KeychainWrapper.standard.set(key, forKey: "yawa.openweather.key")
+        KeychainWrapper.standard.set(key, forKey: "yawa.openweather.key")   
     }
     
     static func getLang() -> String? {
