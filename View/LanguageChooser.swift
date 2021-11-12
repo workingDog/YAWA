@@ -19,7 +19,7 @@ struct LanguageChooser: View {
     let columns = [ GridItem(.adaptive(minimum: 150)) ]
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 20) {
+        VStack (spacing: 20) {
 #if targetEnvironment(macCatalyst)
             HStack {
                 Button(action: onDone) { Text("Done").foregroundColor(.blue)}
@@ -38,8 +38,6 @@ struct LanguageChooser: View {
                 Spacer()
             }.padding(20)
             Divider()
-            HStack {
-                Spacer()
                 
                 ScrollViewReader { scroller in
                     ScrollView {
@@ -59,10 +57,11 @@ struct LanguageChooser: View {
                                                         .background(Color(UIColor.systemGray6))
                                                         .padding(2))
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                                }
+                                }.frame(maxWidth: .infinity, alignment: .center)
                             }
                         }
-                    }.onChange(of: self.startLang) { txt in
+                    }
+                    .onChange(of: self.startLang) { txt in
                         if let str = txt {
                             withAnimation {
                                 scroller.scrollTo(str)
@@ -70,9 +69,7 @@ struct LanguageChooser: View {
                         }
                     }
                 }
-                
-                Spacer()
-            }
+
         }.onAppear(perform: loadData)
     }
     
