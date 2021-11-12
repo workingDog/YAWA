@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
-    @State var theKey = "your openweather key"
+    @State var theKey = ""
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?

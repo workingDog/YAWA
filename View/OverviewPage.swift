@@ -25,7 +25,8 @@ struct OverviewPage: View {
     var body: some View {
         List {
             Section(header: Text("Currently " + timeNow)
-                        .font(.system(.footnote, design: .monospaced)).bold()
+                        .font(.system(.footnote, design: .monospaced))
+                        .foregroundColor(.accentColor).bold()
                         .onReceive(timer) { _ in
                             self.doUpdateTimeNow()
                         }) {
@@ -40,9 +41,8 @@ struct OverviewPage: View {
                     Spacer()
                 }.frame(height: 110)
             }.textCase(nil)
-            
-            
-            Section(header: Text("Next 24 hours")) {
+
+            Section(header: Text("Next 24 hours").foregroundColor(.accentColor).italic().bold()) {
                 ScrollView(.horizontal) {
                     HStack(spacing: 22) {
                         ForEach(Array(stride(from: 0, to: (weather.hourly ?? []).count, by: 3)).prefix(9), id: \.self) { ndx in
@@ -62,12 +62,13 @@ struct OverviewPage: View {
                 }
             }.textCase(nil)
             
-            Section(header: Text("This week")) {
+            Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
                 ForEach((weather.daily?.dropFirst() ?? []), id: \.self) { daily in
                     dailyView(daily)
                 }
             }.textCase(nil)
         }
+        .listStyle(.plain)
         .onAppear(perform: loadData)
         .padding(20)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)

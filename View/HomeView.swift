@@ -49,6 +49,8 @@ struct HomeView: View {
                     }
                     .onDelete(perform: delete)
                 }
+                .listStyle(.plain)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .navigationBarItems(leading: langButton, trailing: addButton)
                 .navigationBarTitle("Weather", displayMode: .automatic)
             }.onAppear(perform: loadData)
