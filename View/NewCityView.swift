@@ -22,16 +22,16 @@ struct NewCityView: View {
   
     
     var body: some View {
-        VStack (spacing: 30) {
+        VStack (spacing: 20) {
             #if targetEnvironment(macCatalyst)
                 Button(action: onDone) {
                     HStack {
                         Text("Done").foregroundColor(.blue)
                         Spacer()
                     }
-                }.padding(10)
+                }.padding(.top, 20)
             #endif
-            Text("New city").padding(.top, 30)
+            Text("New city").padding(.top, 35)
             TextField("city name", text: $cityName)
             TextField("country", text: $cityCountry)
             TextField("country code", text: $cityCountryCode)
@@ -39,11 +39,11 @@ struct NewCityView: View {
             TextField("decimal longitude", text: $cityLon)
 
             Button(action: {self.onSave()}) {
-                Text("Save").padding(30).foregroundColor(Color.primary)
+                Text("Save").padding(25).foregroundColor(Color.primary)
             }.cornerRadius(40)
                 .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
                 .foregroundColor(.green))
-                .padding(.top, 30)
+                .padding(.top, 25)
 
             Spacer()
         }.foregroundColor(.blue)

@@ -32,7 +32,7 @@ struct HomeView: View {
                 }
                 HStack {
                     Button("Current location", action: {self.action = 1})
-                        .padding(5).buttonStyle(GradientButtonStyle())
+                        .padding(5).buttonStyle(GradientButtonStyle()).font(.caption)
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
@@ -41,18 +41,18 @@ struct HomeView: View {
                     Button(action: {self.searchQuery = ""}) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
-                }.padding(.horizontal, 5).padding(.top, 15)
+                }.padding(.horizontal, 5).padding(.top, 10)
                 Divider()
                 List {
                     ForEach(cityProvider.cities.filter{self.searchFor($0.name)}.sorted(by: { $0.name < $1.name })) { city in
                         CityRow(city: city)
                     }
                     .onDelete(perform: delete)
-                }.navigationBarItems(leading: langButton, trailing: addButton)
-            }.navigationBarTitle("Weather", displayMode: .inline)
-            .onAppear(perform: loadData)
-            
-        }.navigationViewStyle(StackNavigationViewStyle())
+                }
+                .navigationBarItems(leading: langButton, trailing: addButton)
+                .navigationBarTitle("Weather", displayMode: .automatic)
+            }.onAppear(perform: loadData)
+        }.navigationViewStyle(.stack)
     }
     
     func loadData() {
@@ -72,13 +72,13 @@ struct HomeView: View {
     private var addButton: some View {
         HStack {
             Button(action: {self.showNewCity = true}) {
-                Image(systemName: "plus.circle.fill").font(.title)
+                Image(systemName: "plus.circle.fill").font(.body)
             }.sheet(isPresented: $showNewCity, onDismiss: {self.showNewCity = false}) {
                 NewCityView().environmentObject(self.cityProvider)
             }.padding(.horizontal, 40)
             
             Button(action: {self.showSettings = true}) {
-                Image(systemName: "gearshape").font(.title)
+                Image(systemName: "gearshape").font(.body)
             }.sheet(isPresented: $showSettings, onDismiss: {self.showSettings = false}) {
                 SettingsView().environmentObject(self.cityProvider)
             }

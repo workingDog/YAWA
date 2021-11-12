@@ -41,6 +41,7 @@ struct OverviewPage: View {
                 }.frame(height: 110)
             }.textCase(nil)
             
+            
             Section(header: Text("Next 24 hours")) {
                 ScrollView(.horizontal) {
                     HStack(spacing: 22) {
@@ -66,9 +67,10 @@ struct OverviewPage: View {
                     dailyView(daily)
                 }
             }.textCase(nil)
-        }.onAppear(perform: loadData)
+        }
+        .onAppear(perform: loadData)
         .padding(20)
-        .navigationBarTitle(Text(city.name + ", " + city.country))
+        .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
     }
     
     func loadData() {
@@ -84,21 +86,26 @@ struct OverviewPage: View {
     
     func dailyView(_ daily: Daily) -> some View {
         HStack {
-            Text(Date(utc: daily.dt).dayName(lang: cityProvider.lang))
+            VStack (alignment: .leading, spacing: 2){
+                Text(Date(utc: daily.dt).dayName(lang: cityProvider.lang)).font(.caption)
+                Image(systemName: dailyIconName(daily))
+                    .resizable()
+                    .frame(width: 30, height: 25)
+                    .foregroundColor(Color.green)
+            }.frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            Image(systemName: dailyIconName(daily))
-                .resizable()
-                .frame(width: 30, height: 25)
-                .foregroundColor(Color.green)
-            Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%").foregroundColor(.blue).padding(.horizontal, 20)
+            Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%")
+                .foregroundColor(.blue)
+                .padding(.horizontal, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             HStack {
-                Text(String(format: "%.0f", daily.temp.min.rounded())+"°")
+                Text(String(format: "%.0f", daily.temp.min.rounded())+"°").font(.caption)
                 Image(systemName: "arrow.right")
                     .resizable()
-                    .frame(width: 20, height: 15)
+                    .frame(width: 10, height: 10)
                     .foregroundColor(Color.blue)
-                Text(String(format: "%.0f", daily.temp.max.rounded())+"°")
+                Text(String(format: "%.0f", daily.temp.max.rounded())+"°").font(.caption)
             }
         }
     }

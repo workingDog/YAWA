@@ -20,10 +20,12 @@ struct LanguageChooser: View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 20) {
+#if targetEnvironment(macCatalyst)
             HStack {
                 Button(action: onDone) { Text("Done").foregroundColor(.blue)}
                 Spacer()
             }.padding(15)
+#endif
             HStack {
                 Spacer()
                 TextField("language search", text: $searchQuery).padding(10)

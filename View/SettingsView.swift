@@ -22,19 +22,19 @@ struct SettingsView: View {
     
     
     var body: some View {
-        VStack (spacing: 30) {
+        VStack (spacing: 20) {
             #if targetEnvironment(macCatalyst)
                 Button(action: onDone) {
                     HStack {
                         Text("Done").foregroundColor(.blue)
                         Spacer()
                     }
-                }.padding(10)
+                }.padding(20)
             #endif
-            Text("Settings").padding(30)
+            Text("Settings").padding(20)
             TextField("openweather key", text: $theKey).foregroundColor(.blue)
                 .textFieldStyle(CustomTextFieldStyle())
-                .padding(.top, 40)
+                .padding(10)
             HStack {
                 Spacer()
                 TextField("default language", text: $searchQuery).foregroundColor(.blue).padding(10)
@@ -47,6 +47,7 @@ struct SettingsView: View {
                 Spacer()
             }.padding(.top, 40)
             
+            Divider()
             ScrollViewReader { scroller in
                 ScrollView (.horizontal) {
                     HStack(spacing: 10) {
@@ -67,7 +68,8 @@ struct SettingsView: View {
                             }
                         }
                     }
-                }.onChange(of: self.startLang) { txt in
+                }
+                .onChange(of: self.startLang) { txt in
                     if let str = txt {
                         withAnimation {
                             scroller.scrollTo(str)
@@ -75,6 +77,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            Divider()
             
             Button(action: {self.onSave()}) {
                 Text("Save").padding(30).foregroundColor(Color.primary)
