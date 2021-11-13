@@ -38,7 +38,6 @@
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
 		C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CC24D2A7DD0006931A /* MapViewer.swift */; };
 		C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */; };
-		C7F7B66124D01BDC00E7BB91 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +81,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C784C4AC24D13BE700E546F7 /* OWOneCall in Frameworks */,
-				C7F7B66124D01BDC00E7BB91 /* SwiftUICharts in Frameworks */,
 				C7A47FFF24D0104700C59D22 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,7 +216,6 @@
 			name = YAWA;
 			packageProductDependencies = (
 				C7A47FFE24D0104700C59D22 /* Charts */,
-				C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */,
 				C784C4AB24D13BE700E546F7 /* OWOneCall */,
 			);
 			productName = YAWA;
@@ -250,7 +247,6 @@
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
 				C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */,
-				C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */,
 				C784C4AA24D13BE700E546F7 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
@@ -516,14 +512,6 @@
 				minimumVersion = 3.5.0;
 			};
 		};
-		C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				branch = "2.0.0-beta.1";
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -536,11 +524,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
-		};
-		C7F7B66024D01BDC00E7BB91 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7F7B65F24D01BDC00E7BB91 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

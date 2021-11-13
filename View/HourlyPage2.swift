@@ -12,6 +12,7 @@
 //  Created by Ringo Wathelet on 2020/07/28.
 //
 
+/*
 import SwiftUI
 import OWOneCall
 import SwiftUICharts
@@ -24,8 +25,11 @@ struct HourlyPage2: View {
     @Binding var city: City
     @Binding var weather: OWResponse
     
-    @State var tempData: [Double] = []
-    @State var rainData: [Double] = []
+//    @State var tempData: [Double] = []
+//    @State var rainData: [Double] = []
+    
+    @State var tempData = ChartData()
+    @State var rainData = ChartData()
     
     @State var title = ""
     @State var viewtype = 0
@@ -42,17 +46,19 @@ struct HourlyPage2: View {
     
     var body: some View {
         VStack {
-            CardView {
-                LineChart()
-                    .data(tempData)
-                    .chartStyle(blueStlye)
-            }.padding(20)
+            BarChartView(data: tempData, title: "Temperature", legend: "Celcius")
+            
+//            CardView {
+//                LineChart()
+//                    .data(tempData)
+//                    .chartStyle(blueStlye)
+//            }.padding(20)
             
             Spacer()
             
             CardView {
                 LineChart()
-                    .data(rainData)
+                  //  .data(rainData)
                     .chartStyle(orangeStlye)
 
             }.padding(20)
@@ -62,20 +68,22 @@ struct HourlyPage2: View {
     }
     
     func loadData() {
+        var tempPoints: [(String,Double)] = []
+        var rainPoints: [(String,Double)] = []
         if let hourly = weather.hourly {
             let _ = (0..<hourly.count).map { i in
+                let hour: String = hourly[i].getDate().hour()
                 // temperature
-                self.tempData.append(hourly[i].temp)
+                tempPoints.append( (hour, hourly[i].temp) )
                 // precipitation
                 if let rain = hourly[i].rain?.the1H {
-                    self.rainData.append(rain)
+                    rainPoints.append( (hour, rain) )
                 }
             }
         }
-        self.rainData = [0, 5, 6, 2, 13, 4, 3, 6]
+        tempData = ChartData(tempPoints)
+        rainData = ChartData(rainPoints)
     }
-    
-    
-    
+  
 }
-
+*/
