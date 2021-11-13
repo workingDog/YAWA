@@ -27,16 +27,16 @@ struct HourlyPage: View {
 
     var body: some View {
         ScrollView {
-            LineChartSwiftUI(theData: self.$tempData, title: "Temperature °", viewtype: self.$viewtype)
+            LineChartSwiftUI(theData: $tempData, title: "Temperature °", viewtype: $viewtype)
                 .frame(height: 333)
             
-            LineChartSwiftUI(theData: self.$rainData, title: "Chance of rain %", viewtype: self.$viewtype)
+            LineChartSwiftUI(theData: $rainData, title: "Chance of rain %", viewtype: $viewtype)
                 .frame(height: 333)
             
-            LineChartSwiftUI(theData: self.$windData, title: "Wind speed m/s", viewtype: self.$viewtype)
+            LineChartSwiftUI(theData: $windData, title: "Wind speed m/s", viewtype: $viewtype)
                 .frame(height: 333)
             
-            LineChartSwiftUI(theData: self.$cloudData, title: "Cloud coverage %", viewtype: self.$viewtype)
+            LineChartSwiftUI(theData: $cloudData, title: "Cloud coverage %", viewtype: $viewtype)
                 .frame(height: 333)
             
             Spacer()
@@ -53,20 +53,20 @@ struct HourlyPage: View {
             // make a vector of Int(TimeInterval) for each (hour*hstep)
             let hourVector = stride(from: startOfDay, to: now, by: hourStep).map { Int($0) }
             
-            self.tempData = (0..<hourVector.count).map { i in
+            tempData = (0..<hourVector.count).map { i in
                 return (x: Double(hourVector[i]), y: hourly[i*hstep].temp)
             }
             
-            self.rainData = (0..<hourVector.count).map { i in
+            rainData = (0..<hourVector.count).map { i in
                 let prob = hourly[i*hstep].pop != nil ? hourly[i*hstep].pop! * 100.0 : 0.0
                 return (x: Double(hourVector[i]), y: prob)
             }
             
-            self.windData = (0..<hourVector.count).map { i in
+            windData = (0..<hourVector.count).map { i in
                 return (x: Double(hourVector[i]), y: hourly[i*hstep].windSpeed)
             }
             
-            self.cloudData = (0..<hourVector.count).map { i in
+            cloudData = (0..<hourVector.count).map { i in
                 return (x: Double(hourVector[i]), y: Double(hourly[i*hstep].clouds))
             }
         }

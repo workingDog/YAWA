@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LanguageChooser: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var cityProvider: CityProvider
     
@@ -22,7 +22,7 @@ struct LanguageChooser: View {
         VStack (spacing: 20) {
 #if targetEnvironment(macCatalyst)
             HStack {
-                Button(action: onDone) { Text("Done").foregroundColor(.blue)}
+                Button(action: {dismiss()}) { Text("Done").foregroundColor(.blue)}
                 Spacer()
             }.padding(15)
 #endif
@@ -32,7 +32,7 @@ struct LanguageChooser: View {
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                     .foregroundColor(.blue)
                     .frame(width: 222)
-                Button(action: {self.searchQuery = ""}) {
+                Button(action: {searchQuery = ""}) {
                     Image(systemName: "xmark.circle").font(.title)
                 }
                 Spacer()
@@ -42,18 +42,18 @@ struct LanguageChooser: View {
                 ScrollViewReader { scroller in
                     ScrollView {
                         VStack(spacing: 10) {
-                            ForEach(cityProvider.langArr.filter{self.searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
+                            ForEach(cityProvider.langArr.filter{searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
                                 Button(action: {
-                                    self.cityProvider.lang = lang
-                                    self.searchQuery = lang
+                                    cityProvider.lang = lang
+                                    searchQuery = lang
                                 }) {
                                     Text(lang).padding(10)
-                                        .font(self.cityProvider.lang == lang ? .body : .caption)
-                                        .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                        .font(cityProvider.lang == lang ? .body : .caption)
+                                        .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
                                         .frame(width: 120)
                                         .background(RoundedRectangle(cornerRadius: 10)
                                                         .stroke(lineWidth: 1)
-                                                        .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                                        .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
                                                         .background(Color(UIColor.systemGray6))
                                                         .padding(2))
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -61,7 +61,7 @@ struct LanguageChooser: View {
                             }
                         }
                     }
-                    .onChange(of: self.startLang) { txt in
+                    .onChange(of: startLang) { txt in
                         if let str = txt {
                             withAnimation {
                                 scroller.scrollTo(str)
@@ -80,8 +80,5 @@ struct LanguageChooser: View {
     private func searchFor(_ txt: String) -> Bool {
         return (txt.lowercased(with: .current).hasPrefix(searchQuery.trim().lowercased(with: .current)) || searchQuery.trim().isEmpty)
     }
-    
-    func onDone() {
-        self.presentationMode.wrappedValue.dismiss()
-    }
+
 }

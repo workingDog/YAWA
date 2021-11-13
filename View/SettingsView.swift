@@ -11,7 +11,7 @@ import OWOneCall
 
 struct SettingsView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var cityProvider: CityProvider
     
@@ -24,7 +24,7 @@ struct SettingsView: View {
     var body: some View {
         VStack (spacing: 20) {
             #if targetEnvironment(macCatalyst)
-                Button(action: onDone) {
+            Button(action: {dismiss()}) {
                     HStack {
                         Text("Done").foregroundColor(.blue)
                         Spacer()
@@ -41,7 +41,7 @@ struct SettingsView: View {
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                     .foregroundColor(.blue)
                     .frame(width: 333)
-                Button(action: {self.searchQuery = ""}) {
+                Button(action: {searchQuery = ""}) {
                     Image(systemName: "xmark.circle").font(.title)
                 }
                 Spacer()
@@ -51,17 +51,17 @@ struct SettingsView: View {
             ScrollViewReader { scroller in
                 ScrollView (.horizontal) {
                     HStack(spacing: 10) {
-                        ForEach(cityProvider.langArr.filter{self.searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
+                        ForEach(cityProvider.langArr.filter{searchFor($0)}.sorted(by: { $0 < $1 }), id: \.self) { lang in
                             Button(action: {
-                                self.searchQuery = lang
+                                searchQuery = lang
                             }) {
                                 Text(lang).padding(10)
-                                    .font(self.cityProvider.lang == lang ? .body : .caption)
-                                    .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                    .font(cityProvider.lang == lang ? .body : .caption)
+                                    .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
                                     .frame(width: 120)
                                     .background(RoundedRectangle(cornerRadius: 10)
                                                     .stroke(lineWidth: 1)
-                                                    .foregroundColor(self.cityProvider.lang == lang ? Color.red : Color.primary)
+                                                    .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
                                                     .background(Color(UIColor.systemGray6))
                                                     .padding(2))
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -69,7 +69,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-                .onChange(of: self.startLang) { txt in
+                .onChange(of: startLang) { txt in
                     if let str = txt {
                         withAnimation {
                             scroller.scrollTo(str)
@@ -79,7 +79,7 @@ struct SettingsView: View {
             }
             Divider()
             
-            Button(action: {self.onSave()}) {
+            Button(action: {onSave()}) {
                 Text("Save").padding(30).foregroundColor(Color.primary)
             }.cornerRadius(40)
             .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
@@ -100,16 +100,12 @@ struct SettingsView: View {
     }
     
     func onSave() {
-        self.cityProvider.weatherProvider = OWProvider(apiKey: theKey)
+        cityProvider.weatherProvider = OWProvider(apiKey: theKey)
         StoreService.setOWKey(key: theKey)
         // todo validate lang
         StoreService.setLang(str: self.cityProvider.lang)
         // to go back to the previous view
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
-    
-    func onDone() {
-        // to go back to the previous view
-        self.presentationMode.wrappedValue.dismiss()
-    }
+
 }

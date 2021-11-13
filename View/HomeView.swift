@@ -27,7 +27,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                NavigationLink(destination: WeatherDetails(city: self.currentCity, region: region), tag: 1, selection: $action) {
+                NavigationLink(destination: WeatherDetails(city: currentCity, region: region), tag: 1, selection: $action) {
                     EmptyView()
                 }
                 .toolbar {
@@ -35,20 +35,20 @@ struct HomeView: View {
                     ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
                 }
                 HStack {
-                    Button("Current location", action: {self.action = 1})
+                    Button("Current location", action: {action = 1})
                         .padding(5).buttonStyle(GradientButtonStyle()).font(.caption)
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                         .foregroundColor(.blue)
                         .frame(width: 160)
-                    Button(action: {self.searchQuery = ""}) {
+                    Button(action: {searchQuery = ""}) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
                 }.padding(.horizontal, 5).padding(.top, 10)
                 Divider()
                 List {
-                    ForEach(cityProvider.cities.filter{self.searchFor($0.name)}.sorted(by: { $0.name < $1.name })) { city in
+                    ForEach(cityProvider.cities.filter{searchFor($0.name)}.sorted(by: { $0.name < $1.name })) { city in
                         CityRow(city: city)
                     }
                     .onDelete(perform: delete)
@@ -75,32 +75,32 @@ struct HomeView: View {
 
     private var addButton: some View {
         HStack {
-            Button(action: {self.showNewCity = true}) {
+            Button(action: {showNewCity = true}) {
                 Image(systemName: "plus.circle.fill").font(.body)
-            }.sheet(isPresented: $showNewCity, onDismiss: {self.showNewCity = false}) {
-                NewCityView().environmentObject(self.cityProvider)
+            }.sheet(isPresented: $showNewCity, onDismiss: {showNewCity = false}) {
+                NewCityView().environmentObject(cityProvider)
             }.padding(.horizontal, 40)
             
-            Button(action: {self.showSettings = true}) {
+            Button(action: {showSettings = true}) {
                 Image(systemName: "gearshape").font(.body)
-            }.sheet(isPresented: $showSettings, onDismiss: {self.showSettings = false}) {
-                SettingsView().environmentObject(self.cityProvider)
+            }.sheet(isPresented: $showSettings, onDismiss: {showSettings = false}) {
+                SettingsView().environmentObject(cityProvider)
             }
         }
     }
 
     private var langButton: some View {
-        Button(action: {self.showLang = true}) {
-            Text(self.cityProvider.lang).font(.body).frame(width: 120, height: 25)
+        Button(action: {showLang = true}) {
+            Text(cityProvider.lang).font(.body).frame(width: 120, height: 25)
         }.buttonStyle(BlueButtonStyle())
-        .sheet(isPresented: $showLang, onDismiss: {self.showLang = false}) {
-            LanguageChooser().environmentObject(self.cityProvider)
+        .sheet(isPresented: $showLang, onDismiss: {showLang = false}) {
+            LanguageChooser().environmentObject(cityProvider)
         }
     }
     
     private func delete(with indexSet: IndexSet) {
         // must sort the list as in the body
-        let sortedList = cityProvider.cities.filter{self.searchFor($0.name)}.sorted(by: { $0.name < $1.name })
+        let sortedList = cityProvider.cities.filter{searchFor($0.name)}.sorted(by: { $0.name < $1.name })
         // get the city from the sorted list
         let theCity = sortedList[indexSet.first!]
         // get the index of the city from the cityProvider, and remove it

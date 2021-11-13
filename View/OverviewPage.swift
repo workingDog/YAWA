@@ -28,7 +28,7 @@ struct OverviewPage: View {
                         .font(.system(.footnote, design: .monospaced))
                         .foregroundColor(.accentColor).bold()
                         .onReceive(timer) { _ in
-                            self.doUpdateTimeNow()
+                            doUpdateTimeNow()
                         }) {
                 HStack {
                     Spacer()
@@ -82,7 +82,7 @@ struct OverviewPage: View {
     
     func doUpdateTimeNow() {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: weather.timezoneOffset)
-        self.timeNow = dateFormatter.string(from: Date())
+        timeNow = dateFormatter.string(from: Date())
     }
     
     func dailyView(_ daily: Daily) -> some View {
@@ -116,7 +116,7 @@ struct OverviewPage: View {
             .resizable()
             .frame(width: 14, height: 24)
             .foregroundColor(Color.orange)
-            .rotationEffect(.degrees(windDirHourly(ndx)))  // self.cityProvider.heading+windDirHourly(ndx)
+            .rotationEffect(.degrees(windDirHourly(ndx)))  // cityProvider.heading+windDirHourly(ndx)
     }
     
     // todo check for correctness
@@ -132,7 +132,7 @@ struct OverviewPage: View {
             .resizable()
             .frame(width: 24, height: 34)
             .foregroundColor(Color.orange)
-            .rotationEffect(.degrees(windDirCurrent()))  // self.cityProvider.heading+windDirCurrent()
+            .rotationEffect(.degrees(windDirCurrent()))  // cityProvider.heading+windDirCurrent()
     }
     
     // todo check for correctness

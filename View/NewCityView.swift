@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 struct NewCityView: View {
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var cityProvider: CityProvider
 
@@ -24,7 +23,7 @@ struct NewCityView: View {
     var body: some View {
         VStack (spacing: 20) {
             #if targetEnvironment(macCatalyst)
-                Button(action: onDone) {
+            Button(action: {dismiss()}) {
                     HStack {
                         Text("Done").foregroundColor(.blue)
                         Spacer()
@@ -59,11 +58,7 @@ struct NewCityView: View {
             cityProvider.cities.append(newCity)
         }
         // to go back to the previous view
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
-    
-    func onDone() {
-        // to go back to the previous view
-        self.presentationMode.wrappedValue.dismiss()
-    }
+
 }

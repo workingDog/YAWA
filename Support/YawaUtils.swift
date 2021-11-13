@@ -78,9 +78,7 @@ class YawaUtils {
         "vi"  :  "Vietnamese",
         "zh_cn"  :  "Chinese Simplified",
         "zh_tw" :   "Chinese Traditional",
-        "zu"  :  "Zulu"]
-    
-    
+        "zu"  :  "Zulu"]  
 }
 
 struct GradientButtonStyle: ButtonStyle {
