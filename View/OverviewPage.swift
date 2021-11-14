@@ -64,11 +64,13 @@ struct OverviewPage: View {
             
             Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
                 ForEach((weather.daily?.dropFirst() ?? []), id: \.self) { daily in
-                    dailyView(daily)
+                    dailyView(daily).listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }.textCase(nil)
+            
+                
         }
-        .listStyle(.plain)
+        .listStyle(.grouped)
         .onAppear(perform: loadData)
         .padding(20)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)

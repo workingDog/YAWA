@@ -27,16 +27,16 @@ struct HourlyPage: View {
     var body: some View {
         ScrollView {
             LineChartSwiftUI(theData: $tempData, title: "Temperature °", viewtype: $viewtype)
-                .frame(height: 333)
+                .frame(height: 300)
             
             LineChartSwiftUI(theData: $rainData, title: "Chance of rain %", viewtype: $viewtype)
-                .frame(height: 333)
+                .frame(height: 300)
             
             LineChartSwiftUI(theData: $windData, title: "Wind speed m/s", viewtype: $viewtype)
-                .frame(height: 333)
+                .frame(height: 300)
             
             LineChartSwiftUI(theData: $cloudData, title: "Cloud coverage %", viewtype: $viewtype)
-                .frame(height: 333)
+                .frame(height: 300)
             
             Spacer()
         }.padding(10)

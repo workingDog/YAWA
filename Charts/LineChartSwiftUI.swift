@@ -26,7 +26,7 @@ struct LineChartSwiftUI: UIViewRepresentable {
     
     func updateUIView(_ uiView: LineChartView, context: UIViewRepresentableContext<LineChartSwiftUI>) {
         if viewtype == 2 {uiView.xAxis.setLabelCount(7, force: true)}
-        uiView.xAxis.valueFormatter = DateValueFormatter(self.viewtype)
+        uiView.xAxis.valueFormatter = DateValueFormatter(viewtype)
         let data = LineChartData(dataSets: [getData()])
         uiView.data = data
         uiView.notifyDataSetChanged()
@@ -48,7 +48,7 @@ struct LineChartSwiftUI: UIViewRepresentable {
         theChart.legend.verticalAlignment = .top
         theChart.legend.font = .systemFont(ofSize: 14)
         theChart.leftAxis.labelFont = .systemFont(ofSize: 12)
-        theChart.xAxis.valueFormatter = DateValueFormatter(self.viewtype)
+        theChart.xAxis.valueFormatter = DateValueFormatter(viewtype)
         theChart.xAxis.granularity = 1.0
         if viewtype == 2 {theChart.xAxis.setLabelCount(7, force: true)}
         
@@ -66,7 +66,7 @@ struct LineChartSwiftUI: UIViewRepresentable {
     func getData() -> LineChartDataSet {
         let dataPoints: [ChartDataEntry] = theData.map { ChartDataEntry(x: $0.x, y: $0.y) }
         
-        let chartData = LineChartDataSet(entries: dataPoints, label: self.title)
+        let chartData = LineChartDataSet(entries: dataPoints, label: title)
         chartData.mode = .cubicBezier
         chartData.axisDependency = .left
         chartData.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))
@@ -82,7 +82,7 @@ struct LineChartSwiftUI: UIViewRepresentable {
 
         chartData.valueFont = .systemFont(ofSize: 14)
         
-        let color = ChartColorTemplates.colorful()[1]
+        let color = ChartColorTemplates.joyful()[0]
         chartData.setColor(color)
         return chartData
     }
