@@ -10,7 +10,7 @@
 Yes, another weather app. This time to showcase my very own [**OWOneCall**](https://github.com/workingDog/OWOneCall) swift library.
 
 
-*Note:* this `master` branch uses [**OWOneCall**](https://github.com/workingDog/OWOneCall) 
+*Note:* this `main` branch uses [**OWOneCall**](https://github.com/workingDog/OWOneCall) 
 Combine framework for the API requests. There is also the `async` branch, that uses the newer Swift concurrency `async/await` for the API requests.
 
 **I recommend using the `async` branch.**
