@@ -10,11 +10,6 @@
 Yes, another weather app. This time to showcase my very own [**OWOneCall**](https://github.com/workingDog/OWOneCall) swift library.
 
 
-*Note:* this `main` branch uses [**OWOneCall**](https://github.com/workingDog/OWOneCall) 
-Combine framework for the API requests. There is also the `async` branch, that uses the newer Swift concurrency `async/await` for the API requests.
-
-**I recommend using the `async` branch.**
-
 ## OWOneCall
 
 [**OWOneCall**](https://github.com/workingDog/OWOneCall) is a small Swift library to connect to the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) and retrieve the chosen weather data. Made easy to use with SwiftUI.

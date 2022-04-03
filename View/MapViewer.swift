@@ -11,6 +11,7 @@ import OWOneCall
 import MapKit
 import CoreLocation
 
+// experimental
 
 struct MapViewer: View {
     
@@ -23,8 +24,7 @@ struct MapViewer: View {
     @State var cityAnno = [CityMapLocation]()
     @State var selectedCity = City()
     
-    @State private var mapType: Int = 1
-    @State private var mapTypes = ["Standard", "Satellite", "Hybrid"]
+    @State private var mapType: MKMapType = .satellite
     @State var showInfo = false
     
  
@@ -32,44 +32,17 @@ struct MapViewer: View {
         ZStack {
             VStack (spacing: 1) {
                 mapTools
-                mapview
+                Map(coordinateRegion: $region, showsUserLocation: true,
+                    annotationItems: cityAnno) { pin in
+                    MapAnnotation(coordinate: pin.coordinate) {
+                        annoView(cityName: pin.title!)
+                    }
+                }.mapStyle(mapType)  // <-- does not work (see Extensions.swift)
             }
             if showInfo {
                 WeatherCardInfo(city: selectedCity, showInfo: $showInfo).padding(.top, 100)
             }
-        }.onAppear(perform: loadData)
-    }
-    
-    var mapview: some View {
-        Group {
-            // do this until Map takes mayType as a dynamic parameter
-            if mapType == 0 {
-                Map(coordinateRegion: $region, showsUserLocation: true,
-                    annotationItems: cityAnno) { pin in
-                    MapAnnotation(coordinate: pin.coordinate) {
-                        annoView(cityName: pin.title!)
-                    }
-                }.mapStyle(.standard)
-            }
-            
-            if mapType == 1 {
-                Map(coordinateRegion: $region, showsUserLocation: true,
-                    annotationItems: cityAnno) { pin in
-                    MapAnnotation(coordinate: pin.coordinate) {
-                        annoView(cityName: pin.title!)
-                    }
-                }.mapStyle(.satellite)
-            }
-            
-            if mapType == 2 {
-                Map(coordinateRegion: $region, showsUserLocation: true,
-                    annotationItems: cityAnno) { pin in
-                    MapAnnotation(coordinate: pin.coordinate) {
-                        annoView(cityName: pin.title!)
-                    }
-                }.mapStyle(.hybrid)
-            }
-        }
+        }.onAppear{ loadData() }
     }
     
     func loadData() {
@@ -89,31 +62,16 @@ struct MapViewer: View {
             return "smiley"
         }
     }
-    
-    func getMapType() -> MKMapType {
-        switch mapType {
-        case 0: return .standard
-        case 1: return .satellite
-        case 2: return .hybrid
-        default:
-            return .standard
-        }
-    }
-    
+
     var mapTools: some View {
         HStack {
             Spacer()
-            Picker(selection: Binding<Int> (
-                get: { mapType },
-                set: {
-                    showInfo = false
-                    mapType = $0
-                }
-            ), label: Text("")) {
-                ForEach(0 ..< mapTypes.count) {
-                    Text(mapTypes[$0])
-                }
-            }.pickerStyle(SegmentedPickerStyle())
+            Picker("", selection: $mapType) {
+                Text("Standard").tag(MKMapType.standard)
+                Text("Satellite").tag(MKMapType.satellite)
+                Text("Hybrid").tag(MKMapType.hybrid)
+            }
+            .pickerStyle(.segmented)
             .labelsHidden()
             .padding(5)
             .fixedSize()

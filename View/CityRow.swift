@@ -19,11 +19,11 @@ struct CityRow: View {
     var body: some View {
         NavigationLink(destination: WeatherDetails(city: city, region: region)) {
             HStack {
-                Text(city.name)
+                Text(city.name).frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                 Image(city.code).resizable().renderingMode(.original).frame(width: 40, height: 30)
                 Spacer()
-                Text(city.country).font(.caption)
+                Text(city.country).font(.caption).frame(maxWidth: .infinity, alignment: .trailing)
             }
             .padding(10)
             .background(RoundedRectangle(cornerRadius: 10)

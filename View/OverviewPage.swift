@@ -95,6 +95,7 @@ struct OverviewPage: View {
                     .resizable()
                     .frame(width: 30, height: 25)
                     .foregroundColor(Color.green)
+                    .padding(.horizontal, 20)
             }.frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%")
@@ -109,7 +110,7 @@ struct OverviewPage: View {
                     .frame(width: 10, height: 10)
                     .foregroundColor(Color.blue)
                 Text(String(format: "%.0f", daily.temp.max.rounded())+"°").font(.caption)
-            }
+            }.padding(.trailing, 10)
         }
     }
     
