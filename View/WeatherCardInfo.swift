@@ -19,6 +19,7 @@ struct WeatherCardInfo: View {
     @Binding var showInfo: Bool
     
     @State var weather = OWResponse()
+    let dateFormatter = DateFormatter()
     
     var body: some View {
         Button(action: {showInfo = false}) {
@@ -37,11 +38,11 @@ struct WeatherCardInfo: View {
                 Text(weather.current?.weatherInfo() ?? "")
                 Text("Clouds \(weather.current?.clouds ?? 0) %")
                 VStack {
-                    Text("\(Date(utc: weather.current?.sunrise ?? 0).hourMinute())")
+                    Text(localTimeFor(weather.current?.sunrise))
                     Text("Sunrise").font(.caption)
                 }.padding(.horizontal, 20)
                 VStack {
-                    Text("\(Date(utc: weather.current?.sunset ?? 0).hourMinute())")
+                    Text(localTimeFor(weather.current?.sunset))
                     Text("Sunset").font(.caption)
                 }.padding(.horizontal, 20)
             }.frame(width: 400, height: 400)
@@ -51,6 +52,12 @@ struct WeatherCardInfo: View {
                             .padding(1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
         }.onAppear(perform: loadData)
+    }
+    
+    func localTimeFor(_ t: Int?) -> String {
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: weather.timezoneOffset)
+        dateFormatter.dateFormat = "hh:mm a"
+        return dateFormatter.string(from: Date(utc: t ?? 0))
     }
     
     func loadData() {

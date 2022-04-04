@@ -101,11 +101,13 @@ struct HomeView: View {
     private func delete(with indexSet: IndexSet) {
         // must sort the list as in the body
         let sortedList = cityProvider.cities.filter{searchFor($0.name)}.sorted(by: { $0.name < $1.name })
-        // get the city from the sorted list
-        let theCity = sortedList[indexSet.first!]
-        // get the index of the city from the cityProvider, and remove it
-        if let ndx = cityProvider.cities.firstIndex(of: theCity) {
-            cityProvider.cities.remove(at: ndx)
+        if let first = indexSet.first, sortedList.count > first {
+            // get the city from the sorted list
+            let theCity = sortedList[first]
+            // get the index of the city from the cityProvider, and remove it
+            if let ndx = cityProvider.cities.firstIndex(of: theCity) {
+                cityProvider.cities.remove(at: ndx)
+            }
         }
     }
 

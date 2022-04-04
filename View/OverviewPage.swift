@@ -24,7 +24,7 @@ struct OverviewPage: View {
     
     var body: some View {
         List {
-            Section(header: Text("Currently " + timeNow)
+            Section(header: Text(timeNow)
                         .font(.system(.footnote, design: .monospaced))
                         .foregroundColor(.accentColor).bold()
                         .onReceive(timer) { _ in
@@ -72,7 +72,7 @@ struct OverviewPage: View {
         }
         .listStyle(.grouped)
         .onAppear(perform: loadData)
-        .padding(20)
+        .padding(10)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
     }
     
