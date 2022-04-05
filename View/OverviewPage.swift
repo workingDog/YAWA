@@ -84,9 +84,6 @@ struct OverviewPage: View {
             
         }
         .listStyle(.grouped)
-        .onAppear {
-            updateTime()
-        }
         .padding(10)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
         .fullScreenCover(isPresented: $showAlert) {
