@@ -14,15 +14,18 @@ import CoreLocation
 
 class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     
+    let defaultCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
+
     var weatherProvider = OWProvider(apiKey: "your key")
     let locationManager = CLLocationManager()
-    
+
+    @Published var weather = OWResponse()
+
     @Published var cities: [City] = []
     @Published var lang = "English"
     
     @Published var heading: Double = .zero
         
-
     var languageNames = ["en":"English"]
     var langArr = ["English"]
     
@@ -59,16 +62,18 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
 
-    func getCurrentCity() -> City? {
+    func getCurrentCity() -> City {
         if locationManager.authorizationStatus == .authorizedWhenInUse ||
             locationManager.authorizationStatus == .authorizedAlways {
             let loc = locationManager.location
             if let coord = loc?.coordinate {
-  //            locationManager.stopUpdatingLocation()
-                return nearestTo(lat: coord.latitude, lon: coord.longitude)
+                // locationManager.stopUpdatingLocation()
+                if let nearCity = nearestTo(lat: coord.latitude, lon: coord.longitude) {
+                    return nearCity
+                }
             }
         }
-        return nil
+        return defaultCity
     }
     
     private func nearestTo(lat: Double, lon: Double) -> City? {
@@ -96,5 +101,52 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
         hourFormatter.timeZone = TimeZone(secondsFromGMT: offset)
         return hourFormatter.string(from: utc.dateFromUTC())
     }
+    
+    func loadWeatherData(for city: City) {
+        // for current, daily and hourly forecast
+        let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: lang)
+        weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options) { response in
+            if let theWeather = response {
+                self.weather = theWeather
+            }
+        }
+    }
+    
+    // todo check for correctness
+    func windDirHourly(_ ndx: Int) -> Double {
+        if let w = weather.hourly?[ndx] {
+            return Double(w.windDeg)+180.0
+        }
+        return 0.0
+    }
+    
+    func WindCurrent() -> some View {
+        Image(systemName: "location.north.fill")
+            .resizable()
+            .frame(width: 24, height: 34)
+            .foregroundColor(Color.orange)
+            .rotationEffect(.degrees(windDirCurrent()))  // cityProvider.heading+windDirCurrent()
+    }
+    
+    // todo check for correctness
+    func windDirCurrent() -> Double {
+        if let w = weather.current {
+            return Double(w.windDeg)+180.0
+        }
+        return 0.0
+    }
+    
+    func hourlyIconName(_ ndx: Int) -> String {
+        if let theWeather = weather.hourly?[ndx].weather {
+            return theWeather.first != nil ? theWeather.first!.iconNameFromId : "smiley"
+        } else {
+            return "smiley"
+        }
+    }
+    
+    func dailyIconName(_ daily: Daily) -> String {
+        return daily.weather.first != nil ? daily.weather.first!.iconNameFromId : "smiley"
+    }
+    
     
 }

@@ -13,9 +13,6 @@ struct HourlyPage: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
-    @Binding var city: City
-    @Binding var weather: OWResponse
-    
     @State var tempData: [(x: Double, y: Double)] = []
     @State var rainData: [(x: Double, y: Double)] = []
     @State var snowData: [(x: Double, y: Double)] = []
@@ -44,7 +41,7 @@ struct HourlyPage: View {
     }
       
     func loadData() {
-        if let hourly = weather.hourly {
+        if let hourly = cityProvider.weather.hourly {
             let hstep = 3
             let startOfDay = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
             let now = Date().timeIntervalSince1970

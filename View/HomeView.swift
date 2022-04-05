@@ -61,11 +61,7 @@ struct HomeView: View {
     }
     
     func loadData() {
-        let thisCity = cityProvider.getCurrentCity()
-        currentCity = thisCity != nil
-            ? thisCity!
-            : City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
-        
+        currentCity = cityProvider.getCurrentCity()
         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: currentCity.lat, longitude: currentCity.lon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
     }
 

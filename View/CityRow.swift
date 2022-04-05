@@ -13,7 +13,7 @@ import CoreLocation
 struct CityRow: View {
     
     @State var city: City
-
+    
     @State var region = MKCoordinateRegion()
     
     var body: some View {
@@ -27,18 +27,18 @@ struct CityRow: View {
             }
             .padding(10)
             .background(RoundedRectangle(cornerRadius: 10)
-                            .stroke(lineWidth: 1)
-                            .foregroundColor(Color.primary)
-                            .background(Color(UIColor.systemGray6))
-                            .shadow(radius: 3)
-                            .padding(2))
+                .stroke(lineWidth: 1)
+                .foregroundColor(Color.primary)
+                .background(Color(UIColor.systemGray6))
+                .shadow(radius: 3)
+                .padding(2))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-        }.onAppear(perform: loadData)
-    }
-    
-    func loadData() {
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon),
-                                    span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+        }.onAppear{
+            region = MKCoordinateRegion(center: CLLocationCoordinate2D(
+                latitude: city.lat,
+                longitude: city.lon),
+                span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+        }
     }
     
 }

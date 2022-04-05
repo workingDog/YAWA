@@ -17,10 +17,9 @@ struct MapViewer: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
-    @Binding var city: City
-    @Binding var weather: OWResponse
+    @State var city: City
     @State var region: MKCoordinateRegion
-    
+
     @State var cityAnno = [CityMapLocation]()
     @State var selectedCity = City()
     
@@ -56,7 +55,7 @@ struct MapViewer: View {
     }
     
     private func currentIconName() -> String {
-        if let current = weather.current {
+        if let current = cityProvider.weather.current {
             return current.weatherIconName()
         } else {
             return "smiley"
@@ -88,7 +87,7 @@ struct MapViewer: View {
         }) {
             VStack {
                 Text(cityName == city.name
-                        ? String(format: "%.0f", (weather.current?.temp ?? 0.0).rounded())+"°"
+                     ? String(format: "%.0f", (cityProvider.weather.current?.temp ?? 0.0).rounded())+"°"
                         : ""
                 ).bold()
                 Image(systemName: cityName == city.name ? currentIconName() : "mappin.and.ellipse")

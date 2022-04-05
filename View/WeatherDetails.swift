@@ -19,24 +19,17 @@ struct WeatherDetails: View {
     @State var city: City
     @State var region: MKCoordinateRegion
     
-    @State var weather = OWResponse()
-    
-
     var body: some View {
         TabView {
-            OverviewPage(city: $city, weather: $weather)
-            HourlyPage(city: $city, weather: $weather)
-            MapViewer(city: $city, weather: $weather, region: region)
+            OverviewPage(city: city)
+            HourlyPage()
+            MapViewer(city: city, region: region)
         }
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .tabViewStyle(PageTabViewStyle())
-        .onAppear(perform: loadData)
+        .tabViewStyle(.page)
+        .onAppear{
+            cityProvider.loadWeatherData(for: city)
+        }
     }
     
-    func loadData() {
-        // for current, daily and hourly forecast
-        let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: cityProvider.lang)
-        cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
-    }
-
 }

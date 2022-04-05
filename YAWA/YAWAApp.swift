@@ -12,7 +12,7 @@ import OWOneCall
 @main
 struct YAWAApp: App {
     
-    var cityProvider = CityProvider()
+    let cityProvider = CityProvider()
     
     var body: some Scene {
         WindowGroup {

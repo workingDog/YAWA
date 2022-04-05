@@ -11,6 +11,8 @@
 		C728953B24D19A4B006A3571 /* picture7.png in Resources */ = {isa = PBXBuildFile; fileRef = C728953924D19A4B006A3571 /* picture7.png */; };
 		C73AEC0524CEF70A00EB6C3E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = C73AEC0424CEF70A00EB6C3E /* cities.json */; };
 		C7410B5124CD8AC500ECCF2D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5024CD8AC500ECCF2D /* readme.md */; };
+		C743089927FC081200029002 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C743089827FC081200029002 /* OWOneCall */; };
+		C743089B27FC0ACA00029002 /* WeatherAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C743089A27FC0ACA00029002 /* WeatherAlertView.swift */; };
 		C744A18E24D40EEA0072EB76 /* WeatherCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744A18D24D40EEA0072EB76 /* WeatherCardInfo.swift */; };
 		C75470C724CD8829003B330F /* YAWAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75470C624CD8829003B330F /* YAWAApp.swift */; };
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
@@ -31,7 +33,6 @@
 		C7ADA92024CD890400629E06 /* WeatherDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91924CD890400629E06 /* WeatherDetails.swift */; };
 		C7ADA92124CD890400629E06 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91A24CD890400629E06 /* HomeView.swift */; };
 		C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91B24CD890400629E06 /* NewCityView.swift */; };
-		C7BFD4C827F97A6600DE91EB /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C7BFD4C727F97A6600DE91EB /* OWOneCall */; };
 		C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1611124D03A6E00625B4E /* HourlyPage2.swift */; };
 		C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */; };
 		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
@@ -45,6 +46,7 @@
 		C728953924D19A4B006A3571 /* picture7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture7.png; sourceTree = "<group>"; };
 		C73AEC0424CEF70A00EB6C3E /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		C7410B5024CD8AC500ECCF2D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		C743089A27FC0ACA00029002 /* WeatherAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlertView.swift; sourceTree = "<group>"; };
 		C744A18D24D40EEA0072EB76 /* WeatherCardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardInfo.swift; sourceTree = "<group>"; };
 		C75470C324CD8829003B330F /* YAWA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAWA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75470C624CD8829003B330F /* YAWAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAWAApp.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A47FFF24D0104700C59D22 /* Charts in Frameworks */,
-				C7BFD4C827F97A6600DE91EB /* OWOneCall in Frameworks */,
+				C743089927FC081200029002 /* OWOneCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +196,7 @@
 				C784CD0824CEFFA600145699 /* LanguageChooser.swift */,
 				C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */,
 				C744A18D24D40EEA0072EB76 /* WeatherCardInfo.swift */,
+				C743089A27FC0ACA00029002 /* WeatherAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,7 +219,7 @@
 			name = YAWA;
 			packageProductDependencies = (
 				C7A47FFE24D0104700C59D22 /* Charts */,
-				C7BFD4C727F97A6600DE91EB /* OWOneCall */,
+				C743089827FC081200029002 /* OWOneCall */,
 			);
 			productName = YAWA;
 			productReference = C75470C324CD8829003B330F /* YAWA.app */;
@@ -247,7 +250,7 @@
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
 				C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */,
-				C7BFD4C627F97A6600DE91EB /* XCRemoteSwiftPackageReference "OWOneCall" */,
+				C743089727FC081200029002 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
 			projectDirPath = "";
@@ -298,6 +301,7 @@
 				C7ADA91E24CD890400629E06 /* City.swift in Sources */,
 				C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */,
 				C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */,
+				C743089B27FC0ACA00029002 /* WeatherAlertView.swift in Sources */,
 				C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */,
 				C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */,
 				C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */,
@@ -496,6 +500,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C743089727FC081200029002 /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/workingDog/OWOneCall";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -504,26 +516,18 @@
 				minimumVersion = 3.6.0;
 			};
 		};
-		C7BFD4C627F97A6600DE91EB /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/workingDog/OWOneCall";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C743089827FC081200029002 /* OWOneCall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C743089727FC081200029002 /* XCRemoteSwiftPackageReference "OWOneCall" */;
+			productName = OWOneCall;
+		};
 		C7A47FFE24D0104700C59D22 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
-		};
-		C7BFD4C727F97A6600DE91EB /* OWOneCall */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7BFD4C627F97A6600DE91EB /* XCRemoteSwiftPackageReference "OWOneCall" */;
-			productName = OWOneCall;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
