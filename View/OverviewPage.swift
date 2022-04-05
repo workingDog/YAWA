@@ -20,8 +20,15 @@ struct OverviewPage: View {
     @State var timeNow = ""
     
     let timer = Timer.publish(every: 1, tolerance: 1.0, on: .main, in: .common).autoconnect()
-    @State var dateFormatter = DateFormatter() // <-- does not work if `let`
+    let dateFormatter = DateFormatter()
     
+    
+    func updateTime() {
+        dateFormatter.locale = Locale(identifier: cityProvider.langKey())
+        dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: cityProvider.weather.timezoneOffset)
+        timeNow = dateFormatter.string(from: Date())
+    }
     
     var body: some View {
         List {
@@ -29,7 +36,7 @@ struct OverviewPage: View {
                 .font(.system(.footnote, design: .monospaced))
                 .foregroundColor(.accentColor).bold()
                 .onReceive(timer) { _ in
-                    timeNow = dateFormatter.string(from: Date())
+                    updateTime()
                 }) {
                     HStack {
                         Spacer()
@@ -78,10 +85,7 @@ struct OverviewPage: View {
         }
         .listStyle(.grouped)
         .onAppear {
-            dateFormatter.locale = Locale(identifier: cityProvider.langKey())
-            dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: cityProvider.weather.timezoneOffset)
-            timeNow = dateFormatter.string(from: Date())
+            updateTime()
         }
         .padding(10)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
