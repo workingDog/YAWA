@@ -40,7 +40,8 @@ struct OverviewPage: View {
                 }) {
                     HStack {
                         Spacer()
-                        Image(systemName: cityProvider.weather.current?.weatherIconName() ?? "smiley")
+                        let icon = cityProvider.weather.current?.weatherIconName() ?? "questionmark"
+                        Image(systemName: icon.isEmpty ? "smiley" : icon)
                             .resizable()
                             .frame(width: 70, height: 65)
                             .foregroundColor(Color.green)
@@ -94,7 +95,8 @@ struct OverviewPage: View {
     func dailyView(_ daily: Daily) -> some View {
         HStack {
             VStack (alignment: .leading, spacing: 2){
-                Text(Date(utc: daily.dt).dayName(lang: cityProvider.lang)).font(.caption)
+                Text(Date(utc: daily.dt).dayName(lang: cityProvider.lang))
+                    .font(.caption).padding(.leading, 10)
                 Image(systemName: cityProvider.dailyIconName(daily))
                     .resizable()
                     .frame(width: 30, height: 25)

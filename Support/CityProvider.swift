@@ -131,7 +131,7 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     // todo check for correctness
     func windDirCurrent() -> Double {
         if let w = weather.current {
-            return Double(w.windDeg)+180.0
+            return Double(w.windDeg) + 180.0
         }
         return 0.0
     }
@@ -145,8 +145,7 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func dailyIconName(_ daily: Daily) -> String {
-        return daily.weather.first != nil ? daily.weather.first!.iconNameFromId : "smiley"
+        return daily.weatherIconName().isEmpty ? "smiley" : daily.weatherIconName()
     }
-    
     
 }
