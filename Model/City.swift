@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct City: Codable, Identifiable, Equatable {
-    var id = UUID().uuidString
+struct City: Codable, Identifiable, Equatable, Hashable {
+    let id = UUID().uuidString
     
     var name: String = ""
     var country: String = ""
@@ -17,7 +17,11 @@ struct City: Codable, Identifiable, Equatable {
     var lon: Double = 0.0
     
     public static func == (lhs: City, rhs: City) -> Bool {
-        lhs.id == rhs.id
+        lhs.name == rhs.name &&
+        lhs.country == rhs.country &&
+        lhs.code == rhs.code &&
+        lhs.lat == rhs.lat &&
+        lhs.lon == rhs.lon
     }
     
 }

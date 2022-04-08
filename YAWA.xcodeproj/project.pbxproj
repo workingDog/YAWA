@@ -17,6 +17,7 @@
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
 		C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = C767F83324CEE11F00EF8EA8 /* country-codes.json */; };
+		C76F384A27FFF24B00B5E062 /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C76F384927FFF24B00B5E062 /* OWOneCall */; };
 		C77FCFA524D1655E00278585 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA424D1655E00278585 /* KeychainWrapper.swift */; };
 		C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */; };
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
@@ -38,7 +39,6 @@
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
 		C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CC24D2A7DD0006931A /* MapViewer.swift */; };
 		C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */; };
-		C7E3948027FDC8D20004B26E /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C7E3947F27FDC8D20004B26E /* OWOneCall */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A47FFF24D0104700C59D22 /* Charts in Frameworks */,
-				C7E3948027FDC8D20004B26E /* OWOneCall in Frameworks */,
+				C76F384A27FFF24B00B5E062 /* OWOneCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +219,7 @@
 			name = YAWA;
 			packageProductDependencies = (
 				C7A47FFE24D0104700C59D22 /* Charts */,
-				C7E3947F27FDC8D20004B26E /* OWOneCall */,
+				C76F384927FFF24B00B5E062 /* OWOneCall */,
 			);
 			productName = YAWA;
 			productReference = C75470C324CD8829003B330F /* YAWA.app */;
@@ -250,7 +250,7 @@
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
 				C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */,
-				C7E3947E27FDC8D20004B26E /* XCRemoteSwiftPackageReference "OWOneCall" */,
+				C76F384827FFF24B00B5E062 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
 			projectDirPath = "";
@@ -500,6 +500,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C76F384827FFF24B00B5E062 /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/workingDog/OWOneCall";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -508,26 +516,18 @@
 				minimumVersion = 3.6.0;
 			};
 		};
-		C7E3947E27FDC8D20004B26E /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/workingDog/OWOneCall";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C76F384927FFF24B00B5E062 /* OWOneCall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C76F384827FFF24B00B5E062 /* XCRemoteSwiftPackageReference "OWOneCall" */;
+			productName = OWOneCall;
+		};
 		C7A47FFE24D0104700C59D22 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
-		};
-		C7E3947F27FDC8D20004B26E /* OWOneCall */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7E3947E27FDC8D20004B26E /* XCRemoteSwiftPackageReference "OWOneCall" */;
-			productName = OWOneCall;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

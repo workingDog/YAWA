@@ -78,7 +78,7 @@ struct OverviewPage: View {
             }.textCase(nil)
             
             Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
-                ForEach((cityProvider.weather.daily?.dropFirst() ?? []), id: \.self) { daily in
+                ForEach((cityProvider.weather.daily?.dropFirst() ?? [])) { daily in
                     dailyView(daily).listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }.textCase(nil)
