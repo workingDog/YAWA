@@ -49,7 +49,7 @@ struct OverviewPage: View {
                         WindCurrentImage()
                         Spacer()
                         if let alerts = cityProvider.weather.alerts, alerts.count > 0 {
-                            Button("Alert", action: {showAlert = true})
+                            Button("Alerts", action: {showAlert = true})
                                 .padding(8)
                                 .buttonStyle(.bordered)
                                 .foregroundColor(.red)

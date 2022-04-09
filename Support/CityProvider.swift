@@ -13,7 +13,7 @@ import CoreLocation
 
 
 class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
-    
+   
     let defaultCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
 
     var weatherProvider = OWProvider(apiKey: "your key")
@@ -146,6 +146,14 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func dailyIconName(_ daily: Daily) -> String {
         return daily.weatherIconName().isEmpty ? "smiley" : daily.weatherIconName()
+    }
+    
+    func localTimeFor(_ t: Int?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: langKey())
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: weather.timezoneOffset)
+        dateFormatter.dateFormat = "LLLL dd, hh:mm a"
+        return dateFormatter.string(from: Date(utc: t ?? 0))
     }
     
 }
