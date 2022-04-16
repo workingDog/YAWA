@@ -21,7 +21,7 @@
 		C77FCFA524D1655E00278585 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA424D1655E00278585 /* KeychainWrapper.swift */; };
 		C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */; };
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
-		C7A47FFA24D005B600C59D22 /* HourlyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* HourlyPage.swift */; };
+		C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* ChartsPage.swift */; };
 		C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */; };
 		C7A47FFF24D0104700C59D22 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C7A47FFE24D0104700C59D22 /* Charts */; };
 		C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */; };
@@ -57,7 +57,7 @@
 		C77FCFA424D1655E00278585 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		C784CD0824CEFFA600145699 /* LanguageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChooser.swift; sourceTree = "<group>"; };
-		C7A47FF924D005B600C59D22 /* HourlyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPage.swift; sourceTree = "<group>"; };
+		C7A47FF924D005B600C59D22 /* ChartsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPage.swift; sourceTree = "<group>"; };
 		C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewPage.swift; sourceTree = "<group>"; };
 		C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartSwiftUI.swift; sourceTree = "<group>"; };
 		C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 				C7DC78CC24D2A7DD0006931A /* MapViewer.swift */,
 				C7ADA91924CD890400629E06 /* WeatherDetails.swift */,
 				C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */,
-				C7A47FF924D005B600C59D22 /* HourlyPage.swift */,
+				C7A47FF924D005B600C59D22 /* ChartsPage.swift */,
 				C7D1611124D03A6E00625B4E /* HourlyPage2.swift */,
 				C7ADA91824CD890400629E06 /* CityRow.swift */,
 				C7ADA91B24CD890400629E06 /* NewCityView.swift */,
@@ -286,7 +286,7 @@
 				C7ADA91F24CD890400629E06 /* CityRow.swift in Sources */,
 				C7ADA92124CD890400629E06 /* HomeView.swift in Sources */,
 				C7A4800424D010CB00C59D22 /* DateValueFormatter.swift in Sources */,
-				C7A47FFA24D005B600C59D22 /* HourlyPage.swift in Sources */,
+				C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */,
 				C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */,
 				C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */,
 				C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */,
@@ -512,8 +512,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.6.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

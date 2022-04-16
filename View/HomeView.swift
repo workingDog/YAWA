@@ -14,7 +14,7 @@ struct HomeView: View {
     
     @EnvironmentObject var cityProvider: CityProvider
 
-    @State private var searchQuery: String = ""
+    @State var searchQuery: String = ""
     @State var showNewCity: Bool = false
     @State var showLang: Bool = false
     @State var action: Int? = 0

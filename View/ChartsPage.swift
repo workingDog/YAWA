@@ -9,7 +9,7 @@ import SwiftUI
 import OWOneCall
 
 
-struct HourlyPage: View {
+struct ChartsPage: View {
     
     @EnvironmentObject var cityProvider: CityProvider
     
@@ -36,7 +36,7 @@ struct HourlyPage: View {
                 .frame(height: 300)
             
             Spacer()
-        }.padding(10)
+        }.padding(15)
         .onAppear(perform: loadData)
     }
       

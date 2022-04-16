@@ -22,7 +22,7 @@ struct WeatherDetails: View {
     var body: some View {
         TabView {
             OverviewPage(city: city)
-            HourlyPage()
+            ChartsPage()
             MapViewer(city: city, region: region)
         }
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))

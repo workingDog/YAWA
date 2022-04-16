@@ -33,6 +33,13 @@ struct LineChartSwiftUI: UIViewRepresentable {
     }
     
     func setupChart() {
+        theChart.minOffset = 20
+        theChart.isMultipleTouchEnabled = false
+        theChart.doubleTapToZoomEnabled = false
+        theChart.dragEnabled = false
+        theChart.dragXEnabled = false
+        theChart.dragYEnabled = false
+        
         theChart.noDataText = "No Data Available"
         // theChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: theTimes)
         theChart.xAxis.labelPosition = .bottom

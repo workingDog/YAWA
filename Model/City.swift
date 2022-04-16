@@ -24,4 +24,8 @@ struct City: Codable, Identifiable, Equatable, Hashable {
         lhs.lon == rhs.lon
     }
     
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case name, country, code, lat, lon
+    }
+    
 }
