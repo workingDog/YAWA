@@ -45,17 +45,19 @@ struct ChartsPage: View {
     }
     
     func chartOf(_ data: [WData], title: String, yaxis: String) -> some View {
-        VStack (spacing: 5) {
-            Text(title)
+        GroupBox(title) {
             Chart (data) { wdata in
                 LineMark(
                     x: .value("hour", wdata.date, unit: .hour),
                     y: .value("value", wdata.value)
-                ).interpolationMethod(.catmullRom)
+                ).interpolationMethod(.monotone)
                 PointMark(
                     x: .value("hour", wdata.date, unit: .hour),
                     y: .value("value", wdata.value)
                 ).foregroundStyle(.red)
+                .annotation(position: .top) {
+                    Text("\(wdata.value, specifier: "%.1f")").font(.caption)
+                }
             }.frame(height: 333)
                 .chartYAxis {
                     AxisMarks() { value in
@@ -66,15 +68,15 @@ struct ChartsPage: View {
                         }
                     }
                 }
-        }.padding(30)
+        }
     }
     
     var body: some View {
         ScrollView {
             chartOf(tempData, title: "Temperature °C", yaxis: "°")
-            chartOf(rainData, title: "Chance of rain", yaxis: "%")
-            chartOf(windData, title: "Wind speed", yaxis: " m/s")
-            chartOf(cloudData, title: "Cloud coverage", yaxis: "%")
+            chartOf(rainData, title: "Chance of rain %", yaxis: "%")
+            chartOf(windData, title: "Wind speed m/s", yaxis: " m/s")
+            chartOf(cloudData, title: "Cloud coverage %", yaxis: "%")
         }
         .chartXAxis {
             AxisMarks(values: .stride(by: .hour, count: 2)) { _ in
