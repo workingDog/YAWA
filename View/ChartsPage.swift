@@ -47,10 +47,12 @@ struct ChartsPage: View {
     func chartOf(_ data: [WData], title: String, yaxis: String) -> some View {
         GroupBox(title) {
             Chart (data) { wdata in
-                LineMark(
+                AreaMark(
                     x: .value("hour", wdata.date, unit: .hour),
                     y: .value("value", wdata.value)
                 ).interpolationMethod(.monotone)
+                .foregroundStyle(Gradient(colors: [.blue.opacity(0.4), .clear]))
+                
                 PointMark(
                     x: .value("hour", wdata.date, unit: .hour),
                     y: .value("value", wdata.value)
