@@ -23,9 +23,6 @@
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
 		C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* ChartsPage.swift */; };
 		C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */; };
-		C7A47FFF24D0104700C59D22 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C7A47FFE24D0104700C59D22 /* Charts */; };
-		C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */; };
-		C7A4800424D010CB00C59D22 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */; };
 		C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91324CD890400629E06 /* Extensions.swift */; };
 		C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91424CD890400629E06 /* CityProvider.swift */; };
 		C7ADA91E24CD890400629E06 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91624CD890400629E06 /* City.swift */; };
@@ -59,8 +56,6 @@
 		C784CD0824CEFFA600145699 /* LanguageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChooser.swift; sourceTree = "<group>"; };
 		C7A47FF924D005B600C59D22 /* ChartsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPage.swift; sourceTree = "<group>"; };
 		C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewPage.swift; sourceTree = "<group>"; };
-		C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartSwiftUI.swift; sourceTree = "<group>"; };
-		C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		C7ADA91324CD890400629E06 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C7ADA91424CD890400629E06 /* CityProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityProvider.swift; sourceTree = "<group>"; };
 		C7ADA91624CD890400629E06 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -82,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A47FFF24D0104700C59D22 /* Charts in Frameworks */,
 				C76F384A27FFF24B00B5E062 /* OWOneCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				C77FCFA324D1652100278585 /* Keychain */,
-				C7A4800024D0105100C59D22 /* Charts */,
 				C783DDF424CD9139001BC64A /* Images */,
 				C7410B5024CD8AC500ECCF2D /* readme.md */,
 				C7ADA91524CD890400629E06 /* Model */,
@@ -153,15 +146,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		C7A4800024D0105100C59D22 /* Charts */ = {
-			isa = PBXGroup;
-			children = (
-				C7A4800124D0109B00C59D22 /* LineChartSwiftUI.swift */,
-				C7A4800324D010CB00C59D22 /* DateValueFormatter.swift */,
-			);
-			path = Charts;
-			sourceTree = "<group>";
-		};
 		C7ADA91224CD890400629E06 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,7 +202,6 @@
 			);
 			name = YAWA;
 			packageProductDependencies = (
-				C7A47FFE24D0104700C59D22 /* Charts */,
 				C76F384927FFF24B00B5E062 /* OWOneCall */,
 			);
 			productName = YAWA;
@@ -249,7 +232,6 @@
 			);
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
-				C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */,
 				C76F384827FFF24B00B5E062 /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
@@ -285,9 +267,7 @@
 			files = (
 				C7ADA91F24CD890400629E06 /* CityRow.swift in Sources */,
 				C7ADA92124CD890400629E06 /* HomeView.swift in Sources */,
-				C7A4800424D010CB00C59D22 /* DateValueFormatter.swift in Sources */,
 				C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */,
-				C7A4800224D0109B00C59D22 /* LineChartSwiftUI.swift in Sources */,
 				C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */,
 				C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */,
 				C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */,
@@ -363,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -418,7 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -439,7 +419,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,7 +443,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,14 +488,6 @@
 				kind = branch;
 			};
 		};
-		C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -523,11 +495,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C76F384827FFF24B00B5E062 /* XCRemoteSwiftPackageReference "OWOneCall" */;
 			productName = OWOneCall;
-		};
-		C7A47FFE24D0104700C59D22 /* Charts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7A47FFD24D0104700C59D22 /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
