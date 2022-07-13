@@ -65,9 +65,10 @@ struct ChartsPage: View {
                     AxisMarks() { value in
                         AxisGridLine()
                         AxisTick()
-                        AxisValueLabel {
-                            Text("\(value.as(Int.self) ?? 0)\(yaxis)")
-                        }
+        //                AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)), centered: true)
+//                        AxisValueLabel {
+//                            Text("\(value.as(Int.self) ?? 0)\(yaxis)")
+//                        }
                     }
                 }
         }
