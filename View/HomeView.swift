@@ -13,11 +13,11 @@ import CoreLocation
 struct HomeView: View {
     
     @EnvironmentObject var cityProvider: CityProvider
-
+    
     @State var searchQuery: String = ""
     @State var showNewCity: Bool = false
     @State var showLang: Bool = false
-    @State var action: Int? = 0
+    @State var actions: [Int] = []
     @State var currentCity = City()
     
     @State var showSettings: Bool = false
@@ -25,17 +25,10 @@ struct HomeView: View {
     @State var region = MKCoordinateRegion()
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $actions) {
             VStack(spacing: 20) {
-                NavigationLink(destination: WeatherDetails(city: currentCity, region: region), tag: 1, selection: $action) {
-                    EmptyView()
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
-                    ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
-                }
                 HStack {
-                    Button("Current location", action: {action = 1})
+                    Button("Current location", action: {actions = [1]})
                         .padding(5).buttonStyle(GradientButtonStyle()).font(.caption)
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
@@ -55,9 +48,17 @@ struct HomeView: View {
                 }
                 .listStyle(.plain)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Weather")
-            }.onAppear(perform: loadData)
-        }.navigationViewStyle(.stack)
+            }.onAppear{ loadData() }
+                .navigationDestination(for: Int.self) { val in
+                    WeatherDetails(city: currentCity, region: region)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
+                    ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
+                }
+        }
     }
     
     func loadData() {

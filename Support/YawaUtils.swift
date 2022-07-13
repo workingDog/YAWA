@@ -84,9 +84,9 @@ class YawaUtils {
 struct GradientButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(Color.white)
-            .padding(8)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+            .foregroundColor(Color.black)
+            .padding(12)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.teal]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(10.0)
     }
 }
