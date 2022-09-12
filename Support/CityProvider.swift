@@ -13,24 +13,24 @@ import CoreLocation
 
 
 class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
-   
+    
     let defaultCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
-
+    
     var weatherProvider = OWProvider(apiKey: "your key")
     let locationManager = CLLocationManager()
-
+    
     @Published var weather = OWResponse()
-
+    
     @Published var cities: [City] = []
     @Published var lang = "English"
     
     @Published var heading: Double = .zero
-        
+    
     var languageNames = ["en":"English"]
     var langArr = ["English"]
     
     let hourFormatter = DateFormatter()
-
+    
     
     override init() {
         super.init()
@@ -39,15 +39,15 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
         languageNames = YawaUtils.langDictionary
         langArr = Array(languageNames.values.sorted {$0 < $1})
         
-        self.locationManager.delegate = self
-        self.startLocationManager()
+        locationManager.delegate = self
+        startLocationManager()
     }
     
     private func startLocationManager() {
-        self.locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.headingAvailable() {
-            self.locationManager.startUpdatingLocation()
-            self.locationManager.startUpdatingHeading()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
         }
     }
     
@@ -61,7 +61,7 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
-
+    
     func getCurrentCity() -> City {
         if locationManager.authorizationStatus == .authorizedWhenInUse ||
             locationManager.authorizationStatus == .authorizedAlways {
@@ -80,7 +80,7 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
         let delta = 0.05
         return cities.first(where: {
             $0.lat >= lat-delta && $0.lat <= lat+delta &&
-                $0.lon >= lon-delta && $0.lon <= lon+delta
+            $0.lon >= lon-delta && $0.lon <= lon+delta
         })
     }
     
@@ -93,7 +93,7 @@ class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // CLLocationManagerDelegate, when a new heading is available
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        self.heading = -1 * newHeading.magneticHeading
+        heading = -1 * newHeading.magneticHeading
     }
     
     func hourFormattedDate(utc: Int, offset: Int) -> String {

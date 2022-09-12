@@ -34,7 +34,7 @@ struct HomeView: View {
                     TextField("city search", text: $searchQuery).padding(5)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                         .foregroundColor(.blue)
-                        .frame(width: 160)
+                        .frame(width: 180)
                     Button(action: {searchQuery = ""}) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
@@ -49,7 +49,6 @@ struct HomeView: View {
                 .listStyle(.plain)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Weather")
             }.onAppear{ loadData() }
                 .navigationDestination(for: Int.self) { val in
                     WeatherDetails(city: currentCity, region: region)

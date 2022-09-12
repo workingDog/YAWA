@@ -17,12 +17,14 @@ struct YAWAApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView().environmentObject(cityProvider)
-                .onAppear(perform: {
-                    let theKey = StoreService.getOWKey() ?? "your key"
-                 //   StoreService.setOWKey(key: theKey)
-                    cityProvider.weatherProvider = OWProvider(apiKey: theKey)
-                    cityProvider.lang = StoreService.getLang() ?? "English"
-                })
+                .onAppear{
+                    DispatchQueue.main.async {
+                        let theKey = StoreService.getOWKey() ?? "your key"
+                        //   StoreService.setOWKey(key: theKey)
+                        cityProvider.weatherProvider = OWProvider(apiKey: theKey)
+                        cityProvider.lang = StoreService.getLang() ?? "English"
+                    }
+                }
         }
     }
     
