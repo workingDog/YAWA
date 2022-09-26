@@ -22,6 +22,9 @@ struct OverviewPage: View {
     let timer = Timer.publish(every: 1, tolerance: 1.0, on: .main, in: .common).autoconnect()
     let dateFormatter = DateFormatter()
     
+    let backColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .top, endPoint: .bottom)
+    
+    let grayColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.gray]), startPoint: .top, endPoint: .bottom)
     
     func updateTime() {
         dateFormatter.locale = Locale(identifier: cityProvider.langKey())
@@ -44,7 +47,7 @@ struct OverviewPage: View {
                         Image(systemName: icon.isEmpty ? "smiley" : icon)
                             .resizable()
                             .frame(width: 70, height: 65)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.yellow)
                         Text(cityProvider.weather.current?.weatherInfo() ?? "").padding(.horizontal, 20)
                         WindCurrentImage()
                         Spacer()
@@ -54,9 +57,12 @@ struct OverviewPage: View {
                                 .buttonStyle(.bordered)
                                 .foregroundColor(.red)
                         }
-                    }.frame(height: 110)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                     .background(backColor)
+                     .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
                 }.textCase(nil)
-            
+
             Section(header: Text("Next 24 hours").foregroundColor(.accentColor).italic().bold()) {
                 ScrollView(.horizontal) {
                     HStack(spacing: 22) {
@@ -67,24 +73,29 @@ struct OverviewPage: View {
                                     Image(systemName: cityProvider.hourlyIconName(ndx))
                                         .resizable()
                                         .frame(width: 35, height: 30)
-                                        .foregroundColor(Color.green)
+                                        .foregroundColor(Color.yellow)
                                     windHourlyImage(ndx)
                                 }
                                 Text(String(format: "%.0f", cityProvider.weather.hourly![ndx].temp.rounded())+"°")
                             }
                         }.frame(height: 130)
                     }.padding([.trailing, .leading])
+                     .background(backColor)
                 }
+                .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }.textCase(nil)
             
             Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
                 ForEach((cityProvider.weather.daily?.dropFirst() ?? [])) { daily in
                     dailyView(daily).listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
+                .background(grayColor)
+                .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }.textCase(nil)
-            
         }
-        .listStyle(.grouped)
+  //      .scrollContentBackground(.hidden)
+  //      .background(backColor)
+  //      .listStyle(.grouped)
         .padding(10)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
         .fullScreenCover(isPresented: $showAlert) {
@@ -100,7 +111,7 @@ struct OverviewPage: View {
                 Image(systemName: cityProvider.dailyIconName(daily))
                     .resizable()
                     .frame(width: 30, height: 25)
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.red)
                     .padding(.horizontal, 20)
             }.frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
