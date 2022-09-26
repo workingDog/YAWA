@@ -24,9 +24,7 @@ struct OverviewPage: View {
     
     let backColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .top, endPoint: .bottom)
     
-    let weeklyColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.yellow]), startPoint: .top, endPoint: .bottom)
-    
-    let symbolColor = Color.red
+    let symbolColor = Color(uiColor: UIColor(red: 1, green: 1, blue: 0, alpha: 1))
     
     func updateTime() {
         dateFormatter.locale = Locale(identifier: cityProvider.langKey())
@@ -62,10 +60,10 @@ struct OverviewPage: View {
                     }
                     .padding(5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                     .background(backColor)
-                     .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
+                    .background(backColor)
+                    .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
                 }.textCase(nil)
-
+            
             Section(header: Text("Next 24 hours").foregroundColor(.accentColor).italic().bold()) {
                 ScrollView(.horizontal) {
                     HStack(spacing: 22) {
@@ -83,22 +81,23 @@ struct OverviewPage: View {
                             }
                         }.frame(height: 130)
                     }.padding([.trailing, .leading])
-                     .background(backColor)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(backColor)
                 .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }.textCase(nil)
             
             Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
                 ForEach((cityProvider.weather.daily?.dropFirst() ?? [])) { daily in
-                    dailyView(daily).padding(10)
+                    dailyView(daily).padding(15)
                 }
-                .background(weeklyColor)
+                .background(backColor)
                 .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }.textCase(nil)
         }
-  //      .scrollContentBackground(.hidden)
-  //      .background(backColor)
-  //      .listStyle(.grouped)
+        //      .scrollContentBackground(.hidden)
+        //      .background(backColor)
+        //      .listStyle(.grouped)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
         .fullScreenCover(isPresented: $showAlert) {
             WeatherAlertView().environmentObject(cityProvider)
@@ -119,7 +118,7 @@ struct OverviewPage: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%")
-                .foregroundColor(.blue)
+                .foregroundColor(.black)
                 .padding(.horizontal, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
