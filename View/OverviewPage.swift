@@ -24,7 +24,9 @@ struct OverviewPage: View {
     
     let backColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .top, endPoint: .bottom)
     
-    let grayColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.gray]), startPoint: .top, endPoint: .bottom)
+    let weeklyColor = LinearGradient(gradient: Gradient(colors: [Color.white, Color.yellow]), startPoint: .top, endPoint: .bottom)
+    
+    let symbolColor = Color.red
     
     func updateTime() {
         dateFormatter.locale = Locale(identifier: cityProvider.langKey())
@@ -47,7 +49,7 @@ struct OverviewPage: View {
                         Image(systemName: icon.isEmpty ? "smiley" : icon)
                             .resizable()
                             .frame(width: 70, height: 65)
-                            .foregroundColor(Color.yellow)
+                            .foregroundColor(symbolColor)
                         Text(cityProvider.weather.current?.weatherInfo() ?? "").padding(.horizontal, 20)
                         WindCurrentImage()
                         Spacer()
@@ -58,6 +60,7 @@ struct OverviewPage: View {
                                 .foregroundColor(.red)
                         }
                     }
+                    .padding(5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                      .background(backColor)
                      .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
@@ -73,7 +76,7 @@ struct OverviewPage: View {
                                     Image(systemName: cityProvider.hourlyIconName(ndx))
                                         .resizable()
                                         .frame(width: 35, height: 30)
-                                        .foregroundColor(Color.yellow)
+                                        .foregroundColor(symbolColor)
                                     windHourlyImage(ndx)
                                 }
                                 Text(String(format: "%.0f", cityProvider.weather.hourly![ndx].temp.rounded())+"°")
@@ -87,16 +90,15 @@ struct OverviewPage: View {
             
             Section(header: Text("This week").foregroundColor(.accentColor).italic().bold()) {
                 ForEach((cityProvider.weather.daily?.dropFirst() ?? [])) { daily in
-                    dailyView(daily).listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    dailyView(daily).padding(10)
                 }
-                .background(grayColor)
+                .background(weeklyColor)
                 .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }.textCase(nil)
         }
   //      .scrollContentBackground(.hidden)
   //      .background(backColor)
   //      .listStyle(.grouped)
-        .padding(10)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
         .fullScreenCover(isPresented: $showAlert) {
             WeatherAlertView().environmentObject(cityProvider)
@@ -111,9 +113,10 @@ struct OverviewPage: View {
                 Image(systemName: cityProvider.dailyIconName(daily))
                     .resizable()
                     .frame(width: 30, height: 25)
-                    .foregroundColor(Color.red)
+                    .foregroundColor(symbolColor)
                     .padding(.horizontal, 20)
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Text(String(format: "%.0f", (daily.pop ?? 0)*100)+"%")
                 .foregroundColor(.blue)
@@ -135,7 +138,7 @@ struct OverviewPage: View {
         Image(systemName: "location.north.fill")
             .resizable()
             .frame(width: 14, height: 24)
-            .foregroundColor(Color.orange)
+            .foregroundColor(symbolColor)
             .rotationEffect(.degrees(cityProvider.windDirHourly(ndx)))  // cityProvider.heading+windDirHourly(ndx)
     }
     
@@ -143,7 +146,7 @@ struct OverviewPage: View {
         Image(systemName: "location.north.fill")
             .resizable()
             .frame(width: 24, height: 34)
-            .foregroundColor(Color.orange)
+            .foregroundColor(symbolColor)
             .rotationEffect(.degrees(cityProvider.windDirCurrent()))  // cityProvider.heading+windDirCurrent()
     }
     
