@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MapKit
 import CoreLocation
 
 
@@ -18,7 +17,6 @@ struct HomeView: View {
     @State var showLang: Bool = false
     @State var showSettings: Bool = false
     @State var path = NavigationPath()
-    @State var currentCity = City()
 
     @FocusState var focusValue: Bool
     
@@ -44,7 +42,8 @@ struct HomeView: View {
                 }.padding(.horizontal, 5).padding(.top, 10)
                 Divider()
                 List {
-                    ForEach(cityProvider.cities.filter{searchFor($0.name)}.sorted(by: { $0.name < $1.name })) { city in
+                    ForEach(cityProvider.cities.filter{searchFor($0.name)}
+                        .sorted(by: { $0.name < $1.name })) { city in
                         CityRow(city: city)
                     }
                     .onDelete(perform: delete)
@@ -53,11 +52,8 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .navigationBarTitleDisplayMode(.inline)
             }
-            .onAppear {
-                currentCity = cityProvider.getCurrentCity()
-            }
             .navigationDestination(for: Int.self) { _ in
-                WeatherDetails(city: currentCity)
+                WeatherDetails(city: cityProvider.getCurrentCity())
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
