@@ -19,6 +19,7 @@ struct SettingsView: View {
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?
+    @FocusState var focusValue: Bool
     
     
     var body: some View {
@@ -32,16 +33,22 @@ struct SettingsView: View {
                 }.padding(20)
             #endif
             Text("Settings").padding(20)
-            TextField("openweather key", text: $theKey).foregroundColor(.blue)
+            TextField("openweather key", text: $theKey)
+                .foregroundColor(.blue)
                 .textFieldStyle(CustomTextFieldStyle())
                 .padding(10)
             HStack {
                 Spacer()
-                TextField("default language", text: $searchQuery).foregroundColor(.blue).padding(10)
+                TextField("default language", text: $searchQuery)
+                    .focused($focusValue)
+                    .foregroundColor(.blue).padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                     .foregroundColor(.blue)
                     .frame(width: 333)
-                Button(action: {searchQuery = ""}) {
+                Button(action: {
+                    searchQuery = ""
+                    focusValue = false
+                }) {
                     Image(systemName: "xmark.circle").font(.title)
                 }
                 Spacer()
@@ -69,8 +76,8 @@ struct SettingsView: View {
                         }
                     }
                 }
-                .onChange(of: startLang) { txt in
-                    if let str = txt {
+                .onChange(of: startLang) { 
+                    if let str = startLang {
                         withAnimation {
                             scroller.scrollTo(str)
                         }
@@ -101,9 +108,9 @@ struct SettingsView: View {
     
     func onSave() {
         cityProvider.weatherProvider = OWProvider(apiKey: theKey)
-        StoreService.setOWKey(key: theKey)
+        StoreService.shared.setOWKey(key: theKey)
         // todo validate lang
-        StoreService.setLang(str: self.cityProvider.lang)
+        StoreService.shared.setLang(str: self.cityProvider.lang)
         // to go back to the previous view
         dismiss()
     }

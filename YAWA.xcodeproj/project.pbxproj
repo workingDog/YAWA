@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,12 +13,11 @@
 		C7410B5124CD8AC500ECCF2D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C7410B5024CD8AC500ECCF2D /* readme.md */; };
 		C743089B27FC0ACA00029002 /* WeatherAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C743089A27FC0ACA00029002 /* WeatherAlertView.swift */; };
 		C744A18E24D40EEA0072EB76 /* WeatherCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744A18D24D40EEA0072EB76 /* WeatherCardInfo.swift */; };
+		C750109D2A95B5C600EDBD16 /* KeychainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750109C2A95B5C600EDBD16 /* KeychainInterface.swift */; };
 		C75470C724CD8829003B330F /* YAWAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75470C624CD8829003B330F /* YAWAApp.swift */; };
 		C75470CB24CD8829003B330F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CA24CD8829003B330F /* Assets.xcassets */; };
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
 		C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = C767F83324CEE11F00EF8EA8 /* country-codes.json */; };
-		C77FCFA524D1655E00278585 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA424D1655E00278585 /* KeychainWrapper.swift */; };
-		C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */; };
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
 		C78AE95628CDBA7600D3820A /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C78AE95528CDBA7600D3820A /* OWOneCall */; };
 		C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* ChartsPage.swift */; };
@@ -45,14 +44,13 @@
 		C7410B5024CD8AC500ECCF2D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		C743089A27FC0ACA00029002 /* WeatherAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlertView.swift; sourceTree = "<group>"; };
 		C744A18D24D40EEA0072EB76 /* WeatherCardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardInfo.swift; sourceTree = "<group>"; };
+		C750109C2A95B5C600EDBD16 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
 		C75470C324CD8829003B330F /* YAWA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAWA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75470C624CD8829003B330F /* YAWAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAWAApp.swift; sourceTree = "<group>"; };
 		C75470CA24CD8829003B330F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C75470CD24CD8829003B330F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C75470CF24CD8829003B330F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C767F83324CEE11F00EF8EA8 /* country-codes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "country-codes.json"; sourceTree = "<group>"; };
-		C77FCFA424D1655E00278585 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
-		C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		C784CD0824CEFFA600145699 /* LanguageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChooser.swift; sourceTree = "<group>"; };
 		C7A47FF924D005B600C59D22 /* ChartsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPage.swift; sourceTree = "<group>"; };
 		C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewPage.swift; sourceTree = "<group>"; };
@@ -131,8 +129,7 @@
 		C77FCFA324D1652100278585 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				C77FCFA424D1655E00278585 /* KeychainWrapper.swift */,
-				C77FCFA624D1659100278585 /* KeychainItemAccessibility.swift */,
+				C750109C2A95B5C600EDBD16 /* KeychainInterface.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -274,7 +271,6 @@
 				C744A18E24D40EEA0072EB76 /* WeatherCardInfo.swift in Sources */,
 				C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */,
 				C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */,
-				C77FCFA524D1655E00278585 /* KeychainWrapper.swift in Sources */,
 				C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */,
 				C75470C724CD8829003B330F /* YAWAApp.swift in Sources */,
 				C7ADA92024CD890400629E06 /* WeatherDetails.swift in Sources */,
@@ -282,9 +278,9 @@
 				C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */,
 				C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */,
 				C743089B27FC0ACA00029002 /* WeatherAlertView.swift in Sources */,
-				C77FCFA724D1659100278585 /* KeychainItemAccessibility.swift in Sources */,
 				C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */,
 				C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */,
+				C750109D2A95B5C600EDBD16 /* KeychainInterface.swift in Sources */,
 				C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -398,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -419,7 +415,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -443,7 +439,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

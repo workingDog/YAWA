@@ -10,19 +10,32 @@ import Foundation
 
 class StoreService {
     
-    static func getOWKey() -> String? {
-        KeychainWrapper.standard.string(forKey: "yawa.openweather.key")
+    static var shared = StoreService()
+    
+    init() {
+        KeychainInterface.service = Bundle.main.bundleIdentifier ?? "keychain.com.keychain"
+        KeychainInterface.account = "yawa.openweather.account"
     }
     
-    static func setOWKey(key: String) {
-        KeychainWrapper.standard.set(key, forKey: "yawa.openweather.key")   
+    func getOWKey() -> String? {
+        KeychainInterface.getKey()
     }
     
-    static func getLang() -> String? {
+    func setOWKey(key: String) {
+        // if there is no key, store `key` in keychain
+        if KeychainInterface.getKey() == nil {
+            KeychainInterface.setKey(key: key)
+        } else {
+            // if there is already a key in keychain, must use update to override the old one
+            KeychainInterface.updateKey(key: key)
+        }
+    }
+    
+    func getLang() -> String? {
         return UserDefaults.standard.string(forKey: "yawa.defaultlang.key")
     }
     
-    static func setLang(str: String) {
+    func setLang(str: String) {
         UserDefaults.standard.set(str, forKey: "yawa.defaultlang.key")
     }
     

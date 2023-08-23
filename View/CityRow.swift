@@ -7,17 +7,13 @@
 
 import Foundation
 import SwiftUI
-import MapKit
-import CoreLocation
 
 struct CityRow: View {
     
     @State var city: City
-    
-    @State var region = MKCoordinateRegion()
-    
+
     var body: some View {
-        NavigationLink(destination: WeatherDetails(city: city, region: region)) {
+        NavigationLink(destination: WeatherDetails(city: city)) {
             HStack {
                 Text(city.name).frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
@@ -33,11 +29,6 @@ struct CityRow: View {
                 .shadow(radius: 3)
                 .padding(2))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-        }.onAppear{
-            region = MKCoordinateRegion(center: CLLocationCoordinate2D(
-                latitude: city.lat,
-                longitude: city.lon),
-                span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
         }
     }
     

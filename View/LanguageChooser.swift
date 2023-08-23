@@ -15,6 +15,7 @@ struct LanguageChooser: View {
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?
+    @FocusState var focusValue: Bool
     
     let columns = [ GridItem(.adaptive(minimum: 150)) ]
     
@@ -29,10 +30,14 @@ struct LanguageChooser: View {
             HStack {
                 Spacer()
                 TextField("language search", text: $searchQuery).padding(10)
+                    .focused($focusValue)
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                     .foregroundColor(.blue)
                     .frame(width: 222)
-                Button(action: {searchQuery = ""}) {
+                Button(action: {
+                    searchQuery = ""
+                    focusValue = false
+                }) {
                     Image(systemName: "xmark.circle").font(.title)
                 }
                 Spacer()
@@ -61,14 +66,15 @@ struct LanguageChooser: View {
                             }
                         }
                     }
-                    .onChange(of: startLang) { txt in
-                        if let str = txt {
+                    .onChange(of: startLang) { 
+                        if let str = startLang {
                             withAnimation {
                                 scroller.scrollTo(str)
                             }
                         }
                     }
                 }
+                .simultaneousGesture(TapGesture().onEnded { focusValue = false })
 
         }.onAppear(perform: loadData)
     }

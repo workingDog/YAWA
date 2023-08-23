@@ -21,8 +21,8 @@ struct HomeView: View {
     @State var currentCity = City()
     
     @State var showSettings: Bool = false
+    @FocusState var focusValue: Bool
     
-    @State var region = MKCoordinateRegion()
     
     var body: some View {
         NavigationStack(path: $actions) {
@@ -32,10 +32,14 @@ struct HomeView: View {
                         .buttonStyle(TealButtonStyle()).padding(8)
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
+                        .focused($focusValue)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
                         .foregroundColor(.blue)
                         .frame(width: 180)
-                    Button(action: {searchQuery = ""}) {
+                    Button(action: {
+                        searchQuery = ""
+                        focusValue = false
+                    }) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
                 }.padding(.horizontal, 5).padding(.top, 10)
@@ -49,20 +53,23 @@ struct HomeView: View {
                 .listStyle(.plain)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .navigationBarTitleDisplayMode(.inline)
-            }.onAppear{ loadData() }
-                .navigationDestination(for: Int.self) { val in
-                    WeatherDetails(city: currentCity, region: region)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
-                    ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
-                }
+            }
+   //         .simultaneousGesture(TapGesture().onEnded { focusValue = false })
+            .onAppear {
+                loadData()
+            }
+            .navigationDestination(for: Int.self) { _ in
+                WeatherDetails(city: currentCity)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
+                ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
+            }
         }
     }
     
     func loadData() {
         currentCity = cityProvider.getCurrentCity()
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: currentCity.lat, longitude: currentCity.lon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
     }
 
     private func searchFor(_ txt: String) -> Bool {

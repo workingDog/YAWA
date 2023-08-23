@@ -7,9 +7,6 @@
 
 import Foundation
 import SwiftUI
-import OWOneCall
-import MapKit
-import CoreLocation
 
 
 struct WeatherDetails: View {
@@ -17,13 +14,12 @@ struct WeatherDetails: View {
     @EnvironmentObject var cityProvider: CityProvider
     
     @State var city: City
-    @State var region: MKCoordinateRegion
     
     var body: some View {
         TabView {
             OverviewPage(city: city)
             ChartsPage()
-            MapViewer(city: city, region: region)
+            MapViewer(city: city)
         }
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .tabViewStyle(.page)
