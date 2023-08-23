@@ -54,9 +54,8 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .navigationBarTitleDisplayMode(.inline)
             }
-   //         .simultaneousGesture(TapGesture().onEnded { focusValue = false })
             .onAppear {
-                loadData()
+                currentCity = cityProvider.getCurrentCity()
             }
             .navigationDestination(for: Int.self) { _ in
                 WeatherDetails(city: currentCity)
@@ -66,10 +65,6 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
             }
         }
-    }
-    
-    func loadData() {
-        currentCity = cityProvider.getCurrentCity()
     }
 
     private func searchFor(_ txt: String) -> Bool {

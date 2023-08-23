@@ -50,13 +50,12 @@ struct WeatherCardInfo: View {
                             .background(Color(UIColor.systemGray6))
                             .padding(1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
-        }.onAppear(perform: loadData)
-    }
-
-    func loadData() {
-        // for current, daily and hourly forecast
-        let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: cityProvider.lang)
-        cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
+        }
+        .onAppear {
+            // for current, daily and hourly forecast
+            let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: cityProvider.lang)
+            cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
+        }
     }
 
     func WindCurrent() -> some View {

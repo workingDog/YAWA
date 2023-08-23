@@ -24,14 +24,14 @@ struct SettingsView: View {
     
     var body: some View {
         VStack (spacing: 20) {
-            #if targetEnvironment(macCatalyst)
+#if targetEnvironment(macCatalyst)
             Button(action: {dismiss()}) {
-                    HStack {
-                        Text("Done").foregroundColor(.blue)
-                        Spacer()
-                    }
-                }.padding(20)
-            #endif
+                HStack {
+                    Text("Done").foregroundColor(.blue)
+                    Spacer()
+                }
+            }.padding(20)
+#endif
             Text("Settings").padding(20)
             TextField("openweather key", text: $theKey)
                 .foregroundColor(.blue)
@@ -67,16 +67,16 @@ struct SettingsView: View {
                                     .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
                                     .frame(width: 120)
                                     .background(RoundedRectangle(cornerRadius: 10)
-                                                    .stroke(lineWidth: 1)
-                                                    .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
-                                                    .background(Color(UIColor.systemGray6))
-                                                    .padding(2))
+                                        .stroke(lineWidth: 1)
+                                        .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
+                                        .background(Color(UIColor.systemGray6))
+                                        .padding(2))
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         }
                     }
                 }
-                .onChange(of: startLang) { 
+                .onChange(of: startLang) {
                     if let str = startLang {
                         withAnimation {
                             scroller.scrollTo(str)
@@ -89,17 +89,16 @@ struct SettingsView: View {
             Button(action: {onSave()}) {
                 Text("Save").padding(30).foregroundColor(Color.primary)
             }.cornerRadius(40)
-            .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
-                        .foregroundColor(.green))
-            .padding(.top, 30)
+                .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
+                    .foregroundColor(.green))
+                .padding(.top, 30)
             
             Spacer()
-        }.onAppear(perform: loadData)
+        }
+        .onAppear {
+            startLang = cityProvider.lang
+        }
         .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity)
-    }
-    
-    func loadData() {
-        startLang = cityProvider.lang
     }
     
     private func searchFor(_ txt: String) -> Bool {
@@ -114,5 +113,5 @@ struct SettingsView: View {
         // to go back to the previous view
         dismiss()
     }
-
+    
 }

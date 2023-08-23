@@ -74,15 +74,11 @@ struct LanguageChooser: View {
                         }
                     }
                 }
-                .simultaneousGesture(TapGesture().onEnded { focusValue = false })
+        }.onAppear{
+            startLang = cityProvider.lang
+        }
+    }
 
-        }.onAppear(perform: loadData)
-    }
-    
-    func loadData() {
-        startLang = cityProvider.lang
-    }
-    
     private func searchFor(_ txt: String) -> Bool {
         return (txt.lowercased(with: .current).hasPrefix(searchQuery.trim().lowercased(with: .current)) || searchQuery.trim().isEmpty)
     }

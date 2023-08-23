@@ -20,7 +20,6 @@ struct YAWAApp: App {
                 .onAppear{
                     DispatchQueue.main.async {
                         let theKey = StoreService.shared.getOWKey() ?? "your key"
-                        //   StoreService.shared.setOWKey(key: theKey)
                         cityProvider.weatherProvider = OWProvider(apiKey: theKey)
                         cityProvider.lang = StoreService.shared.getLang() ?? "English"
                     }
