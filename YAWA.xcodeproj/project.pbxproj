@@ -34,7 +34,6 @@
 		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
 		C7D89AAD24CFB21800B7B4C4 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */; };
 		C7DC78CD24D2A7DD0006931A /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CC24D2A7DD0006931A /* MapViewer.swift */; };
-		C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +66,6 @@
 		C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YawaUtils.swift; sourceTree = "<group>"; };
 		C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
 		C7DC78CC24D2A7DD0006931A /* MapViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewer.swift; sourceTree = "<group>"; };
-		C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMapLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +148,6 @@
 				C7ADA91424CD890400629E06 /* CityProvider.swift */,
 				C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */,
 				C7D89AAC24CFB21800B7B4C4 /* StoreService.swift */,
-				C7DC78CE24D2AE5B0006931A /* CityMapLocation.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -266,7 +263,6 @@
 				C7ADA92124CD890400629E06 /* HomeView.swift in Sources */,
 				C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */,
 				C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */,
-				C7DC78CF24D2AE5B0006931A /* CityMapLocation.swift in Sources */,
 				C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */,
 				C744A18E24D40EEA0072EB76 /* WeatherCardInfo.swift in Sources */,
 				C7ADA91D24CD890400629E06 /* CityProvider.swift in Sources */,

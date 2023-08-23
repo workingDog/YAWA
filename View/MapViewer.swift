@@ -17,8 +17,6 @@ struct MapViewer: View {
     @EnvironmentObject var cityProvider: CityProvider
     
     @State var city: City
-
-    @State var cityAnno = [CityMapLocation]()
     @State var selectedCity = City()
     
     @State private var mapType: Int = 0
@@ -43,10 +41,13 @@ struct MapViewer: View {
                 mapTools
                 MapReader{ reader in
                     Map(position: $cameraPosition, interactionModes: .all) {
-                        ForEach(cityAnno) { pin in
-                            Annotation("", coordinate: pin.coordinate) {
-                                annoView(cityName: pin.title!)
-                            }
+//                        ForEach(cityProvider.cities.filter{$0.country == city.country}) { pin in
+//                            Annotation("", coordinate: pin.asCoords()) {
+//                                annoView(pin)
+//                            }
+//                        }
+                        Annotation("", coordinate: city.asCoords()) {
+                            annoView(city)
                         }
                     }
                     .mapControls {
@@ -62,25 +63,12 @@ struct MapViewer: View {
             }
         }.onAppear {
             selectedCity = city
-            loadData()
             cameraPosition = .camera(
-                MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: selectedCity.lat, longitude: selectedCity.lon),
-                          distance: 30000,
-                          heading: 0,
-                          pitch: 77)
+                MapCamera(centerCoordinate: selectedCity.asCoords(), distance: 50000, heading: 0, pitch: 77)
             )
         }
     }
-    
-    func loadData() {
-        // create a map location for all cities of this city.country
-        for theCity in cityProvider.cities {
-            if theCity.country == city.country {
-                cityAnno.append(CityMapLocation(city: theCity))
-            }
-        }
-    }
-    
+
     private func currentIconName() -> String {
         if let current = cityProvider.weather.current {
             return current.weatherIconName()
@@ -104,27 +92,21 @@ struct MapViewer: View {
         }.padding(5)
     }
     
-    func annoView(cityName: String) -> some View {
+    func annoView(_ theCity: City) -> some View {
         Button(action: {
-            // set the selectedCity
-            if let thisCity = cityProvider.cities.first(where: {$0.name == cityName}) {
-                selectedCity = thisCity
-            }
+            selectedCity = theCity
             showInfo = true
         }) {
             VStack {
-                Text(cityName == city.name
-                     ? String(format: "%.0f", (cityProvider.weather.current?.temp ?? 0.0).rounded())+"°"
-                        : ""
-                ).bold()
-                Image(systemName: cityName == city.name ? currentIconName() : "mappin.and.ellipse")
+                Text(String(format: "%.0f", (cityProvider.weather.current?.temp ?? 0.0).rounded())+"°").bold()
+                Image(systemName: currentIconName())
             }.foregroundColor(.red).scaleEffect(1.2)
         }.padding(5).frame(width: 75, height: 75)
         .contentShape(Rectangle())
         .background(RoundedRectangle(cornerRadius: 15)
                         .stroke(lineWidth: 1)
-                        .foregroundColor(cityName == city.name ? Color.secondary : Color.clear)
-                        .background(cityName == city.name ? Color(UIColor.systemGray6) : Color.clear)
+                        .foregroundColor(Color.secondary)
+                        .background(Color(UIColor.systemGray6))
                         .padding(1))
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .zIndex(2)
