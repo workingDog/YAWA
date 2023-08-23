@@ -7,29 +7,24 @@
 
 import Foundation
 import SwiftUI
-import Combine
+import Observation
 import OWOneCall
 import CoreLocation
 
 
-class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    let defaultCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
+    var weather = OWResponse()
+    var cities: [City] = []
+    var lang = "English"
+    var heading: Double = .zero
     
-    var weatherProvider = OWProvider(apiKey: "your key")
-    let locationManager = CLLocationManager()
-    
-    @Published var weather = OWResponse()
-    
-    @Published var cities: [City] = []
-    @Published var lang = "English"
-    
-    @Published var heading: Double = .zero
-    
-    var languageNames = ["en":"English"]
-    var langArr = ["English"]
-    
-    let hourFormatter = DateFormatter()
+    @ObservationIgnored let defaultCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
+    @ObservationIgnored var weatherProvider = OWProvider(apiKey: "your key")
+    @ObservationIgnored let locationManager = CLLocationManager()
+    @ObservationIgnored var languageNames = ["en":"English"]
+    @ObservationIgnored var langArr = ["English"]
+    @ObservationIgnored let hourFormatter = DateFormatter()
     
     
     override init() {

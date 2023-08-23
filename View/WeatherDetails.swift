@@ -11,7 +11,7 @@ import SwiftUI
 
 struct WeatherDetails: View {
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var city: City
     

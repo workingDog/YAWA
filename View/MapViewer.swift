@@ -14,7 +14,7 @@ import CoreLocation
 
 struct MapViewer: View {
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var city: City
     @State var selectedCity = City()

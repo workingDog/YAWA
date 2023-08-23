@@ -18,7 +18,7 @@ struct WData: Identifiable {
 
 struct ChartsPage: View {
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var tempData: [WData] = []
     @State var rainData: [WData] = []
@@ -93,7 +93,9 @@ struct ChartsPage: View {
                 .border(Color.pink, width: 1)
         }
         .padding(30)
-        .onAppear{ loadData() }
+        .onAppear{
+            loadData()
+        }
     }
     
     func loadData() {

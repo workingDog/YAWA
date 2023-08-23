@@ -11,7 +11,7 @@ import SwiftUI
 struct NewCityView: View {
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
 
     @State var cityName = ""
     @State var cityCountry = ""
@@ -37,7 +37,7 @@ struct NewCityView: View {
             TextField("decimal latitude", text: $cityLat)
             TextField("decimal longitude", text: $cityLon)
 
-            Button(action: {self.onSave()}) {
+            Button(action: { onSave() }) {
                 Text("Save").padding(25).foregroundColor(Color.primary)
             }.cornerRadius(40)
                 .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)

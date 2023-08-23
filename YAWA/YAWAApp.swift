@@ -12,11 +12,12 @@ import OWOneCall
 @main
 struct YAWAApp: App {
     
-    let cityProvider = CityProvider()
+    @State var cityProvider = CityProvider()
     
     var body: some Scene {
         WindowGroup {
-            HomeView().environmentObject(cityProvider)
+            HomeView()
+                .environment(cityProvider)
                 .onAppear{
                     DispatchQueue.main.async {
                         let theKey = StoreService.shared.getOWKey() ?? "your key"

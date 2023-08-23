@@ -13,7 +13,7 @@ import OWOneCall
 
 struct WeatherCardInfo: View {
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var city: City
     @Binding var showInfo: Bool

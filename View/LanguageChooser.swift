@@ -11,7 +11,7 @@ struct LanguageChooser: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?

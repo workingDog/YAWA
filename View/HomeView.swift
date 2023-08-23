@@ -11,24 +11,23 @@ import CoreLocation
 
 
 struct HomeView: View {
-    
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var searchQuery: String = ""
     @State var showNewCity: Bool = false
     @State var showLang: Bool = false
-    @State var actions: [Int] = []
-    @State var currentCity = City()
-    
     @State var showSettings: Bool = false
+    @State var path = NavigationPath()
+    @State var currentCity = City()
+
     @FocusState var focusValue: Bool
     
     
     var body: some View {
-        NavigationStack(path: $actions) {
+        NavigationStack(path: $path) {
             VStack(spacing: 20) {
                 HStack {
-                    Button("Current location", action: {actions = [1]})
+                    Button("Current location", action: { path.append(1) })
                         .buttonStyle(TealButtonStyle()).padding(8)
                     Spacer()
                     TextField("city search", text: $searchQuery).padding(5)
@@ -75,14 +74,16 @@ struct HomeView: View {
         HStack {
             Button(action: {showNewCity = true}) {
                 Image(systemName: "plus.circle.fill").font(.body)
-            }.sheet(isPresented: $showNewCity, onDismiss: {showNewCity = false}) {
-                NewCityView().environmentObject(cityProvider)
+            }
+            .sheet(isPresented: $showNewCity) {
+                NewCityView().environment(cityProvider)
             }.padding(.horizontal, 40)
             
             Button(action: {showSettings = true}) {
                 Image(systemName: "gearshape").font(.body)
-            }.sheet(isPresented: $showSettings, onDismiss: {showSettings = false}) {
-                SettingsView().environmentObject(cityProvider)
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView().environment(cityProvider)
             }
         }
     }
@@ -90,9 +91,10 @@ struct HomeView: View {
     private var langButton: some View {
         Button(action: {showLang = true}) {
             Text(cityProvider.lang).font(.body).frame(width: 120, height: 25)
-        }.buttonStyle(BlueButtonStyle())
-        .sheet(isPresented: $showLang, onDismiss: {showLang = false}) {
-            LanguageChooser().environmentObject(cityProvider)
+        }
+        .buttonStyle(BlueButtonStyle())
+        .sheet(isPresented: $showLang) {
+            LanguageChooser().environment(cityProvider)
         }
     }
     

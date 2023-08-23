@@ -13,7 +13,7 @@ struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var theKey = ""
     
@@ -109,7 +109,7 @@ struct SettingsView: View {
         cityProvider.weatherProvider = OWProvider(apiKey: theKey)
         StoreService.shared.setOWKey(key: theKey)
         // todo validate lang
-        StoreService.shared.setLang(str: self.cityProvider.lang)
+        StoreService.shared.setLang(str: cityProvider.lang)
         // to go back to the previous view
         dismiss()
     }

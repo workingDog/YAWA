@@ -12,7 +12,7 @@ import OWOneCall
 
 struct WeatherAlertView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     var body: some View {
         VStack (spacing: 20) {

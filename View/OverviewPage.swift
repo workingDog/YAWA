@@ -12,7 +12,7 @@ import OWOneCall
 
 struct OverviewPage: View {
     
-    @EnvironmentObject var cityProvider: CityProvider
+    @Environment(CityProvider.self) var cityProvider
     
     @State var city: City
     
@@ -100,7 +100,7 @@ struct OverviewPage: View {
         //      .listStyle(.grouped)
         .navigationBarTitle(Text(city.name + ", " + city.country), displayMode: .automatic)
         .fullScreenCover(isPresented: $showAlert) {
-            WeatherAlertView().environmentObject(cityProvider)
+            WeatherAlertView().environment(cityProvider)
         }
     }
     
