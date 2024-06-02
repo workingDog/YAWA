@@ -7,12 +7,12 @@
 
 ## Yet Another Weather App (YAWA)
 
-Yes, another weather app. This time to showcase my very own [**OWOneCall**](https://github.com/workingDog/OWOneCall) swift library.
+Yes, another weather app. This time to showcase my very own [**OWOneCall**](https://openweathermap.org/api/one-call-3) swift library.
 
 
 ## OWOneCall
 
-[**OWOneCall**](https://github.com/workingDog/OWOneCall) is a small Swift library to connect to the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) and retrieve the chosen weather data. Made easy to use with SwiftUI.
+[**OWOneCall**](https://openweathermap.org/api/one-call-3) is a small Swift library to connect to the [OpenWeather One Call API](https://openweathermap.org/api/one-call-3) and retrieve the chosen weather data. Made easy to use with SwiftUI.
 
 Provides for current, forecast and historical weather data through a single function call.
 
