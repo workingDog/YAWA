@@ -1,14 +1,15 @@
 {
+  "originHash" : "2e3e4ce61668519611163605ba9c2b3235f0c680ee25593a5876b3a9821b0ddc",
   "pins" : [
     {
       "identity" : "owonecall",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/workingDog/OWOneCall",
       "state" : {
-        "revision" : "3cf4115aa8d392c5dccf143f5f46eca65a371d49",
-        "version" : "1.3.2"
+        "revision" : "1ee37b6478e71b24c41058b325da06ac45a74056",
+        "version" : "1.3.3"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

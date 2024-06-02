@@ -20,10 +20,10 @@ struct ChartsPage: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var tempData: [WData] = []
-    @State var rainData: [WData] = []
-    @State var windData: [WData] = []
-    @State var cloudData: [WData] = []
+    @State private var tempData: [WData] = []
+    @State private var rainData: [WData] = []
+    @State private var windData: [WData] = []
+    @State private var cloudData: [WData] = []
     //   @State var snowData: [WData] = []
     
     @State var viewtype = 0
@@ -107,21 +107,23 @@ struct ChartsPage: View {
             // make a vector of Date for each (hour*hstep)
             let hourVector = stride(from: startOfDay, to: now, by: hourStep).map { Date(timeInterval: $0, since: Date()) }
             
-            tempData = (0..<hourVector.count).map { i in
-                return WData(date: hourVector[i], value: hourly[i*hstep].temp)
-            }
-            
-            rainData = (0..<hourVector.count).map { i in
-                let prob = hourly[i*hstep].pop != nil ? hourly[i*hstep].pop! * 100.0 : 0.0
-                return WData(date: hourVector[i], value: prob)
-            }
-            
-            windData = (0..<hourVector.count).map { i in
-                return WData(date: hourVector[i], value: hourly[i*hstep].windSpeed)
-            }
-            
-            cloudData = (0..<hourVector.count).map { i in
-                return WData(date: hourVector[i], value: Double(hourly[i*hstep].clouds))
+            if hourly.count > 0 {
+                tempData = (0..<hourVector.count).map { i in
+                    return WData(date: hourVector[i], value: hourly[i*hstep].temp)
+                }
+                
+                rainData = (0..<hourVector.count).map { i in
+                    let prob = hourly[i*hstep].pop != nil ? hourly[i*hstep].pop! * 100.0 : 0.0
+                    return WData(date: hourVector[i], value: prob)
+                }
+                
+                windData = (0..<hourVector.count).map { i in
+                    return WData(date: hourVector[i], value: hourly[i*hstep].windSpeed)
+                }
+                
+                cloudData = (0..<hourVector.count).map { i in
+                    return WData(date: hourVector[i], value: Double(hourly[i*hstep].clouds))
+                }
             }
         }
     }
