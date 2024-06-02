@@ -13,11 +13,11 @@ struct NewCityView: View {
     
     @Environment(CityProvider.self) var cityProvider
 
-    @State var cityName = ""
-    @State var cityCountry = ""
-    @State var cityCountryCode = ""
-    @State var cityLat = ""
-    @State var cityLon = ""
+    @State private var cityName = ""
+    @State private var cityCountry = ""
+    @State private var cityCountryCode = ""
+    @State private var cityLat = ""
+    @State private var cityLon = ""
   
     
     var body: some View {

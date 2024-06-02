@@ -12,11 +12,10 @@ import CoreLocation
 struct HomeView: View {
     @Environment(CityProvider.self) var cityProvider
     
-    @State var searchQuery: String = ""
-    @State var showNewCity: Bool = false
-    @State var showLang: Bool = false
-    @State var showSettings: Bool = false
-    @State var path = NavigationPath()
+    @State private var searchQuery: String = ""
+    @State private var showNewCity: Bool = false
+    @State private var showSettings: Bool = false
+    @State private var path = NavigationPath()
 
     @FocusState var focusValue: Bool
     
@@ -39,7 +38,7 @@ struct HomeView: View {
                     }) {
                         Image(systemName: "xmark.circle").font(.title)
                     }
-                }.padding(.horizontal, 5).padding(.top, 10)
+                }.padding(5)
                 Divider()
                 List {
                     ForEach(cityProvider.cities.filter{searchFor($0.name)}
@@ -56,7 +55,6 @@ struct HomeView: View {
                 WeatherDetails(city: cityProvider.getCurrentCity())
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) { langButton.padding(.top, 10) }
                 ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
             }
         }
@@ -84,16 +82,6 @@ struct HomeView: View {
         }
     }
 
-    private var langButton: some View {
-        Button(action: {showLang = true}) {
-            Text(cityProvider.lang).font(.body).frame(width: 120, height: 25)
-        }
-        .buttonStyle(BlueButtonStyle())
-        .sheet(isPresented: $showLang) {
-            LanguageChooser().environment(cityProvider)
-        }
-    }
-    
     private func delete(with indexSet: IndexSet) {
         // must sort the list as in the body
         let sortedList = cityProvider.cities.filter{searchFor($0.name)}.sorted(by: { $0.name < $1.name })

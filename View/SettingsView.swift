@@ -15,15 +15,16 @@ struct SettingsView: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var theKey = ""
+    @State private var theKey = ""
     
     @State private var searchQuery: String = ""
     @State private var startLang: String?
+    @State private var prompt = "default language"
     @FocusState var focusValue: Bool
     
     
     var body: some View {
-        VStack (spacing: 20) {
+        VStack (spacing: 10) {
 #if targetEnvironment(macCatalyst)
             Button(action: {dismiss()}) {
                 HStack {
@@ -32,14 +33,26 @@ struct SettingsView: View {
                 }
             }.padding(20)
 #endif
-            Text("Settings").padding(20)
+            Text("Settings").padding(10)
             TextField("openweather key", text: $theKey)
                 .foregroundColor(.blue)
                 .textFieldStyle(CustomTextFieldStyle())
                 .padding(10)
+            
+            Button(action: {onSaveKey()}) {
+                Text("Save key").padding(30).foregroundColor(Color.primary)
+            }.cornerRadius(40)
+                .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
+                    .foregroundColor(.green))
+                .padding(20)
+            
+            Divider().frame(height: 6).background(.blue)
+            
+            Spacer()
+            
             HStack {
                 Spacer()
-                TextField("default language", text: $searchQuery)
+                TextField(prompt, text: $searchQuery)
                     .focused($focusValue)
                     .foregroundColor(.blue).padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
@@ -52,9 +65,8 @@ struct SettingsView: View {
                     Image(systemName: "xmark.circle").font(.title)
                 }
                 Spacer()
-            }.padding(.top, 40)
+            }.padding(.top, 30)
             
-            Divider()
             ScrollViewReader { scroller in
                 ScrollView (.horizontal) {
                     HStack(spacing: 10) {
@@ -64,11 +76,11 @@ struct SettingsView: View {
                             }) {
                                 Text(lang).padding(10)
                                     .font(cityProvider.lang == lang ? .body : .caption)
-                                    .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
+                                    .foregroundColor(cityProvider.lang == lang ? Color.blue : Color.primary)
                                     .frame(width: 120)
                                     .background(RoundedRectangle(cornerRadius: 10)
                                         .stroke(lineWidth: 1)
-                                        .foregroundColor(cityProvider.lang == lang ? Color.red : Color.primary)
+                                        .foregroundColor(cityProvider.lang == lang ? Color.blue : Color.primary)
                                         .background(Color(UIColor.systemGray6))
                                         .padding(2))
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -83,20 +95,22 @@ struct SettingsView: View {
                         }
                     }
                 }
-            }
-            Divider()
-            
-            Button(action: {onSave()}) {
-                Text("Save").padding(30).foregroundColor(Color.primary)
+            }.padding(20)
+
+            Button(action: {onSaveLang()}) {
+                Text("Save language").padding(30).foregroundColor(Color.primary)
             }.cornerRadius(40)
                 .overlay(RoundedRectangle(cornerRadius: 40).stroke(lineWidth: 2)
                     .foregroundColor(.green))
-                .padding(.top, 30)
+                .padding(.top, 20)
             
             Spacer()
         }
         .onAppear {
             startLang = cityProvider.lang
+            if let lang = startLang {
+                prompt = lang
+            }
         }
         .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity)
     }
@@ -105,12 +119,17 @@ struct SettingsView: View {
         return (txt.lowercased(with: .current).hasPrefix(searchQuery.trim().lowercased(with: .current)) || searchQuery.trim().isEmpty)
     }
     
-    func onSave() {
-        cityProvider.weatherProvider = OWProvider(apiKey: theKey)
-        StoreService.shared.setOWKey(key: theKey)
+    func onSaveLang() {
         // todo validate lang
         StoreService.shared.setLang(str: cityProvider.lang)
-        // to go back to the previous view
+        dismiss()
+    }
+    
+    func onSaveKey() {
+        if !theKey.isEmpty {
+            cityProvider.weatherProvider = OWProvider(apiKey: theKey)
+            StoreService.shared.setOWKey(key: theKey)
+        }
         dismiss()
     }
     

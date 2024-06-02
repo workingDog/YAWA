@@ -12,7 +12,7 @@ import OWOneCall
 import CoreLocation
 
 
-@Observable class CityProvider: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable class CityProvider: NSObject, CLLocationManagerDelegate {
     
     var weather = OWResponse()
     var cities: [City] = []
@@ -47,7 +47,7 @@ import CoreLocation
     }
     
     func loadCities() {
-        if let url =  Bundle.main.url(forResource: "cities", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: "cities", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 cities = try JSONDecoder().decode([City].self, from: data)
@@ -152,6 +152,3 @@ import CoreLocation
     }
     
 }
-
-
-

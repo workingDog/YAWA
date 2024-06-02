@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CityRow: View {
     
-    @State var city: City
+    let city: City
 
     var body: some View {
         NavigationLink(destination: WeatherDetails(city: city)) {

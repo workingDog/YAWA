@@ -10,12 +10,11 @@ import SwiftUI
 import OWOneCall
 
 
-
 struct WeatherCardInfo: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var city: City
+    let city: City
     @Binding var showInfo: Bool
     
     @State var weather = OWResponse()

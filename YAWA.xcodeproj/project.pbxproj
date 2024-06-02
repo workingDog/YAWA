@@ -19,7 +19,6 @@
 		C75470CE24CD8829003B330F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75470CD24CD8829003B330F /* Preview Assets.xcassets */; };
 		C767F83424CEE11F00EF8EA8 /* country-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = C767F83324CEE11F00EF8EA8 /* country-codes.json */; };
 		C784CD0924CEFFA600145699 /* LanguageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784CD0824CEFFA600145699 /* LanguageChooser.swift */; };
-		C78AE95628CDBA7600D3820A /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C78AE95528CDBA7600D3820A /* OWOneCall */; };
 		C7A47FFA24D005B600C59D22 /* ChartsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FF924D005B600C59D22 /* ChartsPage.swift */; };
 		C7A47FFC24D00C7900C59D22 /* OverviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A47FFB24D00C7900C59D22 /* OverviewPage.swift */; };
 		C7ADA91C24CD890400629E06 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91324CD890400629E06 /* Extensions.swift */; };
@@ -29,6 +28,7 @@
 		C7ADA92024CD890400629E06 /* WeatherDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91924CD890400629E06 /* WeatherDetails.swift */; };
 		C7ADA92124CD890400629E06 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91A24CD890400629E06 /* HomeView.swift */; };
 		C7ADA92224CD890400629E06 /* NewCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA91B24CD890400629E06 /* NewCityView.swift */; };
+		C7D096C62B4A301800A6AF9F /* OWOneCall in Frameworks */ = {isa = PBXBuildFile; productRef = C7D096C52B4A301800A6AF9F /* OWOneCall */; };
 		C7D1611224D03A6E00625B4E /* HourlyPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1611124D03A6E00625B4E /* HourlyPage2.swift */; };
 		C7D89AA924CFA54C00B7B4C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AA824CFA54C00B7B4C4 /* SettingsView.swift */; };
 		C7D89AAB24CFAAD800B7B4C4 /* YawaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D89AAA24CFAAD800B7B4C4 /* YawaUtils.swift */; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C78AE95628CDBA7600D3820A /* OWOneCall in Frameworks */,
+				C7D096C62B4A301800A6AF9F /* OWOneCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +196,7 @@
 			);
 			name = YAWA;
 			packageProductDependencies = (
-				C78AE95528CDBA7600D3820A /* OWOneCall */,
+				C7D096C52B4A301800A6AF9F /* OWOneCall */,
 			);
 			productName = YAWA;
 			productReference = C75470C324CD8829003B330F /* YAWA.app */;
@@ -226,7 +226,7 @@
 			);
 			mainGroup = C75470BA24CD8829003B330F;
 			packageReferences = (
-				C78AE95428CDBA7600D3820A /* XCRemoteSwiftPackageReference "OWOneCall" */,
+				C7D096C42B4A301800A6AF9F /* XCRemoteSwiftPackageReference "OWOneCall" */,
 			);
 			productRefGroup = C75470C424CD8829003B330F /* Products */;
 			projectDirPath = "";
@@ -335,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -390,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -411,7 +411,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,7 +435,7 @@
 				DEVELOPMENT_TEAM = N7KF5K7NET;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YAWA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,20 +472,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C78AE95428CDBA7600D3820A /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
+		C7D096C42B4A301800A6AF9F /* XCRemoteSwiftPackageReference "OWOneCall" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/workingDog/OWOneCall";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C78AE95528CDBA7600D3820A /* OWOneCall */ = {
+		C7D096C52B4A301800A6AF9F /* OWOneCall */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C78AE95428CDBA7600D3820A /* XCRemoteSwiftPackageReference "OWOneCall" */;
+			package = C7D096C42B4A301800A6AF9F /* XCRemoteSwiftPackageReference "OWOneCall" */;
 			productName = OWOneCall;
 		};
 /* End XCSwiftPackageProductDependency section */

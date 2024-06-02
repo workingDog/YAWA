@@ -14,10 +14,10 @@ struct OverviewPage: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var city: City
+    let city: City
     
-    @State var showAlert = false
-    @State var timeNow = ""
+    @State private var showAlert = false
+    @State private var timeNow = ""
     
     let timer = Timer.publish(every: 1, tolerance: 1.0, on: .main, in: .common).autoconnect()
     let dateFormatter = DateFormatter()

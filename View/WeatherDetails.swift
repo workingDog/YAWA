@@ -13,7 +13,7 @@ struct WeatherDetails: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var city: City
+    let city: City
     
     var body: some View {
         TabView {

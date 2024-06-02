@@ -16,11 +16,11 @@ struct MapViewer: View {
     
     @Environment(CityProvider.self) var cityProvider
     
-    @State var city: City
-    @State var selectedCity = City()
+    let city: City
+    @State private var selectedCity = City()
     
     @State private var mapType: Int = 0
-    @State var showInfo = false
+    @State private var showInfo = false
     
     @State private var cameraPosition: MapCameraPosition = .camera(
         MapCamera(centerCoordinate: CLLocationCoordinate2D(), distance: 50000, heading: 0, pitch: 0)
