@@ -18,6 +18,7 @@ struct OverviewPage: View {
     
     @State private var showAlert = false
     @State private var timeNow = ""
+    @State private var timeOffset = ""
     
     let timer = Timer.publish(every: 1, tolerance: 1.0, on: .main, in: .common).autoconnect()
     let dateFormatter = DateFormatter()
@@ -33,9 +34,18 @@ struct OverviewPage: View {
         timeNow = dateFormatter.string(from: Date())
     }
     
+    @ViewBuilder
+    func timeView() -> some View {
+        VStack (alignment: .leading, spacing: 8) {
+            Text(timeNow)
+            Text(timeOffset)
+        }
+    }
+
+    
     var body: some View {
         List {
-            Section(header: Text(timeNow)
+            Section(header: timeView()
                 .font(.system(.footnote, design: .monospaced))
                 .foregroundColor(.accentColor).bold()
                 .onReceive(timer) { _ in
@@ -102,8 +112,14 @@ struct OverviewPage: View {
         .fullScreenCover(isPresented: $showAlert) {
             WeatherAlertView().environment(cityProvider)
         }
+        .onAppear {
+            cityProvider.timeDifference{ toff in
+                timeOffset = toff
+            }
+        }
     }
     
+    @ViewBuilder
     func dailyView(_ daily: Daily) -> some View {
         HStack {
             VStack (alignment: .leading, spacing: 2){
@@ -133,6 +149,7 @@ struct OverviewPage: View {
         }
     }
     
+    @ViewBuilder
     func windHourlyImage(_ ndx: Int) -> some View {
         Image(systemName: "location.north.fill")
             .resizable()
@@ -141,6 +158,7 @@ struct OverviewPage: View {
             .rotationEffect(.degrees(cityProvider.windDirHourly(ndx)))  // cityProvider.heading+windDirHourly(ndx)
     }
     
+    @ViewBuilder
     func WindCurrentImage() -> some View {
         Image(systemName: "location.north.fill")
             .resizable()

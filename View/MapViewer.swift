@@ -38,7 +38,7 @@ struct MapViewer: View {
     var body: some View {
         ZStack {
             VStack (spacing: 1) {
-                mapTools
+                mapTools()
                 MapReader{ reader in
                     Map(position: $cameraPosition, interactionModes: .all) {
 //                        ForEach(cityProvider.cities.filter{$0.country == city.country}) { pin in
@@ -77,7 +77,8 @@ struct MapViewer: View {
         }
     }
 
-    var mapTools: some View {
+    @ViewBuilder
+    func mapTools() -> some View {
         HStack {
             Spacer()
             Picker("", selection: $mapType) {
@@ -92,6 +93,7 @@ struct MapViewer: View {
         }.padding(5)
     }
     
+    @ViewBuilder
     func annoView(_ theCity: City) -> some View {
         Button(action: {
             selectedCity = theCity

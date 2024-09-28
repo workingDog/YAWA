@@ -17,7 +17,7 @@ struct WeatherCardInfo: View {
     let city: City
     @Binding var showInfo: Bool
     
-    @State var weather = OWResponse()
+    @State private var weather = OWResponse()
     
     var body: some View {
         Button(action: {showInfo = false}) {
@@ -57,6 +57,7 @@ struct WeatherCardInfo: View {
         }
     }
 
+    @ViewBuilder
     func WindCurrent() -> some View {
         Image(systemName: "location.north.fill")
             .resizable()

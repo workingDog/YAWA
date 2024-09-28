@@ -26,6 +26,9 @@ import CoreLocation
     @ObservationIgnored var langArr = ["English"]
     @ObservationIgnored let hourFormatter = DateFormatter()
     
+    // current selected city
+    var currentCity = City(name: "Tokyo", country: "Japan", code: "jp", lat: 35.685, lon: 139.7514)
+    
     
     override init() {
         super.init()
@@ -57,7 +60,8 @@ import CoreLocation
         }
     }
     
-    func getCurrentCity() -> City {
+    // city of current location 
+    func getHomeCity() -> City {
         if locationManager.authorizationStatus == .authorizedWhenInUse ||
             locationManager.authorizationStatus == .authorizedAlways {
             let loc = locationManager.location
@@ -151,4 +155,33 @@ import CoreLocation
         return dateFormatter.string(from: Date(utc: t ?? 0))
     }
     
+    func getTimezoneOffset(for city: City, completion: @escaping (Int) -> Void) {
+        // for current, daily and hourly forecast
+        let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: lang)
+        weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options) { response in
+            if let response = response{
+                completion(response.timezoneOffset)
+            }
+        }
+    }
+
+    func timeDifference(completion: @escaping (String) -> Void) {
+        let homeCity = getHomeCity()
+        if homeCity.name != currentCity.name && homeCity.country != currentCity.country {
+            getTimezoneOffset(for: homeCity) { tz in
+                let seconds = tz - self.weather.timezoneOffset
+                let hours = seconds / 3600
+                let minutes = (seconds % 3600) / 60
+                
+                var result = String(abs(hours))
+                result = result + (minutes > 0 ? ":" + String(minutes) : ":0")
+                result = result + (hours < 0 ? " ahead" : " behind")
+                
+                completion(result)
+            }
+        } else {
+            completion("")
+        }
+    }
+
 }

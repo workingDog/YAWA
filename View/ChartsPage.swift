@@ -44,6 +44,7 @@ struct ChartsPage: View {
         }.padding(5)
     }
     
+    @ViewBuilder
     func chartOf(_ data: [WData], title: String, yaxis: String) -> some View {
         GroupBox(title) {
             Chart (data) { wdata in

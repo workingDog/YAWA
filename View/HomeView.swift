@@ -52,10 +52,12 @@ struct HomeView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .navigationDestination(for: Int.self) { _ in
-                WeatherDetails(city: cityProvider.getCurrentCity())
+                WeatherDetails(city: cityProvider.getHomeCity())
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) { addButton.padding(.top, 10) }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    addButton().padding(.top, 10)
+                }
             }
         }
     }
@@ -64,7 +66,8 @@ struct HomeView: View {
         return (txt.lowercased(with: .current).hasPrefix(searchQuery.trim().lowercased(with: .current)) || searchQuery.trim().isEmpty)
     }
 
-    private var addButton: some View {
+    @ViewBuilder
+    func addButton() -> some View {
         HStack {
             Button(action: {showNewCity = true}) {
                 Image(systemName: "plus.circle.fill").font(.body)
@@ -95,10 +98,4 @@ struct HomeView: View {
         }
     }
 
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
 }

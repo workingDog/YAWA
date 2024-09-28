@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct CityRow: View {
-    
     let city: City
 
     var body: some View {
