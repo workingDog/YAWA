@@ -54,6 +54,7 @@ import CoreLocation
             do {
                 let data = try Data(contentsOf: url)
                 cities = try JSONDecoder().decode([City].self, from: data)
+       //         print("---> CityProvider loadCities cities:\(cities.count)")
             } catch {
                 print("====> CityProvider loadCities reading error:\(error)")
             }
@@ -101,13 +102,12 @@ import CoreLocation
         return hourFormatter.string(from: utc.dateFromUTC())
     }
     
-    func loadWeatherData(for city: City) {
+    func loadWeatherData(for city: City) async {
         // for current, daily and hourly forecast
         let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: lang)
-        weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options) { response in
-            if let theWeather = response {
-                self.weather = theWeather
-            }
+        let response = await weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options)
+        if let theWeather = response {
+            self.weather = theWeather
         }
     }
     
@@ -155,33 +155,36 @@ import CoreLocation
         return dateFormatter.string(from: Date(utc: t ?? 0))
     }
     
-    func getTimezoneOffset(for city: City, completion: @escaping (Int) -> Void) {
-        // for current, daily and hourly forecast
+    func getTimezoneOffset(for city: City) async -> Int? {
         let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: lang)
-        weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options) { response in
-            if let response = response{
-                completion(response.timezoneOffset)
-            }
-        }
-    }
 
-    func timeDifference(completion: @escaping (String) -> Void) {
+        let response = await weatherProvider.getWeather(lat: city.lat, lon: city.lon, options: options)
+
+        return response?.timezoneOffset
+    }
+    
+    func timeDifference() async -> String {
         let homeCity = getHomeCity()
-        if homeCity.name != currentCity.name && homeCity.country != currentCity.country {
-            getTimezoneOffset(for: homeCity) { tz in
-                let seconds = tz - self.weather.timezoneOffset
-                let hours = seconds / 3600
-                let minutes = (seconds % 3600) / 60
-                
-                var result = String(abs(hours))
-                result = result + (minutes > 0 ? ":" + String(minutes) : ":0")
-                result = result + (hours < 0 ? " ahead" : " behind")
-                
-                completion(result)
-            }
-        } else {
-            completion("")
+
+        guard homeCity.name != currentCity.name ||
+              homeCity.country != currentCity.country else {
+            return ""
         }
+
+        guard let tz = await getTimezoneOffset(for: homeCity) else {
+            return ""
+        }
+
+        let seconds = tz - weather.timezoneOffset
+        let hours = seconds / 3600
+        let minutes = abs(seconds % 3600) / 60
+
+        var result = String(abs(hours))
+        result += ":\(minutes)"
+
+        result += hours < 0 ? " ahead" : " behind"
+
+        return result
     }
 
 }

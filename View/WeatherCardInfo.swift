@@ -50,10 +50,10 @@ struct WeatherCardInfo: View {
                             .padding(1))
             .clipShape(RoundedRectangle(cornerRadius: 25))
         }
-        .onAppear {
+        .task {
             // for current, daily and hourly forecast
             let options = OWOptions(excludeMode: [.minutely], units: .metric, lang: cityProvider.lang)
-            cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
+            await cityProvider.weatherProvider.getWeather(lat: city.lat, lon: city.lon, weather: $weather, options: options)
         }
     }
 

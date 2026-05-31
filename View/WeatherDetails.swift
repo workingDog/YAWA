@@ -23,9 +23,9 @@ struct WeatherDetails: View {
         }
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .tabViewStyle(.page)
-        .onAppear{
+        .task {
             cityProvider.currentCity = city
-            cityProvider.loadWeatherData(for: city)
+            await cityProvider.loadWeatherData(for: city)
         }
     }
     

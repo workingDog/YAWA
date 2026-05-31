@@ -112,10 +112,8 @@ struct OverviewPage: View {
         .fullScreenCover(isPresented: $showAlert) {
             WeatherAlertView().environment(cityProvider)
         }
-        .onAppear {
-            cityProvider.timeDifference{ toff in
-                timeOffset = toff
-            }
+        .task {
+            timeOffset = await cityProvider.timeDifference()
         }
     }
     
